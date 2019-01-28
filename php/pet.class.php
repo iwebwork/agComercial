@@ -26,6 +26,27 @@
 		private $idProprietario;
 
 		//Sets Pelo id do pet
+		public function setIDPetPeloId($value)
+		{
+			$sql = "SELECT id FROM pets WHERE id = :id ";
+			$sql = $this->pdo->prepare($sql);
+			$sql->bindValue(':id',$value);
+
+			$sql->execute();
+			if ($sql->rowCount() > 0) {
+				$id = $sql->fetch();
+				if(!empty($id)){
+					$this->id = $id['id'];
+					//$this->setIdProprietario($value);
+					
+				}else{
+					echo "Erro ao salvar o nome";
+				}
+			}else{
+				echo "Erro, este pet não esta cadastrado";
+			}
+		}
+
 		public function setNomeIDPet($value)
 		{
 			$sql = "SELECT nome_pet FROM pets WHERE id = :id ";
@@ -454,4 +475,30 @@
 			
 						
 		}
+
+		public function atualizarPet($value)
+		{	
+			//print_r($value);
+			$sql = "UPDATE pets SET id = :id_pet , nome_pet = :nome_pet, especie = :especie, raca = :raca, sexo = :sexo, idade = :idade, peso =:peso, info_add = :infoAdd WHERE id = :valueId";
+			$sql = $this->pdo->prepare($sql);
+			$sql->bindValue(':id_pet',$value['petId']);
+			$sql->bindValue(':nome_pet',$value['petNome']);
+			$sql->bindValue(':especie',$value['petSexo']);
+			$sql->bindValue(':raca',$value['petRaca']);
+			$sql->bindValue(':especie',$value['petEspecie']);
+			$sql->bindValue(':sexo',$value['petSexo']);
+			$sql->bindValue(':idade',$value['petIdade']);
+			$sql->bindValue(':peso',$value['petPeso']);
+			$sql->bindValue(':infoAdd',$value['petInfoAdd']);
+			$sql->bindValue('valueId',$value['petId']);
+			if ($sql->execute()) {
+				header("Location: ../index.php");
+			}else{
+				echo "Falha ao atualizar";
+			}
+		}
+
+
+
+
 	}

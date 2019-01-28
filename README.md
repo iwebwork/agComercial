@@ -58,3 +58,4 @@ Agenda
 - 23/01/2018 - Busca por ordem alfabetica finalizada, e busca pelo nome melhorada, agora a cliente pode digitar apenas uma letra que ja busca todos os proprietarios que possuem aquela letra, tambem pode digitar somente uma silaba ou mais caso não saiba o nome todo do cliente.
 -25/01/2018 - O delete do proprietario e pet foi concluido com sucesso.
 - 28/01/2018 - Update do proprietario foi finalizado.
+- 28/01/2018 - Updade do pet foi finalizado.
