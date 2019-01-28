@@ -376,12 +376,12 @@
 			$sql->execute();
 
 			if ($sql->rowCount() > 0) {
-				$nome_pro = $sql->fetch();
-				if(!empty($nome_pro)){
+				$pro = $sql->fetch();
+				if(!empty($prop)){
 					//echo($nome_pro['id_propri']);['nome_propri']."<br/>";
 					$sql = "SELECT nome_pet,id FROM pets WHERE id_propri = :id_propri ";
 					$sql = $this->pdo->prepare($sql);
-					$sql->bindValue(':id_propri',$nome_pro['id_propri']);
+					$sql->bindValue(':id_propri',$pro['id_propri']);
 
 
 					$sql->execute();
@@ -393,6 +393,7 @@
 											'<table id="mytable" class= "table table-stripe p-3 mb-2 table-bordered border-primary">'.
 												
 												'<thead class="text-center table-stripe bg-primary text-white">'.
+													'<th class="text-center">Atualizar Dono</th>'.
 										            '<th class="text-center">Apagar Dono</th>'.
 										            '<th class="text-center">Dono</th>'.
 										            '<th class="text-center">Pet</th>'.
@@ -409,19 +410,26 @@
 											'<tbody class = "text-center">'.
 										        '<tr>'.
 										        	'<td>'.
+												       	'<form method= "POST" action="atualizarDono.php" >'.
+															'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.	
+															'<p data-placement="top" data-toggle="tooltip" title="Atualizar o Dono"><button class="btn btn-primary btn-xs" data-title="Update" type="submit"><span class="glyphicon glyphicon-wrench"></span></button></p>'.
+														'</form>'.
+																
+													'</td>'.
+										        	'<td>'.
 										        		'<form method= "POST" action="php/deletarProprietario.php" >'.
-															'<input name= "cpf" type="hidden" class= "none" value="'.$nome_pro['cpf'].'" readonly>'.	
+															'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.	
 															'<p data-placement="top" data-toggle="tooltip" title="Apagar o Dono OBS: Todos os seus pets taambem serão apagados permanentemente"><button class="btn btn-danger btn-xs" data-title="Delete" type="submit"><span class="glyphicon glyphicon-trash"></span></button></p>'.
 														'</form>'.
 														
 													'</td>'.
-													'<td>'.$nome_pro['nome_propri'].'</td>'.
+													'<td>'.$pro['nome_propri'].'</td>'.
 													'<td>'.$value['nome_pet'].'</td>'.
 													'<td>'.
 														'<form method= "POST" action="ficha.php" >'.
-															'<input name= "cpf" type="hidden" class= "none" value="'.$nome_pro['cpf'].'" readonly>'.
+															'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.
 															'<input name="idPet" type= "hidden" class= "none" value="'.$value['id'].'" readonly>'.	
-															'<button type="submit" class="btn btn-info">Gerar Ficha</button>'.
+															'<button type="submit" class="btn btn-primary">Gerar Ficha</button>'.
 														'</form>'.
 													'</td>'.
 													'<td>'.
@@ -471,6 +479,7 @@
 								'<table id="mytable" class= "table p-3 mb-2 border border-primary table-bordered">'.
 														
 									'<thead class="text-center table-stripe bg-primary text-white">'.
+											'<th class="text-center">Atualizar Dono</th>'.
 											'<th class="text-center">Apagar Dono</th>'.
 											'<th class="text-center">Dono</th>'.
 											'<th class="text-center">Pet</th>'.
@@ -497,6 +506,13 @@
 										$strCorpo = 
 														'<tbody class = "text-center">'.
 												        	'<tr>'.
+												        		'<td>'.
+													        		'<form method= "POST" action="atualizarDono.php" >'.
+																		'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.	
+																		'<p data-placement="top" data-toggle="tooltip" title="Atualizar o Dono"><button class="btn btn-primary btn-xs" data-title="Update" type="submit"><span class="glyphicon glyphicon-wrench"></span></button></p>'.
+																	'</form>'.
+																	
+																'</td>'.
 												        		'<td>'.
 													        		'<form method= "POST" action="php/deletarProprietario.php" >'.
 																		'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.	
@@ -558,11 +574,13 @@
 							'<table id="mytable" class= "table p-3 mb-2 border border-primary table-bordered">'.
 													
 								'<thead class="text-center table-stripe bg-primary text-white">'.
+										'<th class="text-center">Atualizar Dono</th>'.
 										'<th class="text-center">Apagar Dono</th>'.
 										'<th class="text-center">Dono</th>'.
 										'<th class="text-center">Pet</th>'.
 										'<th class="text-center">Ficha</th>'.
 										'<th class="text-center">Apagar Pet</th>'.
+										'<th class="text-center">Atualizar Pet</th>'.
 								'</thead>';
 				echo $strCabe;
 				foreach ($proprietario as $key => $prop) {
@@ -585,6 +603,13 @@
 													'<tbody class = "text-center">'.
 											        	'<tr>'.
 											        		'<td>'.
+												        		'<form method= "POST" action="atualizarDono.php" >'.
+																	'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.	
+																	'<p data-placement="top" data-toggle="tooltip" title="Atualizar o Dono"><button class="btn btn-primary btn-xs" data-title="Update" type="submit"><span class="glyphicon glyphicon-wrench"></span></button></p>'.
+																'</form>'.
+																
+															'</td>'.
+											        		'<td>'.
 												        		'<form method= "POST" action="php/deletarProprietario.php" >'.
 																	'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.	
 																	'<p data-placement="top" data-toggle="tooltip" title="Apagar o Dono OBS: Todos os seus pets taambem serão apagados permanentemente"><button class="btn btn-danger btn-xs" data-title="Delete" type="submit"><span class="glyphicon glyphicon-trash"></span></button></p>'.
@@ -604,6 +629,13 @@
 												        		'<form method= "POST" action="php/deletarPet.php" >'.
 																	'<input name= "idPet" type="hidden" class= "none" value="'.$pet['id'].'" readonly>'.	
 																	'<p data-placement="top" data-toggle="tooltip" title="Apagar este pet"><button class="btn btn-danger btn-xs" data-title="Delete" type="submit"><span class="glyphicon glyphicon-trash"></span></button></p>'.
+																'</form>'.
+																
+															'</td>'.
+															'<td>'.
+												        		'<form method= "POST" action="atualizarDono.php" >'.
+																	'<input name= "cpf" type="hidden" class= "none" value="'.$pet['id'].'" readonly>'.	
+																	'<p data-placement="top" data-toggle="tooltip" title="Atualizar o Pet"><button class="btn btn-primary btn-xs" data-title="Update" type="submit"><span class="glyphicon glyphicon-wrench"></span></button></p>'.
 																'</form>'.
 																
 															'</td>'.
@@ -653,6 +685,28 @@
 			echo "Esse proprietario ja foi deletado";
 		}
 
+	}
+
+	public function atualizarDono($value)
+	{	
+		print_r($value);
+		$sql = "UPDATE proprietario SET cpf = :cpf, nome_propri = :nome_propri,pais = :pais ,estado = :estado, cidade = :cidade,bairro = :bairro, rua = :rua, numero = :numero, telefone = :telefone WHERE cpf = :valuecpf ";
+		$sql = $this->pdo->prepare($sql);
+		$sql->bindValue(':cpf',$value['dnCpf']);
+		$sql->bindValue(':nome_propri',$value['dnNome']);
+		$sql->bindValue(':pais',$value['dnPais']);
+		$sql->bindValue(':estado',$value['dnEstado']);
+		$sql->bindValue(':rua',$value['dnRua']);
+		$sql->bindValue(':cidade',$value['dnCidade']);
+		$sql->bindValue(':numero',$value['dnNumero']);
+		$sql->bindValue(':bairro',$value['dnBairro']);
+		$sql->bindValue(':telefone',$value['dnTel']);
+		$sql->bindValue('valuecpf',$value['dnCpf']);
+		if ($sql->execute()) {
+			header("Location: ../index.php");
+		}else{
+			echo "Falha ao atualizar";
+		}
 	}
 
 }
