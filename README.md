@@ -5,8 +5,8 @@ Sistema
  - busca pelo nome e ordem alfabetica: OK
  - Deletar o dono: OK
  - Deletar o pet: OK
- -Alterar o dono:
- -Alterar o pet:
+ -Alterar o dono: OK
+ -Alterar o pet: OK
  - fazer um formulario para preenchimento de informações, com opção de impressão.
  - O calendario será usado para avisar sobre as vacinas e eventos de banho e tosa.
  	OBS: O sistema deve avisar a cliente sobre os eventos de antemão, assim ela terá um controle maior.
@@ -57,3 +57,4 @@ Agenda
 - 18/01/2019 - Busca por nome finalizada e corrigido os bugs, aparencia tambem melhorada, agora e vazer ajuste no menu.
 - 23/01/2018 - Busca por ordem alfabetica finalizada, e busca pelo nome melhorada, agora a cliente pode digitar apenas uma letra que ja busca todos os proprietarios que possuem aquela letra, tambem pode digitar somente uma silaba ou mais caso não saiba o nome todo do cliente.
 -25/01/2018 - O delete do proprietario e pet foi concluido com sucesso.
+- 28/01/2018 - Update do proprietario foi finalizado.

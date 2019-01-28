@@ -399,6 +399,7 @@
 										            '<th class="text-center">Pet</th>'.
 										            '<th class="text-center">Ficha</th>'.
 										            '<th class="text-center">Apagar Pet</th>'.
+										            '<th class="text-center">Atualizar Pet</th>'.
 										        '</thead>';
 							echo $strCabe;
 							foreach ($nome_pet as $value) {
@@ -438,6 +439,13 @@
 															'<p data-placement="top" data-toggle="tooltip" title="Apagar este pet"><button class="btn btn-danger btn-xs" data-title="Delete" type="submit"><span class="glyphicon glyphicon-trash"></span></button></p>'.
 														'</form>'.
 														
+													'</td>'.
+													'<td>'.
+												        '<form method= "POST" action="atualizarPet.php" >'.
+														'<input name= "id" type="hidden" class= "none" value="'.$pet['id'].'" readonly>'.	
+														'<p data-placement="top" data-toggle="tooltip" title="Atualizar o Pet"><button class="btn btn-primary btn-xs" data-title="Update" type="submit"><span class="glyphicon glyphicon-wrench"></span></button></p>'.
+														'</form>'.
+																
 													'</td>'.
 												'</tr>'.
 										    '</tbody>'; 
@@ -485,6 +493,7 @@
 											'<th class="text-center">Pet</th>'.
 											'<th class="text-center">Ficha</th>'.
 											'<th class="text-center">Apagar Pet</th>'.
+											'<th class="text-center">Atualizar Pet</th>'.
 									'</thead>';
 					echo $strCabe;
 					foreach ($proprietario as $key => $prop) {
@@ -533,6 +542,13 @@
 													        		'<form method= "POST" action="php/deletarPet.php" >'.
 																		'<input name= "idPet" type="hidden" class= "none" value="'.$pet['id'].'" readonly>'.	
 																		'<p data-placement="top" data-toggle="tooltip" title="Apagar este pet"><button class="btn btn-danger btn-xs" data-title="Delete" type="submit"><span class="glyphicon glyphicon-trash"></span></button></p>'.
+																	'</form>'.
+																	
+																'</td>'.
+																'<td>'.
+													        		'<form method= "POST" action="atualizarPet.php" >'.
+																		'<input name= "id" type="hidden" class= "none" value="'.$pet['id'].'" readonly>'.	
+																		'<p data-placement="top" data-toggle="tooltip" title="Atualizar o Pet"><button class="btn btn-primary btn-xs" data-title="Update" type="submit"><span class="glyphicon glyphicon-wrench"></span></button></p>'.
 																	'</form>'.
 																	
 																'</td>'.
@@ -633,8 +649,8 @@
 																
 															'</td>'.
 															'<td>'.
-												        		'<form method= "POST" action="atualizarDono.php" >'.
-																	'<input name= "cpf" type="hidden" class= "none" value="'.$pet['id'].'" readonly>'.	
+												        		'<form method= "POST" action="atualizarPet.php" >'.
+																	'<input name= "id" type="hidden" class= "none" value="'.$pet['id'].'" readonly>'.	
 																	'<p data-placement="top" data-toggle="tooltip" title="Atualizar o Pet"><button class="btn btn-primary btn-xs" data-title="Update" type="submit"><span class="glyphicon glyphicon-wrench"></span></button></p>'.
 																'</form>'.
 																

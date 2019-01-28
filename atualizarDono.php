@@ -21,7 +21,7 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
 <!-- Meus arquivos -->
-<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="css/style.css">
 
 <title>AgComercial</title>
 </head>
@@ -92,7 +92,7 @@
 					</div>
 					<div class="form-group">
 					    <label for="exampleInputEmail1">Numero:</label>
-					    <input <?php echo 'value= "'.$proprietario->getNumero().'" '; ?> name="dnNumero" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Numero" required>
+					    <input <?php echo 'value= "'.$proprietario->getNumero().'" '; ?> name="dnNumero" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Numero" required>
 					</div>
 					<div class="form-group">
 					    <label for="exampleInputEmail1">Telefone:</label>
