@@ -21,9 +21,11 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
 <!-- Meus arquivos -->
-<link rel="stylesheet" type="text/css" href="css/index.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/menu.css">
+<script type="text/javascript" src="js/menu.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
-
+<title>AgComercial</title>
 </head>
 <body>
 	
@@ -42,14 +44,14 @@
 	<div id="wrapper" class="active">
       
 	      <!-- Sidebar -->
-	            <!-- Sidebar -->
+	      <!-- Sidebar -->
+	    
 	    <div class="bg-primary" id="sidebar-wrapper">
 	      <ul id="sidebar_menu" class="sidebar-nav bg-primary">
-	           <li class="sidebar-brand"><a id="menu-toggle" href="#">Menu<span id="main_icon" class="glyphicon glyphicon-align-justify"></span></a></li>
+	           <li class="sidebar-brand bg-primary"><a id="menu-toggle" href="#">Menu<span id="main_icon" class="glyphicon glyphicon-align-justify"></span></a></li>
 	      </ul>
 	        <ul class="sidebar-nav bg-primary" id="sidebar">     
 	          <li><a href="index.php"><h4>Pagina Inicial</h4></a></li>
-	          <li><a href=""><h4>Ficha</h4></a></li>
 	          <li>
 	         	<a href="cadastrar.php"><h4>Cadastrar</h4></a>	
 	          </li>
@@ -89,7 +91,7 @@
 		            
 
 		        <div class="row d-flex justify-content-center">
-					<div class="col-sm-6">
+					<div class="col-sm-8">
 						<?php
 							$proprietario = new Proprietario();
 						    if (!empty($_POST['cpf'])) {
@@ -115,15 +117,7 @@
 	        </div>
 	    </div>
       
-    </div>
-
-			<!--<span>
-				<form method="POST">
-			    	<input name="alfabetica" type="hidden" class="form-control" placeholder="">
-			    	<button class="btn btn-primary" type="submit" >Buscar todos em ordem alfabetica</button>
-				</form>
-		</span>-->
-	</div>
+    </div>	
 	
 </body>
 </html>

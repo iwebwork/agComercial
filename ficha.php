@@ -30,6 +30,9 @@
 	<!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/index.css">
+
+	<!-- Meus arquivos -->
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<title>AgComercial</title>
 </head>
 <body>
