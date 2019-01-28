@@ -59,3 +59,4 @@ Agenda
 -25/01/2018 - O delete do proprietario e pet foi concluido com sucesso.
 - 28/01/2018 - Update do proprietario foi finalizado.
 - 28/01/2018 - Updade do pet foi finalizado.
+- 28/01/2018 - Foi testado no servidor, e esta funcionando sem problemas, e todas as atualizações ja estão no servidor externo.

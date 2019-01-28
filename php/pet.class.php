@@ -42,8 +42,6 @@
 				}else{
 					echo "Erro ao salvar o nome";
 				}
-			}else{
-				echo "Erro, este pet não esta cadastrado";
 			}
 		}
 
@@ -63,8 +61,6 @@
 				}else{
 					echo "Erro ao salvar o nome";
 				}
-			}else{
-				echo "Erro, este pet não esta cadastrado";
 			}
 		}
 
@@ -83,8 +79,6 @@
 				}else{
 					echo "Erro ao salvar a especie";
 				}
-			}else{
-				echo "Erro, este pet não esta cadastrado";
 			}
 		}
 
@@ -103,8 +97,6 @@
 				}else{
 					echo "Erro ao salvar a raca";
 				}
-			}else{
-				echo "Erro, este pet não esta cadastrado";
 			}
 		}
 
@@ -123,8 +115,6 @@
 				}else{
 					echo "Erro ao salvar o sexo";
 				}
-			}else{
-				echo "Erro, este pet não esta cadastrado";
 			}
 		}
 
@@ -143,8 +133,6 @@
 				}else{
 					echo "Erro ao salvar a idade";
 				}
-			}else{
-				echo "Erro, este pet não esta cadastrado";
 			}
 		}
 
@@ -163,8 +151,6 @@
 				}else{
 					echo "Erro ao salvar o peso";
 				}
-			}else{
-				echo "Erro, este pet não esta cadastrado";
 			}
 		}
 
@@ -183,8 +169,6 @@
 				}else{
 					echo "Erro ao salvar as infoAdd";
 				}
-			}else{
-				echo "Erro, este pet não esta cadastrado";
 			}
 		}
 
@@ -206,8 +190,6 @@
 					//return false
 					echo "Id do proprietario não encontrado";
 				}
-			}else{
-				echo "Erro, este pet não esta cadastrado";
 			}
 		}
 
@@ -226,8 +208,6 @@
 				}else{
 					return false;
 				}
-			}else{
-				echo "Erro, este pet não esta cadastrado";
 			}
 		}
 
@@ -246,8 +226,6 @@
 				}else{
 					return false;
 				}
-			}else{
-				echo "Erro, este pet não esta cadastrado";
 			}
 		}
 
@@ -266,8 +244,6 @@
 				}else{
 					return false;
 				}
-			}else{
-				echo "Erro, este pet não esta cadastrado";
 			}
 		}
 
@@ -286,8 +262,6 @@
 				}else{
 					return false;
 				}
-			}else{
-				echo "Erro, este pet não esta cadastrado";
 			}
 		}
 
@@ -306,8 +280,6 @@
 				}else{
 					return false;
 				}
-			}else{
-				echo "Erro, este pet não esta cadastrado";
 			}
 		}
 
@@ -326,8 +298,6 @@
 				}else{
 					return false;
 				}
-			}else{
-				echo "Erro, este pet não esta cadastrado";
 			}
 		}
 
@@ -348,7 +318,7 @@
 				}
 			}else{
 				return false;
-				//echo "Erro, este proprietario não tem mais pets";
+				
 			}	
 		}
 		//-------------------------------------

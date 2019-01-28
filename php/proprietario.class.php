@@ -5,8 +5,8 @@
 		private $pdo;
 		
 		public function __construct(){
-			//$this->pdo = new PDO("mysql:dbname=u270517400_ag;host=sql177.main-hosting.eu","u270517400_iwebw","ag61218work");
-			$this->pdo = new PDO("mysql:dbname=u270517400_ag;host=127.0.0.1;charset=utf8","root","");
+			$this->pdo = new PDO("mysql:dbname=u270517400_ag;host=sql177.main-hosting.eu","u270517400_iwebw","ag61218work");
+			//$this->pdo = new PDO("mysql:dbname=u270517400_ag;host=127.0.0.1;charset=utf8","root","");
 		}
 		// ----------
 
@@ -41,8 +41,6 @@
 				}else{
 					echo "O cpf estava vazio";
 				}
-			}else{
-				echo "Erro, este cpf não esta cadastrado";
 			}
 			
 			
@@ -66,7 +64,7 @@
 				}
 			}else{
 				return false;
-				//echo "Erro, este cpf não esta cadastrado";
+				
 			}
 			
 			
@@ -88,8 +86,6 @@
 				}else{
 					echo "O cpf não foi digitado";
 				}
-			}else{
-				echo "Erro, este cpf não esta cadastrado";
 			}
 		}
 
@@ -108,8 +104,6 @@
 				}else{
 					
 				}
-			}else{
-				echo "Erro, este cpf não esta cadastrado";
 			}
 		}
 
@@ -128,8 +122,6 @@
 				}else{
 					
 				}
-			}else{
-				echo "Erro, este cpf não esta cadastrado";
 			}
 		}
 
@@ -148,8 +140,6 @@
 				}else{
 					
 				}
-			}else{
-				echo "Erro, este cpf não esta cadastrado";
 			}
 		}
 
@@ -168,8 +158,6 @@
 				}else{
 					
 				}
-			}else{
-				echo "Erro, este cpf não esta cadastrado";
 			}
 		}
 
@@ -188,8 +176,6 @@
 				}else{
 					
 				}
-			}else{
-				echo "Erro, este cpf não esta cadastrado";
 			}
 		}
 
@@ -208,8 +194,6 @@
 				}else{
 					
 				}
-			}else{
-				echo "Erro, este cpf não esta cadastrado";
 			}
 		}
 
@@ -227,8 +211,6 @@
 					
 				}else{
 				}
-			}else{
-				echo "Erro, este cpf não esta cadastrado";
 			}
 		}
 
@@ -246,8 +228,6 @@
 				}else{
 					echo "Telefone não encontrado";
 				}
-			}else{
-				echo "Erro, este cpf não esta cadastrado";
 			}
 		}
 
@@ -456,9 +436,6 @@
 								'</form>';
 							echo $strRodape;
 							return true;
-						}else{
-							echo "Erro, este cpf não esta cadastrado";
-								
 						}
 				}else{
 					echo "Erro, na busca";
