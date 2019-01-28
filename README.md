@@ -16,7 +16,7 @@ Dados do pets: OK
 	id_pet , nome_pet, especie,raça, sexo, idade, peso, informações_add, id_proprietario,
 
 Dados dos proprietario: OK
-	id_propri, CPF, Nome_propri, ,bairro ,pais, estado,cidade, rua, numero , e tel
+	id_propri, CPF, Nome_propri, pais, estado,cidade, rua, numero , e tel
 
 Dados das vacinas:
 	id_vaci, id_pet, data_vaci, hora_vaci, informacoes_add_vaci
@@ -57,4 +57,3 @@ Agenda
 - 18/01/2019 - Busca por nome finalizada e corrigido os bugs, aparencia tambem melhorada, agora e vazer ajuste no menu.
 - 23/01/2018 - Busca por ordem alfabetica finalizada, e busca pelo nome melhorada, agora a cliente pode digitar apenas uma letra que ja busca todos os proprietarios que possuem aquela letra, tambem pode digitar somente uma silaba ou mais caso não saiba o nome todo do cliente.
 -25/01/2018 - O delete do proprietario e pet foi concluido com sucesso.
-- 28/01/2018 - Atualização do dono finalizado com sucesso.

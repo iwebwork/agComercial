@@ -7,7 +7,6 @@
 		<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 		<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/login.css">
-		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<!------ Include the above in your HEAD tag ---------->
 	</head>
 	<body>

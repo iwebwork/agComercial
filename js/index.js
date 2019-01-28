@@ -1,3 +1,7 @@
+$("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("active");
+});
 
 $(document).ready(function(){
 $("#mytable #checkall").click(function () {
