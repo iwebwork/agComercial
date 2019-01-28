@@ -21,7 +21,8 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
 <!-- Meus arquivos -->
-<link rel="stylesheet" type="text/css" href="css/index.css">
+<link rel="stylesheet" type="text/css" href="css/menu.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
 <script type="text/javascript" src="js/index.js"></script>
 
 </head>
@@ -89,7 +90,7 @@
 		            
 
 		        <div class="row d-flex justify-content-center">
-					<div class="col-sm-6">
+					<div class="col-sm-10">
 						<?php
 							$proprietario = new Proprietario();
 						    if (!empty($_POST['cpf'])) {
