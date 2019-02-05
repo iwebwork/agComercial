@@ -356,12 +356,12 @@
 			$sql->execute();
 
 			if ($sql->rowCount() > 0) {
-				$pro = $sql->fetch();
+				$prop = $sql->fetch();
 				if(!empty($prop)){
 					//echo($nome_pro['id_propri']);['nome_propri']."<br/>";
 					$sql = "SELECT nome_pet,id FROM pets WHERE id_propri = :id_propri ";
 					$sql = $this->pdo->prepare($sql);
-					$sql->bindValue(':id_propri',$pro['id_propri']);
+					$sql->bindValue(':id_propri',$prop['id_propri']);
 
 
 					$sql->execute();
@@ -373,16 +373,14 @@
 											'<table id="mytable" class= "table table-stripe p-3 mb-2 table-bordered border-primary">'.
 												
 												'<thead class="text-center table-stripe bg-primary text-white">'.
-													'<th class="text-center">Atualizar Dono</th>'.
-										            '<th class="text-center">Apagar Dono</th>'.
+													
 										            '<th class="text-center">Dono</th>'.
 										            '<th class="text-center">Pet</th>'.
 										            '<th class="text-center">Ficha</th>'.
-										            '<th class="text-center">Apagar Pet</th>'.
-										            '<th class="text-center">Atualizar Pet</th>'.
+										            
 										        '</thead>';
 							echo $strCabe;
-							foreach ($nome_pet as $value) {
+							foreach ($nome_pet as $pet) {
 								//print_r($item);
 								//print_r($value);
 								//echo $item. "=>".$value;
@@ -390,44 +388,56 @@
 								$strCorpo = 
 											'<tbody class = "text-center">'.
 										        '<tr>'.
-										        	'<td>'.
-												       	'<form method= "POST" action="atualizarDono.php" >'.
-															'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.	
-															'<p data-placement="top" data-toggle="tooltip" title="Atualizar o Dono"><button class="btn btn-primary btn-xs" data-title="Update" type="submit"><span class="glyphicon glyphicon-wrench"></span></button></p>'.
-														'</form>'.
-																
-													'</td>'.
-										        	'<td>'.
-										        		'<form method= "POST" action="php/deletarProprietario.php" >'.
-															'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.	
-															'<p data-placement="top" data-toggle="tooltip" title="Apagar o Dono OBS: Todos os seus pets taambem serão apagados permanentemente"><button class="btn btn-danger btn-xs" data-title="Delete" type="submit"><span class="glyphicon glyphicon-trash"></span></button></p>'.
-														'</form>'.
-														
-													'</td>'.
-													'<td>'.$pro['nome_propri'].'</td>'.
-													'<td>'.$value['nome_pet'].'</td>'.
-													'<td>'.
-														'<form method= "POST" action="ficha.php" >'.
-															'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.
-															'<input name="idPet" type= "hidden" class= "none" value="'.$value['id'].'" readonly>'.	
-															'<button type="submit" class="btn btn-primary">Gerar Ficha</button>'.
-														'</form>'.
-													'</td>'.
-													'<td>'.
-										        		'<form method= "POST" action="php/deletarPet.php" >'.
-															'<input name= "idPet" type="hidden" class= "none" value="'.$value['id'].'" readonly>'.	
-															'<p data-placement="top" data-toggle="tooltip" title="Apagar este pet"><button class="btn btn-danger btn-xs" data-title="Delete" type="submit"><span class="glyphicon glyphicon-trash"></span></button></p>'.
-														'</form>'.
-														
-													'</td>'.
-													'<td>'.
-												        '<form method= "POST" action="atualizarPet.php" >'.
-														'<input name= "id" type="hidden" class= "none" value="'.$pet['id'].'" readonly>'.	
-														'<p data-placement="top" data-toggle="tooltip" title="Atualizar o Pet"><button class="btn btn-primary btn-xs" data-title="Update" type="submit"><span class="glyphicon glyphicon-wrench"></span></button></p>'.
-														'</form>'.
-																
-													'</td>'.
-												'</tr>'.
+															'<td>'.
+																'<div class="form-check form-check-inline">'.
+																	$prop['nome_propri'].
+																'</div>'.
+																'<div class="form-check form-check-inline">'.
+																	'<form method= "POST" action="php/deletarProprietario.php" >'.
+																		'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.	
+																		'<p data-placement="top" data-toggle="tooltip" title="Apagar o Dono OBS: Todos os seus pets tambem serão apagados permanentemente"><button class="btn btn-danger btn-xs" data-title="Delete" type="submit"><span class="glyphicon glyphicon-trash"></span></button></p>'.
+																	'</form>'.
+																'</div>'.
+																'<div class="form-check form-check-inline">'.
+																	'<form method= "POST" action="atualizarDono.php" >'.
+																		'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.	
+																		'<p data-placement="top" data-toggle="tooltip" title="Atualizar o Dono"><button class="btn btn-primary btn-xs" data-title="Update" type="submit"><span class="glyphicon glyphicon-wrench"></span></button></p>'.
+																	'</form>'.
+																'</div>'.
+																'<div class="form-check form-check-inline">'.
+																	'<form method= "POST" action="cadastrarPet.php" >'.
+																		'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.	
+																		'<p data-placement="top" data-toggle="tooltip" title="Cadastrar um novo pet no nome desse dono"><button class="btn btn-success btn-xs" data-title="Update" type="submit"><span class="glyphicon glyphicon-plus"></span></button></p>'.
+																	'</form>'.
+																'</div>'.																	
+															'</td>'.
+															'<td>'.
+																'<div class="form-check form-check-inline">'.
+																	$pet['nome_pet'].
+																'</div>'.
+																'<div class="form-check form-check-inline">'.
+																	'<form method= "POST" action="php/deletarPet.php" >'.
+																		'<input name= "idPet" type="hidden" class= "none" value="'.$pet['id'].'" readonly>'.	
+																		'<p data-placement="top" data-toggle="tooltip" title="Apagar este pet"><button class="btn btn-danger btn-xs" data-title="Delete" type="submit"><span class="glyphicon glyphicon-trash"></span></button></p>'.
+																	'</form>'.
+																'</div>'.
+																'<div class="form-check form-check-inline">'.
+																	'<form method= "POST" action="atualizarPet.php" >'.
+																		'<input name= "id" type="hidden" class= "none" value="'.$pet['id'].'" readonly>'.	
+																		'<p data-placement="top" data-toggle="tooltip" title="Atualizar o Pet"><button class="btn btn-primary btn-xs" data-title="Update" type="submit"><span class="glyphicon glyphicon-wrench"></span></button></p>'.
+																	'</form>'.
+																'</div>'.
+															'</td>'.
+															
+															'<td>'.
+																'<form method= "POST" action= "ficha.php" >'.
+																	'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.
+																	'<input name="idPet" type= "hidden" class= "none" value="'.$pet['id'].'" readonly>'.
+																	'<button type="submit" class="btn btn-primary">Gerar Ficha</button>'.
+																'</form>'.
+															'</td>'.
+															
+														'</tr>'.
 										    '</tbody>'; 
 								
 								echo $strCorpo;
@@ -442,7 +452,7 @@
 				}
 					
 			}else{
-				echo "Erro na busca";
+				echo "Erro na busca Não funcionou";
 			}
 
 		}else{
@@ -464,13 +474,11 @@
 								'<table id="mytable" class= "table p-3 mb-2 border border-primary table-bordered">'.
 														
 									'<thead class="text-center table-stripe bg-primary text-white">'.
-											'<th class="text-center">Atualizar Dono</th>'.
-											'<th class="text-center">Apagar Dono</th>'.
+											
 											'<th class="text-center">Dono</th>'.
 											'<th class="text-center">Pet</th>'.
 											'<th class="text-center">Ficha</th>'.
-											'<th class="text-center">Apagar Pet</th>'.
-											'<th class="text-center">Atualizar Pet</th>'.
+											
 									'</thead>';
 					echo $strCabe;
 					foreach ($proprietario as $key => $prop) {
@@ -492,43 +500,55 @@
 										$strCorpo = 
 														'<tbody class = "text-center">'.
 												        	'<tr>'.
-												        		'<td>'.
-													        		'<form method= "POST" action="atualizarDono.php" >'.
-																		'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.	
-																		'<p data-placement="top" data-toggle="tooltip" title="Atualizar o Dono"><button class="btn btn-primary btn-xs" data-title="Update" type="submit"><span class="glyphicon glyphicon-wrench"></span></button></p>'.
-																	'</form>'.
-																	
+																'<td>'.
+																	'<div class="form-check form-check-inline">'.
+																		$prop['nome_propri'].
+																	'</div>'.
+																	'<div class="form-check form-check-inline">'.
+																		'<form method= "POST" action="php/deletarProprietario.php" >'.
+																			'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.	
+																			'<p data-placement="top" data-toggle="tooltip" title="Apagar o Dono OBS: Todos os seus pets tambem serão apagados permanentemente"><button class="btn btn-danger btn-xs" data-title="Delete" type="submit"><span class="glyphicon glyphicon-trash"></span></button></p>'.
+																		'</form>'.
+																	'</div>'.
+																	'<div class="form-check form-check-inline">'.
+																		'<form method= "POST" action="atualizarDono.php" >'.
+																			'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.	
+																			'<p data-placement="top" data-toggle="tooltip" title="Atualizar o Dono"><button class="btn btn-primary btn-xs" data-title="Update" type="submit"><span class="glyphicon glyphicon-wrench"></span></button></p>'.
+																		'</form>'.
+																	'</div>'.
+																	'<div class="form-check form-check-inline">'.
+																		'<form method= "POST" action="cadastrarPet.php" >'.
+																			'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.	
+																			'<p data-placement="top" data-toggle="tooltip" title="Cadastrar um novo pet no nome desse dono"><button class="btn btn-success btn-xs" data-title="Update" type="submit"><span class="glyphicon glyphicon-plus"></span></button></p>'.
+																		'</form>'.
+																	'</div>'.																	
 																'</td>'.
-												        		'<td>'.
-													        		'<form method= "POST" action="php/deletarProprietario.php" >'.
-																		'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.	
-																		'<p data-placement="top" data-toggle="tooltip" title="Apagar o Dono OBS: Todos os seus pets taambem serão apagados permanentemente"><button class="btn btn-danger btn-xs" data-title="Delete" type="submit"><span class="glyphicon glyphicon-trash"></span></button></p>'.
-																	'</form>'.
-																	
+																'<td>'.
+																	'<div class="form-check form-check-inline">'.
+																		$pet['nome_pet'].
+																	'</div>'.
+																	'<div class="form-check form-check-inline">'.
+																		'<form method= "POST" action="php/deletarPet.php" >'.
+																			'<input name= "idPet" type="hidden" class= "none" value="'.$pet['id'].'" readonly>'.	
+																			'<p data-placement="top" data-toggle="tooltip" title="Apagar este pet"><button class="btn btn-danger btn-xs" data-title="Delete" type="submit"><span class="glyphicon glyphicon-trash"></span></button></p>'.
+																		'</form>'.
+																	'</div>'.
+																	'<div class="form-check form-check-inline">'.
+																		'<form method= "POST" action="atualizarPet.php" >'.
+																			'<input name= "id" type="hidden" class= "none" value="'.$pet['id'].'" readonly>'.	
+																			'<p data-placement="top" data-toggle="tooltip" title="Atualizar o Pet"><button class="btn btn-primary btn-xs" data-title="Update" type="submit"><span class="glyphicon glyphicon-wrench"></span></button></p>'.
+																		'</form>'.
+																	'</div>'.
 																'</td>'.
-																'<td>'.$prop['nome_propri'].'</td>'.
-																'<td>'.$pet['nome_pet'].'</td>'.
+																
 																'<td>'.
 																	'<form method= "POST" action= "ficha.php" >'.
 																		'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.
 																		'<input name="idPet" type= "hidden" class= "none" value="'.$pet['id'].'" readonly>'.
 																		'<button type="submit" class="btn btn-primary">Gerar Ficha</button>'.
-																	'</form>'.		
-																'</td>'.
-																'<td>'.
-													        		'<form method= "POST" action="php/deletarPet.php" >'.
-																		'<input name= "idPet" type="hidden" class= "none" value="'.$pet['id'].'" readonly>'.	
-																		'<p data-placement="top" data-toggle="tooltip" title="Apagar este pet"><button class="btn btn-danger btn-xs" data-title="Delete" type="submit"><span class="glyphicon glyphicon-trash"></span></button></p>'.
 																	'</form>'.
-																	
 																'</td>'.
-																'<td>'.
-													        		'<form method= "POST" action="atualizarPet.php" >'.
-																		'<input name= "id" type="hidden" class= "none" value="'.$pet['id'].'" readonly>'.	
-																		'<p data-placement="top" data-toggle="tooltip" title="Atualizar o Pet"><button class="btn btn-primary btn-xs" data-title="Update" type="submit"><span class="glyphicon glyphicon-wrench"></span></button></p>'.
-																	'</form>'.
-																	
-																'</td>'.
+															
 															'</tr>'.
 												        '</tbody>'; 
 										
@@ -546,7 +566,7 @@
 				echo "erro";
 			}
 		}else{
-			echo "A busca não funcionou";
+			//echo "A busca não funcionou";
 			return false;
 		}
 
@@ -567,13 +587,11 @@
 							'<table id="mytable" class= "table p-3 mb-2 border border-primary table-bordered">'.
 													
 								'<thead class="text-center table-stripe bg-primary text-white">'.
-										'<th class="text-center">Atualizar Dono</th>'.
-										'<th class="text-center">Apagar Dono</th>'.
+										//'<th class="text-center">Atualizar Dono</th>'.
+										//'<th class="text-center">Apagar Dono</th>'.
 										'<th class="text-center">Dono</th>'.
 										'<th class="text-center">Pet</th>'.
 										'<th class="text-center">Ficha</th>'.
-										'<th class="text-center">Apagar Pet</th>'.
-										'<th class="text-center">Atualizar Pet</th>'.
 								'</thead>';
 				echo $strCabe;
 				foreach ($proprietario as $key => $prop) {
@@ -595,43 +613,55 @@
 									$strCorpo = 
 													'<tbody class = "text-center">'.
 											        	'<tr>'.
-											        		'<td>'.
-												        		'<form method= "POST" action="atualizarDono.php" >'.
-																	'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.	
-																	'<p data-placement="top" data-toggle="tooltip" title="Atualizar o Dono"><button class="btn btn-primary btn-xs" data-title="Update" type="submit"><span class="glyphicon glyphicon-wrench"></span></button></p>'.
-																'</form>'.
-																
+															'<td>'.
+																'<div class="form-check form-check-inline">'.
+																	$prop['nome_propri'].
+																'</div>'.
+																'<div class="form-check form-check-inline">'.
+																	'<form method= "POST" action="php/deletarProprietario.php" >'.
+																		'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.	
+																		'<p data-placement="top" data-toggle="tooltip" title="Apagar o Dono OBS: Todos os seus pets tambem serão apagados permanentemente"><button class="btn btn-danger btn-xs" data-title="Delete" type="submit"><span class="glyphicon glyphicon-trash"></span></button></p>'.
+																	'</form>'.
+																'</div>'.
+																'<div class="form-check form-check-inline">'.
+																	'<form method= "POST" action="atualizarDono.php" >'.
+																		'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.	
+																		'<p data-placement="top" data-toggle="tooltip" title="Atualizar o Dono"><button class="btn btn-primary btn-xs" data-title="Update" type="submit"><span class="glyphicon glyphicon-wrench"></span></button></p>'.
+																	'</form>'.
+																'</div>'.
+																'<div class="form-check form-check-inline">'.
+																	'<form method= "POST" action="cadastrarPet.php" >'.
+																		'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.	
+																		'<p data-placement="top" data-toggle="tooltip" title="Cadastrar um novo pet no nome desse dono"><button class="btn btn-success btn-xs" data-title="Update" type="submit"><span class="glyphicon glyphicon-plus"></span></button></p>'.
+																	'</form>'.
+																'</div>'.																	
 															'</td>'.
-											        		'<td>'.
-												        		'<form method= "POST" action="php/deletarProprietario.php" >'.
-																	'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.	
-																	'<p data-placement="top" data-toggle="tooltip" title="Apagar o Dono OBS: Todos os seus pets taambem serão apagados permanentemente"><button class="btn btn-danger btn-xs" data-title="Delete" type="submit"><span class="glyphicon glyphicon-trash"></span></button></p>'.
-																'</form>'.
-																
+															'<td>'.
+																'<div class="form-check form-check-inline">'.
+																	$pet['nome_pet'].
+																'</div>'.
+																'<div class="form-check form-check-inline">'.
+																	'<form method= "POST" action="php/deletarPet.php" >'.
+																		'<input name= "idPet" type="hidden" class= "none" value="'.$pet['id'].'" readonly>'.	
+																		'<p data-placement="top" data-toggle="tooltip" title="Apagar este pet"><button class="btn btn-danger btn-xs" data-title="Delete" type="submit"><span class="glyphicon glyphicon-trash"></span></button></p>'.
+																	'</form>'.
+																'</div>'.
+																'<div class="form-check form-check-inline">'.
+																	'<form method= "POST" action="atualizarPet.php" >'.
+																		'<input name= "id" type="hidden" class= "none" value="'.$pet['id'].'" readonly>'.	
+																		'<p data-placement="top" data-toggle="tooltip" title="Atualizar o Pet"><button class="btn btn-primary btn-xs" data-title="Update" type="submit"><span class="glyphicon glyphicon-wrench"></span></button></p>'.
+																	'</form>'.
+																'</div>'.
 															'</td>'.
-															'<td>'.$prop['nome_propri'].'</td>'.
-															'<td>'.$pet['nome_pet'].'</td>'.
+															
 															'<td>'.
 																'<form method= "POST" action= "ficha.php" >'.
 																	'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.
 																	'<input name="idPet" type= "hidden" class= "none" value="'.$pet['id'].'" readonly>'.
 																	'<button type="submit" class="btn btn-primary">Gerar Ficha</button>'.
-																'</form>'.		
-															'</td>'.
-															'<td>'.
-												        		'<form method= "POST" action="php/deletarPet.php" >'.
-																	'<input name= "idPet" type="hidden" class= "none" value="'.$pet['id'].'" readonly>'.	
-																	'<p data-placement="top" data-toggle="tooltip" title="Apagar este pet"><button class="btn btn-danger btn-xs" data-title="Delete" type="submit"><span class="glyphicon glyphicon-trash"></span></button></p>'.
 																'</form>'.
-																
 															'</td>'.
-															'<td>'.
-												        		'<form method= "POST" action="atualizarPet.php" >'.
-																	'<input name= "id" type="hidden" class= "none" value="'.$pet['id'].'" readonly>'.	
-																	'<p data-placement="top" data-toggle="tooltip" title="Atualizar o Pet"><button class="btn btn-primary btn-xs" data-title="Update" type="submit"><span class="glyphicon glyphicon-wrench"></span></button></p>'.
-																'</form>'.
-																
-															'</td>'.
+															
 														'</tr>'.
 											        '</tbody>'; 
 									

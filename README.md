@@ -7,8 +7,7 @@ Sistema
  - Deletar o pet: OK
  -Alterar o dono: OK
  -Alterar o pet: OK
- OBS: - Alterar: Informações Proprietario.
- 	  - Não ter limites de informações adicionais do pet.
+ OBS: - Não ter limites de informações adicionais do pet.: OK
 
  - fazer um formulario para preenchimento de informações, com opção de impressão.
  - O calendario será usado para avisar sobre as vacinas e eventos de banho e tosa.
@@ -65,4 +64,5 @@ Agenda
 - 28/01/2019 - Foi testado no servidor, e esta funcionando sem problemas, e todas as atualizações ja estão no servidor externo.
 - 04/02/2019 - Banco de dados atualizado, agora com o novo campo "raca" do tipo varchar.
 - 04/02/2019 - O tipo de dados do campo info_add da tabela pets foi alterado para LONGTEXT para ser virtualmente infinito.
+- 05/02/2019 - Adicionar um novo pet para o proprietario finalizado em todos os tipos de buscas.
 
