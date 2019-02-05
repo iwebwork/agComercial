@@ -90,7 +90,7 @@
 		            
 
 		        <div class="row d-flex justify-content-center">
-					<div class="col-sm-10">
+					<div class="col-sm-8">
 						<?php
 							$proprietario = new Proprietario();
 						    if (!empty($_POST['cpf'])) {

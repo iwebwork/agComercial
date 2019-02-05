@@ -106,14 +106,14 @@
 				<div class="col-sm"><p> <t class="font-weight-bold">Idade:</t> <?php echo $pet->getIdade().' anos';?> </p></div>
 				<div class="col-sm"><p> <t class="font-weight-bold">Peso:</t> <?php echo $pet->getPeso();?> </p></div>
 			</div>
-			<div class="row d-flex text-center border border-primary">
+			<div class="row d-flex border border-primary">
 				<div class="col-sm"><p> <t class="font-weight-bold">Informações Adcionais:</t> <?php echo $pet->getInfoAdd();?> </p></div>
-				<div class="col-sm"></div>
-				<div class="col-sm"></div>
+				
+				
 			</div>
 			<div class="row d-flex text-center border border-primary">
 				<div class="col-sm">
-					<h2 class="font-italic"> Informações do Dono </h2>
+					<h2 class="font-italic"> Informações do Proprietario </h2>
 				</div>
 			</div>
 			<div class="row d-flex text-center border border-primary">

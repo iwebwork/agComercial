@@ -17,6 +17,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 <!-- Meus arquivos -->
 <link rel="stylesheet" type="text/css" href="css/body.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
 
 </head>
 <body>
@@ -71,7 +72,7 @@
 					<div class="form-group">
 						
 					    <label for="exampleInputEmail1">Informações Adicionais:</label>
-					    <textarea name="ptTexto"  type="text" class="form-control" rows="8" placeholder="Maximo 10 linhas" maxlength="1000"></textarea>
+					    <textarea name="ptTexto"  type="text" class="form-control" rows="8"></textarea>
 					</div>
 				</div>
 				

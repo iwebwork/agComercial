@@ -8,6 +8,10 @@
 	<?php
 		include 'pet.class.php';
 		include 'proprietario.class.php';
+		include 'php/usuario.class.php';
+	  	$usuario = new Usuario();
+	  	$usuario->verificacaoLogin();
+		
 		$animal = new Pet();
 		$proprietario = new proprietario();
 		if (!empty($_POST)) {
