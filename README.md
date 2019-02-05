@@ -63,5 +63,6 @@ Agenda
 - 28/01/2019 - Update do proprietario foi finalizado.
 - 28/01/2019 - Updade do pet foi finalizado.
 - 28/01/2019 - Foi testado no servidor, e esta funcionando sem problemas, e todas as atualizações ja estão no servidor externo.
-- 04/02/2019 -
+- 04/02/2019 - Banco de dados atualizado, agora com o novo campo "raca" do tipo varchar.
+- 04/02/2019 - O tipo de dados do campo info_add da tabela pets foi alterado para LONGTEXT para ser virtualmente infinito.
 
