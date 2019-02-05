@@ -7,6 +7,9 @@ Sistema
  - Deletar o pet: OK
  -Alterar o dono: OK
  -Alterar o pet: OK
+ OBS: - Alterar: Informações Proprietario.
+ 	  - Não ter limites de informações adicionais do pet.
+
  - fazer um formulario para preenchimento de informações, com opção de impressão.
  - O calendario será usado para avisar sobre as vacinas e eventos de banho e tosa.
  	OBS: O sistema deve avisar a cliente sobre os eventos de antemão, assim ela terá um controle maior.
@@ -55,8 +58,10 @@ Agenda
 - 08/01/2019 - O cadastro de pets e proprietario está completo.
 - 13/01/2019 - Finalizado toda a parte de cadaastro, busca, ficha dos pets e proprietarios, proxima parte e cuidar da aparencia.
 - 18/01/2019 - Busca por nome finalizada e corrigido os bugs, aparencia tambem melhorada, agora e vazer ajuste no menu.
-- 23/01/2018 - Busca por ordem alfabetica finalizada, e busca pelo nome melhorada, agora a cliente pode digitar apenas uma letra que ja busca todos os proprietarios que possuem aquela letra, tambem pode digitar somente uma silaba ou mais caso não saiba o nome todo do cliente.
--25/01/2018 - O delete do proprietario e pet foi concluido com sucesso.
-- 28/01/2018 - Update do proprietario foi finalizado.
-- 28/01/2018 - Updade do pet foi finalizado.
-- 28/01/2018 - Foi testado no servidor, e esta funcionando sem problemas, e todas as atualizações ja estão no servidor externo.
+- 23/01/2019 - Busca por ordem alfabetica finalizada, e busca pelo nome melhorada, agora a cliente pode digitar apenas uma letra que ja busca todos os proprietarios que possuem aquela letra, tambem pode digitar somente uma silaba ou mais caso não saiba o nome todo do cliente.
+- 25/01/2019 - O delete do proprietario e pet foi concluido com sucesso.
+- 28/01/2019 - Update do proprietario foi finalizado.
+- 28/01/2019 - Updade do pet foi finalizado.
+- 28/01/2019 - Foi testado no servidor, e esta funcionando sem problemas, e todas as atualizações ja estão no servidor externo.
+- 04/02/2019 -
+
