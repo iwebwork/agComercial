@@ -88,7 +88,8 @@
 					</div>
 					<div class="form-group">
 					    <label for="exampleInputEmail1">Informações Adicionais:</label>
-					    <input <?php echo 'value= "'.$pet->getInfoAdd().'" '; ?> name="petInfoAdd" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Informações Adicionais">
+					    <textarea name="petInfoAdd" type="text" class="form-control" rows="8"><?php echo $pet->getInfoAdd();?></textarea>
+					    <!--<input <?php //echo 'value= "'.$pet->getInfoAdd().'" '; ?> name="petInfoAdd" type="text" class="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Informações Adicionais">-->
 					</div>
 					<div class="form-group">
 					    <button type="submit" class="btn btn-primary">Enviar</button>

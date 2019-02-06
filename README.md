@@ -65,4 +65,6 @@ Agenda
 - 04/02/2019 - Banco de dados atualizado, agora com o novo campo "raca" do tipo varchar.
 - 04/02/2019 - O tipo de dados do campo info_add da tabela pets foi alterado para LONGTEXT para ser virtualmente infinito.
 - 05/02/2019 - Adicionar um novo pet para o proprietario finalizado em todos os tipos de buscas.
+- 05/02/2019 - Melhora concluida na exibição das informações adicionais do pet.
+			   Proximo passo conversar com a marli sobre a parte de eventos.
 
