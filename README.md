@@ -72,4 +72,4 @@ PROXIMOS PASSOS
 - Fazer para a cliente ter total controle do cliente: doses de vacinas e vernifugo:
 - Controle de caixa: Olhar para ver quanto vai ficar mais completo:
 - Enviar o aviso tb por email para o cliente:
-- Alterar info adcionais para: Historico clinico do animal:
+- Alterar info adcionais para: Historico clinico do animal: OK
