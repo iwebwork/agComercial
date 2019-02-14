@@ -68,3 +68,8 @@ Agenda
 - 05/02/2019 - Melhora concluida na exibição das informações adicionais do pet.
 			   Proximo passo conversar com a marli sobre a parte de eventos.
 
+PROXIMOS PASSOS
+- Fazer para a cliente ter total controle do cliente: doses de vacinas e vernifugo:
+- Controle de caixa: Olhar para ver quanto vai ficar mais completo:
+- Enviar o aviso tb por email para o cliente:
+- Alterar info adcionais para: Historico clinico do animal:
