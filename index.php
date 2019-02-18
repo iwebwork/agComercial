@@ -23,7 +23,7 @@
 <!-- Meus arquivos -->
 <link rel="stylesheet" type="text/css" href="css/menu.css">
 <link rel="stylesheet" type="text/css" href="css/style.css">
-<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/menu.js"></script>
 
 </head>
 <body>
@@ -40,91 +40,114 @@
 
 	?>
 	
-	<div id="wrapper" class="active">
-      
-	      <!-- Sidebar -->
-	            <!-- Sidebar -->
-	    <div class="bg-primary" id="sidebar-wrapper">
-	      <ul id="sidebar_menu" class="sidebar-nav bg-primary">
-	           <li class="sidebar-brand"><a id="menu-toggle" href="#">Menu<span id="main_icon" class="glyphicon glyphicon-align-justify"></span></a></li>
-	      </ul>
-	        <ul class="sidebar-nav bg-primary" id="sidebar">     
-	          <li><a href="index.php"><h4>Pagina Inicial</h4></a></li>
-	          <li><a href=""><h4>Ficha</h4></a></li>
-	          <li>
-	         	<a href="cadastrar.php"><h4>Cadastrar</h4></a>	
-	          </li>
-	        </ul>
-	    </div>
-	          
-	      <!-- Page content -->
-	    <div id="page-content-wrapper">
-	        <!-- Keep all page content within the page-content inset div! -->
-	        <div class="page-content inset">
-		        
-		        
-				<div class="container-fluid">				    
-					<div class="row d-flex justify-content-center">
-						
-						<div class="col-sm-6">
-							<form class="form-group" method="POST">
-							    <input name="cpf" type="text" class="form-control" placeholder="Busca pelo CPF ou pelo nome do Proprietario">
-							    <span>
-							    	<button class="btn btn-primary fa fa-search" type="submit">Enviar</button>
-							    </span>
-							    <span class="">
-							    	<form class="form-group" method="POST">
-							    		<input type="hidden" name="todos" value="1">
-							    		<button class="btn btn-primary fa fa-search" type="submit">Carregar os donos em ordem alfabetica</button>
-							    	</form>
-							    </span>
-							    
-						    </form>
-
-						</div>
-							
-						
-					</div>
-				</div>
-				
-		            
-
-		        <div class="row d-flex justify-content-center">
-					<div class="col-sm-8">
-						<?php
-							$proprietario = new Proprietario();
-						    if (!empty($_POST['cpf'])) {
-						        $cpf = $proprietario->strListaDePetsCPF($_POST['cpf']);
-						        if ($cpf == false) {
-						        	$nome = $proprietario->strListaDePetsNome($_POST['cpf']);
-
-						        }
-						        	
-						    }
-
-						    if(empty($_POST['cpf']) && !empty($_POST['todos'])){
-							   	$proprietario->strTodosOsProprietariosEmOrdemAlfabetica();
-						      		
-							}
-
-						    
-						        		
-						?>	
-					</div>
-				</div>
-
+	<div class="wrapper">
+	    <!-- Sidebar -->
+	    <nav id="sidebar">
+	        <div class="sidebar-header">
+	            <h3>AgComercial</h3>
 	        </div>
-	    </div>
-      
-    </div>
 
-			<!--<span>
-				<form method="POST">
-			    	<input name="alfabetica" type="hidden" class="form-control" placeholder="">
-			    	<button class="btn btn-primary" type="submit" >Buscar todos em ordem alfabetica</button>
-				</form>
-		</span>-->
-	</div>
+	        <ul class="list-unstyled components">
+	            <!--<p>Dummy Heading</p>-->
+	            <li class="active">
+	                <!--<a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pagina Inicial</a>
+	                <ul class="collapse list-unstyled" id="homeSubmenu">
+	                    <li>
+	                        <a href="#">Home 1</a>
+	                    </li>
+	                    <li>
+	                        <a href="#">Home 2</a>
+	                    </li>
+	                    <li>
+	                        <a href="#">Home 3</a>
+	                    </li>
+	                </ul>
+	            </li>-->
+	            <li>
+	                <a href="index.php">Pagina Inicial</a>
+	            </li>
+	            <li>
+	                <a href="cadastrar.php">Cadastrar</a>
+	            </li>
+	            <!--<li>
+	                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
+	                <ul class="collapse list-unstyled" id="pageSubmenu">
+	                    <li>
+	                        <a href="#">Page 1</a>
+	                    </li>
+	                    <li>
+	                        <a href="#">Page 2</a>
+	                    </li>
+	                    <li>
+	                        <a href="#">Page 3</a>
+	                    </li>
+	                </ul>
+	            </li>-->
+	            <!--<li>
+	                <a href="#">Ficha</a>
+	            </li>-->
+	            <!--<li>
+	                <a href="#">Contact</a>
+	            </li>-->
+	        </ul>
+	    </nav>
+
+	    <div id="content">
+		    <div class="container-fluid ">
+		       	<div class="row d-flex justify-content-between">
+			        <div class="col-sm">
+			        	<button type="button" id="sidebarCollapse" class="btn btn-primary">
+				            <i class="fas fa-align-left"></i>
+				            <span>Menu</span>
+				        </button>	
+			        </div>
+			            
+			        <div class="col-sm-6">
+						<form class="form-group" method="POST">
+							<input name="cpf" type="text" class="form-control" placeholder="Busca pelo CPF ou pelo nome do Proprietario">
+							<span>
+							   	<button class="btn btn-primary fa fa-search" type="submit">Enviar</button>
+							</span>
+							<span class="">
+							   	<form class="form-group" method="POST">
+							   		<input type="hidden" name="todos" value="1">
+							   		<button class="btn btn-primary fa fa-search" type="submit">Carregar os donos em ordem alfabetica</button>
+							   	</form>
+						    </span>
+								    
+					    </form>
+					</div>
+					<div class="col-sm-4">
+						
+					</div>
+				</div>
+
+		    </div>
+
+		    <div class="row d-flex justify-content-center">
+				<div class="col-sm-8">
+					<?php
+						$proprietario = new Proprietario();
+					    if (!empty($_POST['cpf'])) {
+					        $cpf = $proprietario->strListaDePetsCPF($_POST['cpf']);
+					        if ($cpf == false) {
+					        	$nome = $proprietario->strListaDePetsNome($_POST['cpf']);
+						    }
+							        	
+						}
+
+					    if(empty($_POST['cpf']) && !empty($_POST['todos'])){
+						   	$proprietario->strTodosOsProprietariosEmOrdemAlfabetica();
+							      		
+						}			    
+							        		
+					?>	
+			</div>
+
+		</div>
+
+	<!-- Fim do site -->
+	</div>	
 	
 </body>
 </html>
