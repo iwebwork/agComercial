@@ -30,8 +30,8 @@
 		setlocale(LC_ALL,'pt_BR.UTF8');
 		mb_internal_encoding('UTF8'); 
 		mb_regex_encoding('UTF8');
-		include 'php/usuario.class.php';
-		include 'php/pet.class.php';
+		include 'php/classes/usuario.class.php';
+		include 'php/classes/pet.class.php';
 		$usuario = new Usuario();
 		$usuario->verificacaoLogin();
 

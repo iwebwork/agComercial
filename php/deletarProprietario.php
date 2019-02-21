@@ -1,7 +1,7 @@
 <?php
-	include 'usuario.class.php';
-	include 'proprietario.class.php';
-	include 'pet.class.php';
+	include 'classes/usuario.class.php';
+	include 'classes/proprietario.class.php';
+	include 'classes/pet.class.php';
 	$usuario = new Usuario();
 	$usuario->verificacaoLogin();
 

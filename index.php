@@ -29,8 +29,8 @@
 <body>
 	
 	<?php
-	  include 'php/usuario.class.php';
-	  include 'php/proprietario.class.php';
+	  include 'php/classes/usuario.class.php';
+	  include 'php/classes/proprietario.class.php';
 	  //include 'php/pet.class.php';
 	  $usuario = new Usuario();
 	  $usuario->verificacaoLogin();

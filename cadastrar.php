@@ -23,7 +23,7 @@
 <body>
 	
 	<?php
-	  include 'php/usuario.class.php';
+	  include 'php/classes/usuario.class.php';
 	  $usuario = new Usuario();
 	  $usuario->verificacaoLogin();
 	?>

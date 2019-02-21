@@ -26,6 +26,10 @@ Dados das vacinas:
 Dados banho e tosa
 	id_bt, id_pet, data_bt, hora_bt, informacoe_add_bt
 
+Dados dos Eventos
+id_evento, titulo, color (Se for: 1 = Vacina. 2 = Banho e tosa), dia/mes/ano hora_inicio,dia/mes/ano hora_termino(Opcional), info_add,
+status(0 = aberto, 1 = finalizado) ,pet
+
 Agenda
 - Eventos
 	Tipo: 1 = Todo o dia , 2 = Longo, comum, 3 = Repetitivo
@@ -44,6 +48,7 @@ Agenda
 		- idEventoRepetitivo
 		- Titulo
 		- Data e hora de termino
+
 
 
 - 18/11/2018 Projeto preparado, banco de dados pronto, falta implementar com php a inserção,remoção e alteração de dados no banco.
