@@ -1,0 +1,6 @@
+servidor/ip:sql177.main-hosting.eu
+ip: 185.201.10.132
+ip servidor: 185.201.10.115
+banco: u270517400_ag
+nomeuser:u270517400_iwebw
+senha: ag61218work

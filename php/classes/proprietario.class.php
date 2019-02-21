@@ -592,6 +592,7 @@
 										'<th class="text-center">Dono</th>'.
 										'<th class="text-center">Pet</th>'.
 										'<th class="text-center">Ficha</th>'.
+										'<th class="text-center">Marcar Consulta</th>'.
 								'</thead>';
 				echo $strCabe;
 				foreach ($proprietario as $key => $prop) {
@@ -659,6 +660,13 @@
 																	'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.
 																	'<input name="idPet" type= "hidden" class= "none" value="'.$pet['id'].'" readonly>'.
 																	'<button type="submit" class="btn btn-primary">Gerar Ficha</button>'.
+																'</form>'.
+															'</td>'.
+															'<td>'.
+																'<form method= "POST" action= "consulta.php" >'.
+																	'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.
+																	'<input name="idPet" type= "hidden" class= "none" value="'.$pet['id'].'" readonly>'.
+																	'<button type="submit" class="btn btn-primary">Marcar Consulta</button>'.
 																'</form>'.
 															'</td>'.
 															
