@@ -23,10 +23,20 @@
 		}
 
 		public function setEmail($value)
-		{
-			if(!empty($value)){
-				$this->email = $value;
+		{	
+			//echo $value;
+			$sql = "SELECT email FROM usuarios WHERE id = :id";
+			$sql = $this->pdo->prepare($sql);
+			if (!empty($value)) {
+				$sql->bindValue(':id',$value);
+				$sql->execute();
+				if ($sql->rowCount() > 0) {
+					$email = $sql->fetch();
+					$this->email = $email;
+				}	
 			}
+			
+			
 			
 		}
 
@@ -40,8 +50,15 @@
 
 		public function setNome($value)
 		{
-			if(!empty($value)){
-				$this->nome = $value;
+			$sql = "SELECT nome FROM usuarios WHERE id = :id";
+			$sql = $this->pdo->prepare($sql);
+			if (!empty($value)) {
+				$sql->bindValue(':id',$value);
+				$sql->execute();
+				if ($sql->rowCount() > 0) {
+					$nome = $sql->fetch();
+					$this->nome = $nome;
+				}	
 			}
 			
 		}

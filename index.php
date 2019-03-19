@@ -1,5 +1,10 @@
 
 <!DOCTYPE html>
+<?php 
+	
+	date_default_timezone_get('America/Brasilia');
+
+?>
 <html>
 <head lang="pt-br">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -31,6 +36,7 @@
 	<?php
 	  include 'php/classes/usuario.class.php';
 	  include 'php/classes/proprietario.class.php';
+	  include 'php/classes/evento.class.php';
 	  //include 'php/pet.class.php';
 	  $usuario = new Usuario();
 	  $usuario->verificacaoLogin();
@@ -69,6 +75,9 @@
 	            <li>
 	                <a href="cadastrar.php">Cadastrar</a>
 	            </li>
+	            <!--<li>
+	                <a href="php/notificacaoDiaria.php">E-mail</a>
+	            </li>-->
 	            <!--<li>
 	                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
 	                <ul class="collapse list-unstyled" id="pageSubmenu">
@@ -125,7 +134,7 @@
 		    </div>
 
 		    <div class="row d-flex justify-content-center">
-				<div class="col-sm-8">
+				<div class="col-sm">
 					<?php
 						$proprietario = new Proprietario();
 					    if (!empty($_POST['cpf'])) {
@@ -145,9 +154,18 @@
 			</div>
 
 		</div>
+		<div class="container-fluid">
+			<?php 
+				$eventos = new Eventos();
+				//$eventos->eventosDaHora();
+			 ?>
+		</div>
 
 	<!-- Fim do site -->
-	</div>	
+	</div>
+
+
+	
 	
 </body>
 </html>

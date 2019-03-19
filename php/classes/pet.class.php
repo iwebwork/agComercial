@@ -28,7 +28,7 @@
 		//Sets Pelo id do pet
 		public function setIDPetPeloId($value)
 		{
-			$sql = "SELECT id FROM pets WHERE id = :id ";
+			$sql = "SELECT id FROM pets WHERE id_pet = :id ";
 			$sql = $this->pdo->prepare($sql);
 			$sql->bindValue(':id',$value);
 
@@ -45,9 +45,27 @@
 			}
 		}
 
+		public function setIDProprietarioPeloIdPet($value)
+		{
+			$sql = "SELECT id_propri FROM pets WHERE id_pet = :id ";
+			$sql = $this->pdo->prepare($sql);
+			$sql->bindValue(':id',$value);
+
+			$sql->execute();
+			if ($sql->rowCount() > 0) {
+				$id = $sql->fetch();
+				if(!empty($id)){
+					$this->idProprietario = $id['id_propri'];
+					
+				}else{
+					echo "Erro ao salvar o id do proprietario";
+				}
+			}
+		}
+
 		public function setNomeIDPet($value)
 		{
-			$sql = "SELECT nome_pet FROM pets WHERE id = :id ";
+			$sql = "SELECT nome_pet FROM pets WHERE id_pet = :id ";
 			$sql = $this->pdo->prepare($sql);
 			$sql->bindValue(':id',$value);
 
@@ -66,7 +84,7 @@
 
 		public function setEspecieIDPet($value)
 		{
-			$sql = "SELECT especie FROM pets WHERE id = :id ";
+			$sql = "SELECT especie FROM pets WHERE id_pet = :id ";
 			$sql = $this->pdo->prepare($sql);
 			$sql->bindValue(':id',$value);
 
@@ -84,7 +102,7 @@
 
 		public function setRacaIDPet($value)
 		{
-			$sql = "SELECT raca FROM pets WHERE id = :id ";
+			$sql = "SELECT raca FROM pets WHERE id_pet = :id ";
 			$sql = $this->pdo->prepare($sql);
 			$sql->bindValue(':id',$value);
 
@@ -102,7 +120,7 @@
 
 		public function setSexoIDPet($value)
 		{
-			$sql = "SELECT sexo FROM pets WHERE id = :id ";
+			$sql = "SELECT sexo FROM pets WHERE id_pet = :id ";
 			$sql = $this->pdo->prepare($sql);
 			$sql->bindValue(':id',$value);
 
@@ -120,7 +138,7 @@
 
 		public function setIdadeIDPet($value)
 		{
-			$sql = "SELECT idade FROM pets WHERE id = :id ";
+			$sql = "SELECT idade FROM pets WHERE id_pet = :id ";
 			$sql = $this->pdo->prepare($sql);
 			$sql->bindValue(':id',$value);
 
@@ -138,7 +156,7 @@
 
 		public function setPesoIDPet($value)
 		{
-			$sql = "SELECT peso FROM pets WHERE id = :id ";
+			$sql = "SELECT peso FROM pets WHERE id_pet = :id ";
 			$sql = $this->pdo->prepare($sql);
 			$sql->bindValue(':id',$value);
 
@@ -156,7 +174,7 @@
 
 		public function setInfoAddIDPet($value)
 		{
-			$sql = "SELECT info_add FROM pets WHERE id = :id ";
+			$sql = "SELECT info_add FROM pets WHERE id_pet = :id ";
 			$sql = $this->pdo->prepare($sql);
 			$sql->bindValue(':id',$value);
 
@@ -449,7 +467,7 @@
 		public function atualizarPet($value)
 		{	
 			//print_r($value);
-			$sql = "UPDATE pets SET id = :id_pet , nome_pet = :nome_pet, especie = :especie, raca = :raca, sexo = :sexo, idade = :idade, peso =:peso, info_add = :infoAdd WHERE id = :valueId";
+			$sql = "UPDATE pets SET id = :id_pet , nome_pet = :nome_pet, especie = :especie, raca = :raca, sexo = :sexo, idade = :idade, peso =:peso, info_add = :infoAdd WHERE id_pet = :valueId";
 			$sql = $this->pdo->prepare($sql);
 			$sql->bindValue(':id_pet',$value['petId']);
 			$sql->bindValue(':nome_pet',$value['petNome']);

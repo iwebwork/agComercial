@@ -1,40 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<head lang="pt-br">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta charset='utf-8'/>
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
-	<!-- jQuery library -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-	<!-- Popper JS -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-
-	<!-- Latest compiled JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="css/index.css"><head lang="pt-br">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta charset='utf-8' http-equiv="Content-Language" content="pt-br"/>
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-
-	<!-- jQuery library -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-	<!-- Popper JS -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-
-	<!-- Latest compiled JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-	
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-
-	<title>AgComercial</title>
-</head>
-<body>
 	<?php
 		setlocale(LC_ALL,'pt_BR.UTF8');
 		mb_internal_encoding('UTF8'); 
@@ -42,6 +7,7 @@
 		include 'php/classes/usuario.class.php';
 		include 'php/classes/proprietario.class.php';
 		include 'php/classes/pet.class.php';
+		
 		$usuario = new Usuario();
 		$usuario->verificacaoLogin();
 
@@ -64,6 +30,7 @@
 			$pet->setPesoIDPet($idPet);
 			$pet->setInfoAddIDPet($idPet);
 			$pet->setRacaIDPet($idPet);
+			//$pet->setIDPetPeloId($idPet);
 
 
 			//Informações do dono
@@ -79,96 +46,70 @@
 			$proprietario->setTel($cpf);
 
 		}
+
+		ob_start();
 	?>
-	<section>
-		
-		<div class="container">
-			<div class="row d-flex text-center">
-				<a class="btn btn-primary" href="index.php">Voltar a Pagina Inicial</a>
-			</div>
-		</div>
-	</section>
-	<section id="ficha">
-		<div class="container p-3 mb-2 text-dark">
-			<div class="row d-flex text-center border border-primary">
-				<div class="col-sm">
-					<h2 class="font-italic"> Informações do Pet </h2>
-				</div>
-			</div>
-			<div class="row d-flex text-center border border-primary">
-				<div class="col-sm"><p> <t class="font-weight-bold">Nome do pet:</t> <?php echo $pet->getNome();?> </p></div>
-				<div class="col-sm"><p> <t class="font-weight-bold">Especie:</t> <?php echo $pet->getEspecie();?> </p></div>
-				<div class="col-sm"><p> <t class="font-weight-bold">Raça:</t> <?php echo $pet->getRaca();?> </p></div>
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<title></title>
+	</head>
+	<body>
+		<h2>Nome do pet:</h2><h6><?php echo $pet->getNome();?></h6>
+		<h2>Especie:</h2> <h6><?php echo $pet->getEspecie();?> 
+		<h2>Raça:</h2><h6><?php echo $pet->getRaca();?> 
 
+		<h2>Sexo:</h2><h6><?php echo $pet->getSexo();?> 
+		<h2>Idade:</h2><h6><?php echo $pet->getIdade().' anos';?> 
+		<h2>Peso:</h2> <h6><?php echo $pet->getPeso();?>
+		<h2>Historico clinico do animal:</h2>
+		<?php
+								
+								
+		$string = nl2br($pet->getInfoAdd());
+								
+		echo $string;
+								
+								
+
+		?>
+		<h1>Informações do Proprietario</h1>
+		<h2>Proprietario:</h2><h6><?php echo $proprietario->getNome();?>
+		<h2>cpf:</h2><h6><?php echo $proprietario->getCpf();?>
+		<h2>Pais:</h2><h6><?php echo $proprietario->getPais();?>
+					
+		<h2>Estado:</h2><?php echo $proprietario->getEstado();?>
+					
+		<h2>Cidade:</h2><?php echo $proprietario->getCidade();?></p>
+		<h2>Bairro:</h2><?php echo $proprietario->getBairro();?>
+					
 				
-			</div>
-			<div class="row d-flex text-center border border-primary">
-				<div class="col-sm"><p> <t class="font-weight-bold">Sexo:</t> <?php echo $pet->getSexo();?> </p></div>
-				<div class="col-sm"><p> <t class="font-weight-bold">Idade:</t> <?php echo $pet->getIdade().' anos';?> </p></div>
-				<div class="col-sm"><p> <t class="font-weight-bold">Peso:</t> <?php echo $pet->getPeso();?> </p></div>
-			</div>
-			<div class="row d-flex border border-primary">
-				<div class="col-sm-1"></div>
-				<div class="col-sm">
-					<p><t class="font-weight-bold">Historico clinico do animal:</t> 
-						<?php
-							
-							
-							$string = nl2br($pet->getInfoAdd());
-							
-							echo $string;
-							
-							
-
-						?>
-					</p>
-
-				</div>
-				
-			</div>
-			<div class="row d-flex text-center border border-primary">
-				<div class="col-sm">
-					<h2 class="font-italic"> Informações do Proprietario </h2>
-				</div>
-			</div>
-			<div class="row d-flex text-center border border-primary">
-				<div class="col-sm">
-					<p> <t class="font-weight-bold">Proprietario:</t> <?php echo $proprietario->getNome();?></p>
-				</div>
-				<div class="col-sm">
-					<p> <t class="font-weight-bold">CPF:</t> <?php echo $proprietario->getCpf();?></p>
-				</div>
-				<div class="col-sm">
-					<p> <t class="font-weight-bold">Pais:</t> <?php echo $proprietario->getPais();?> </p>
-				</div>
-			</div>
+		<h2>Rua:</h2><h6><?php echo $proprietario->getRua();?>
+		<h2>Numero:</h2><h6><?php echo $proprietario->getNumero();?></p>
+		<h2>Telefone:</h2><h6><?php echo $proprietario->getTel();?></p>
+		<h1>Eventos</h1>
 			
-			<div class="row d-flex text-center border border-primary">
-				<div class="col-sm">
-					<p> <t class="font-weight-bold">Estado:</t> <?php echo $proprietario->getEstado();?></p>
-				</div>
-				<div class="col-sm">
-					<p> <t class="font-weight-bold">Cidade:</t> <?php echo $proprietario->getCidade();?></p>
-				</div>
-				<div class="col-sm">
-					<p> <t class="font-weight-bold">Bairro:</t> <?php echo $proprietario->getBairro();?></p>
-				</div>
-			</div>
-			<div class="row d-flex text-center border border-primary">
-				<div class="col-sm">
-					<p> <t class="font-weight-bold">Rua:</t> <?php echo $proprietario->getRua();?></p>
-				</div>
-				<div class="col-sm">
-					<p> <t class="font-weight-bold">Numero:</t> <?php echo $proprietario->getNumero();?></p>
-				</div>
-				<div class="col-sm">
-					<p> <t class="font-weight-bold">Telefone:</t> <?php echo $proprietario->getTel();?></p>
-				</div>
-			</div>
-		</div>
+		<?php 
+			include 'php/classes/evento.class.php';
+			$eventos = new Eventos();
+					
+					//$idPet = $pet->getId();
+					//echo $_POST['idPet'];
+			$valores = $eventos->eventosDoPet($_POST['idPet']);
+					//print_r($valores);
+			$eventos->strEventosFicha($valores);
+		?>	
+	</body>
+	</html>
 
-	</section>
 	
+<?php
+	$html = ob_get_contents();
+	ob_end_clean();
+	//echo $html;
+	include 'vendor/autoload.php';
 
-</body>
-</html>
+	$mpdf = new mPDF();
+	$mpdf->WriteHTML($html);
+	$mpdf->Output();
+?>

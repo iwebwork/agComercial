@@ -107,6 +107,24 @@
 			}
 		}
 
+		public function setNomePeloId($value)
+		{
+			$sql = "SELECT nome_propri FROM proprietario WHERE id_propri = :value";	
+			$sql = $this->pdo->prepare($sql);
+			$sql->bindValue(':value',$value);
+
+			$sql->execute();
+			if ($sql->rowCount() > 0) {
+				$nome = $sql->fetch();
+				if(!empty($nome)){
+					$this->nome = $nome['nome_propri'];
+					
+				}else{
+					
+				}
+			}
+		}
+
 		public function setPais($value)
 		{
 			$sql = "SELECT pais FROM proprietario WHERE cpf = :value";
@@ -217,6 +235,23 @@
 		public function setTel($value)
 		{
 			$sql = "SELECT telefone FROM proprietario WHERE cpf = :value";
+			$sql = $this->pdo->prepare($sql);
+			$sql->bindValue(':value',$value);
+
+			$sql->execute();
+			if ($sql->rowCount() > 0) {
+				$telefone = $sql->fetch();
+				if(!empty($telefone)){
+					$this->tel = $telefone['telefone'];
+				}else{
+					echo "Telefone não encontrado";
+				}
+			}
+		}
+
+		public function setTelPeloId($value)
+		{
+			$sql = "SELECT telefone FROM proprietario WHERE id_propri = :value";
 			$sql = $this->pdo->prepare($sql);
 			$sql->bindValue(':value',$value);
 
@@ -356,16 +391,19 @@
 			$sql->execute();
 
 			if ($sql->rowCount() > 0) {
+
 				$prop = $sql->fetch();
+				//echo $prop['id_propri'];
 				if(!empty($prop)){
 					//echo($nome_pro['id_propri']);['nome_propri']."<br/>";
-					$sql = "SELECT nome_pet,id FROM pets WHERE id_propri = :id_propri ";
+					$sql = "SELECT id_pet,nome_pet FROM pets WHERE id_propri = :id_propri ";
 					$sql = $this->pdo->prepare($sql);
 					$sql->bindValue(':id_propri',$prop['id_propri']);
 
 
 					$sql->execute();
 					if ($sql->rowCount() > 0) {
+						//echo "Achou os pets";
 						$nome_pet = $sql->fetchAll();
 						if(!empty($nome_pet)){
 							//print_r($nome_pet);
@@ -377,6 +415,7 @@
 										            '<th class="text-center">Dono</th>'.
 										            '<th class="text-center">Pet</th>'.
 										            '<th class="text-center">Ficha</th>'.
+										            '<th class="text-center">Marcar Consulta</th>'.
 										            
 										        '</thead>';
 							echo $strCabe;
@@ -417,13 +456,13 @@
 																'</div>'.
 																'<div class="form-check form-check-inline">'.
 																	'<form method= "POST" action="php/deletarPet.php" >'.
-																		'<input name= "idPet" type="hidden" class= "none" value="'.$pet['id'].'" readonly>'.	
+																		'<input name= "idPet" type="hidden" class= "none" value="'.$pet['id_pet'].'" readonly>'.	
 																		'<p data-placement="top" data-toggle="tooltip" title="Apagar este pet"><button class="btn btn-danger btn-xs" data-title="Delete" type="submit"><span class="glyphicon glyphicon-trash"></span></button></p>'.
 																	'</form>'.
 																'</div>'.
 																'<div class="form-check form-check-inline">'.
 																	'<form method= "POST" action="atualizarPet.php" >'.
-																		'<input name= "id" type="hidden" class= "none" value="'.$pet['id'].'" readonly>'.	
+																		'<input name= "id" type="hidden" class= "none" value="'.$pet['id_pet'].'" readonly>'.	
 																		'<p data-placement="top" data-toggle="tooltip" title="Atualizar o Pet"><button class="btn btn-primary btn-xs" data-title="Update" type="submit"><span class="glyphicon glyphicon-wrench"></span></button></p>'.
 																	'</form>'.
 																'</div>'.
@@ -432,8 +471,15 @@
 															'<td>'.
 																'<form method= "POST" action= "ficha.php" >'.
 																	'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.
-																	'<input name="idPet" type= "hidden" class= "none" value="'.$pet['id'].'" readonly>'.
+																	'<input name="idPet" type= "hidden" class= "none" value="'.$pet['id_pet'].'" readonly>'.
 																	'<button type="submit" class="btn btn-primary">Gerar Ficha</button>'.
+																'</form>'.
+															'</td>'.
+															'<td>'.
+																'<form method= "POST" action= "consulta.php" >'.
+																	'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.
+																	'<input name="idPet" type= "hidden" class= "none" value="'.$pet['id_pet'].'" readonly>'.
+																	'<button type="submit" class="btn btn-primary">Marcar Consulta</button>'.
 																'</form>'.
 															'</td>'.
 															
@@ -478,11 +524,12 @@
 											'<th class="text-center">Dono</th>'.
 											'<th class="text-center">Pet</th>'.
 											'<th class="text-center">Ficha</th>'.
+											'<th class="text-center">Marcar Consulta</th>'.
 											
 									'</thead>';
 					echo $strCabe;
 					foreach ($proprietario as $key => $prop) {
-						$sql = "SELECT nome_pet,id FROM pets WHERE id_propri = :id_propri ";
+						$sql = "SELECT id_pet,nome_pet FROM pets WHERE id_propri = :id_propri ";
 						$sql = $this->pdo->prepare($sql);
 						$sql->bindValue(':id_propri',$prop['id_propri']);
 						$sql->execute();
@@ -529,13 +576,13 @@
 																	'</div>'.
 																	'<div class="form-check form-check-inline">'.
 																		'<form method= "POST" action="php/deletarPet.php" >'.
-																			'<input name= "idPet" type="hidden" class= "none" value="'.$pet['id'].'" readonly>'.	
+																			'<input name= "idPet" type="hidden" class= "none" value="'.$pet['id_pet'].'" readonly>'.	
 																			'<p data-placement="top" data-toggle="tooltip" title="Apagar este pet"><button class="btn btn-danger btn-xs" data-title="Delete" type="submit"><span class="glyphicon glyphicon-trash"></span></button></p>'.
 																		'</form>'.
 																	'</div>'.
 																	'<div class="form-check form-check-inline">'.
 																		'<form method= "POST" action="atualizarPet.php" >'.
-																			'<input name= "id" type="hidden" class= "none" value="'.$pet['id'].'" readonly>'.	
+																			'<input name= "id" type="hidden" class= "none" value="'.$pet['id_pet'].'" readonly>'.	
 																			'<p data-placement="top" data-toggle="tooltip" title="Atualizar o Pet"><button class="btn btn-primary btn-xs" data-title="Update" type="submit"><span class="glyphicon glyphicon-wrench"></span></button></p>'.
 																		'</form>'.
 																	'</div>'.
@@ -544,8 +591,15 @@
 																'<td>'.
 																	'<form method= "POST" action= "ficha.php" >'.
 																		'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.
-																		'<input name="idPet" type= "hidden" class= "none" value="'.$pet['id'].'" readonly>'.
+																		'<input name="idPet" type= "hidden" class= "none" value="'.$pet['id_pet'].'" readonly>'.
 																		'<button type="submit" class="btn btn-primary">Gerar Ficha</button>'.
+																	'</form>'.
+																'</td>'.
+																'<td>'.
+																	'<form method= "POST" action= "consulta.php" >'.
+																		'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.
+																		'<input name="idPet" type= "hidden" class= "none" value="'.$pet['id_pet'].'" readonly>'.
+																		'<button type="submit" class="btn btn-primary">Marcar Consulta</button>'.
 																	'</form>'.
 																'</td>'.
 															
@@ -576,6 +630,7 @@
 	public function strTodosOsProprietariosEmOrdemAlfabetica()
 	{
 
+
 		$sql = "SELECT id_propri,nome_propri,cpf FROM proprietario ORDER BY nome_propri";
 		$sql = $this->pdo->query($sql);
 
@@ -592,11 +647,12 @@
 										'<th class="text-center">Dono</th>'.
 										'<th class="text-center">Pet</th>'.
 										'<th class="text-center">Ficha</th>'.
-										'<th class="text-center">Marcar Consulta</th>'.
+										'<th class="text-center">Consulta</th>'.
 								'</thead>';
 				echo $strCabe;
 				foreach ($proprietario as $key => $prop) {
-					$sql = "SELECT nome_pet,id FROM pets WHERE id_propri = :id_propri ";
+
+					$sql = "SELECT nome_pet,id_pet FROM pets WHERE id_propri = :id_propri ";
 					$sql = $this->pdo->prepare($sql);
 					$sql->bindValue(':id_propri',$prop['id_propri']);
 					$sql->execute();
@@ -643,33 +699,42 @@
 																'</div>'.
 																'<div class="form-check form-check-inline">'.
 																	'<form method= "POST" action="php/deletarPet.php" >'.
-																		'<input name= "idPet" type="hidden" class= "none" value="'.$pet['id'].'" readonly>'.	
+																		'<input name= "idPet" type="hidden" class= "none" value="'.$pet['id_pet'].'" readonly>'.	
 																		'<p data-placement="top" data-toggle="tooltip" title="Apagar este pet"><button class="btn btn-danger btn-xs" data-title="Delete" type="submit"><span class="glyphicon glyphicon-trash"></span></button></p>'.
 																	'</form>'.
 																'</div>'.
 																'<div class="form-check form-check-inline">'.
 																	'<form method= "POST" action="atualizarPet.php" >'.
-																		'<input name= "id" type="hidden" class= "none" value="'.$pet['id'].'" readonly>'.	
+																		'<input name= "id" type="hidden" class= "none" value="'.$pet['id_pet'].'" readonly>'.	
 																		'<p data-placement="top" data-toggle="tooltip" title="Atualizar o Pet"><button class="btn btn-primary btn-xs" data-title="Update" type="submit"><span class="glyphicon glyphicon-wrench"></span></button></p>'.
 																	'</form>'.
 																'</div>'.
 															'</td>'.
 															
 															'<td>'.
-																'<form method= "POST" action= "ficha.php" >'.
+																'<form target="_blank" method= "POST" action= "ficha.php" >'.
 																	'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.
-																	'<input name="idPet" type= "hidden" class= "none" value="'.$pet['id'].'" readonly>'.
+																	'<input name="idPet" type= "hidden" class= "none" value="'.$pet['id_pet'].'" readonly>'.
 																	'<button type="submit" class="btn btn-primary">Gerar Ficha</button>'.
 																'</form>'.
 															'</td>'.
 															'<td>'.
-																'<form method= "POST" action= "consulta.php" >'.
-																	'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.
-																	'<input name="idPet" type= "hidden" class= "none" value="'.$pet['id'].'" readonly>'.
-																	'<button type="submit" class="btn btn-primary">Marcar Consulta</button>'.
-																'</form>'.
+																'<div class="form-check form-check-inline">'.
+																	'<form method= "POST" action= "consulta.php" >'.
+																		'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.
+																		'<input name="idPet" type= "hidden" class= "none" value="'.$pet['id_pet'].'" readonly>'.
+																		'<button type="submit" class="btn btn-primary">Marcar</button>'.
+																	'</form>'.
+																'</div>'.
+																'<div class="form-check form-check-inline">'.
+																	'<form method= "POST" action= "desmarcarConsulta.php" >'.
+																		'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.
+																		'<input name="idPet" type= "hidden" class= "none" value="'.$pet['id_pet'].'" readonly>'.
+																		'<button type="submit" class="btn btn-primary">Desmarcar</button>'.
+																	'</form>'.
+																'</div>'.
 															'</td>'.
-															
+																													
 														'</tr>'.
 											        '</tbody>'; 
 									
