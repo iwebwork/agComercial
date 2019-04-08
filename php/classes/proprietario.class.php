@@ -469,18 +469,27 @@
 															'</td>'.
 															
 															'<td>'.
-																'<form method= "POST" action= "ficha.php" >'.
+																'<form target="_blank" method= "POST" action= "ficha.php" >'.
 																	'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.
 																	'<input name="idPet" type= "hidden" class= "none" value="'.$pet['id_pet'].'" readonly>'.
 																	'<button type="submit" class="btn btn-primary">Gerar Ficha</button>'.
 																'</form>'.
 															'</td>'.
 															'<td>'.
-																'<form method= "POST" action= "consulta.php" >'.
-																	'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.
-																	'<input name="idPet" type= "hidden" class= "none" value="'.$pet['id_pet'].'" readonly>'.
-																	'<button type="submit" class="btn btn-primary">Marcar Consulta</button>'.
-																'</form>'.
+																'<div class="form-check form-check-inline">'.
+																		'<form method= "POST" action= "consulta.php" >'.
+																			'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.
+																			'<input name="idPet" type= "hidden" class= "none" value="'.$pet['id_pet'].'" readonly>'.
+																			'<button type="submit" class="btn btn-primary">Marca</button>'.
+																		'</form>'.
+																	'</div>'.
+																	'<div class="form-check form-check-inline">'.
+																		'<form method= "POST" action= "desmarcarConsulta.php" >'.
+																			'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.
+																			'<input name="idPet" type= "hidden" class= "none" value="'.$pet['id_pet'].'" readonly>'.
+																			'<button type="submit" class="btn btn-primary">Desmarcar</button>'.
+																		'</form>'.
+																	'</div>'.
 															'</td>'.
 															
 														'</tr>'.
@@ -524,7 +533,7 @@
 											'<th class="text-center">Dono</th>'.
 											'<th class="text-center">Pet</th>'.
 											'<th class="text-center">Ficha</th>'.
-											'<th class="text-center">Marcar Consulta</th>'.
+											'<th class="text-center">Consulta</th>'.
 											
 									'</thead>';
 					echo $strCabe;
@@ -589,18 +598,27 @@
 																'</td>'.
 																
 																'<td>'.
-																	'<form method= "POST" action= "ficha.php" >'.
+																	'<form target="_blank" method= "POST" action= "ficha.php" >'.
 																		'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.
 																		'<input name="idPet" type= "hidden" class= "none" value="'.$pet['id_pet'].'" readonly>'.
 																		'<button type="submit" class="btn btn-primary">Gerar Ficha</button>'.
 																	'</form>'.
 																'</td>'.
 																'<td>'.
-																	'<form method= "POST" action= "consulta.php" >'.
-																		'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.
-																		'<input name="idPet" type= "hidden" class= "none" value="'.$pet['id_pet'].'" readonly>'.
-																		'<button type="submit" class="btn btn-primary">Marcar Consulta</button>'.
-																	'</form>'.
+																	'<div class="form-check form-check-inline">'.
+																		'<form method= "POST" action= "consulta.php" >'.
+																			'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.
+																			'<input name="idPet" type= "hidden" class= "none" value="'.$pet['id_pet'].'" readonly>'.
+																			'<button type="submit" class="btn btn-primary">Marca</button>'.
+																		'</form>'.
+																	'</div>'.
+																	'<div class="form-check form-check-inline">'.
+																		'<form method= "POST" action= "desmarcarConsulta.php" >'.
+																			'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.
+																			'<input name="idPet" type= "hidden" class= "none" value="'.$pet['id_pet'].'" readonly>'.
+																			'<button type="submit" class="btn btn-primary">Desmarcar</button>'.
+																		'</form>'.
+																	'</div>'.
 																'</td>'.
 															
 															'</tr>'.
