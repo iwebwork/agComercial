@@ -6,6 +6,7 @@
 
 ?>
 <html>
+<title>Pagina Inicial</title>
 <head lang="pt-br">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset='utf-8'/>
@@ -42,7 +43,7 @@
 	  $usuario->verificacaoLogin();
 	  //$pet = new Pet();
 
-	  
+	  $_POST['todos'] = 1;
 
 	?>
 	
