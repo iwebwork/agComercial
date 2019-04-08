@@ -52,53 +52,100 @@
 	<!DOCTYPE html>
 	<html>
 	<head>
-		<title></title>
+		<title>Ficha</title>
+		<style type="text/css">
+			
+			.espaco{
+				padding-right:20px;
+			}
+
+			.titleAlinhamentoCenter{
+				text-align: center;
+				
+			}
+			.alinhamentoAdireita{
+				text-align: right;
+			}
+			.fontTitulo{
+				font-size: 30px;
+				font-weight: bold;
+			}
+			.fontSubTitulo{
+				font-size: 16px;
+				font-weight: bold;	
+			}
+			.img{
+				float:right;
+			}
+			.linha{
+				border:2px solid 000000;
+			}
+			.fontText{
+				
+			}
+		</style>
 	</head>
 	<body>
-		<h2>Nome do pet:</h2><h6><?php echo $pet->getNome();?></h6>
-		<h2>Especie:</h2> <h6><?php echo $pet->getEspecie();?> 
-		<h2>Raça:</h2><h6><?php echo $pet->getRaca();?> 
+		<div>
+			<!--<img src ="img/logo.jpg"/>-->
+			<div class="img">
+				<pre><h1 class="fontTitulo">              São Lázaro</h1></pre>
+			</div>
+		</div>
+		<hr>
+		<div class="titleAlinhamentoCenter">
+			<h3>Dados do Pet</h3>
+		</div>
+		
+		<div class="linha">	
+		<pre>Nome: <?php echo $pet->getNome();?>
+		Especie: <?php echo $pet->getEspecie();?>          Raça: <?php echo $pet->getRaca();?></pre>
+		</div>
 
-		<h2>Sexo:</h2><h6><?php echo $pet->getSexo();?> 
-		<h2>Idade:</h2><h6><?php echo $pet->getIdade().' anos';?> 
-		<h2>Peso:</h2> <h6><?php echo $pet->getPeso();?>
-		<h2>Historico clinico do animal:</h2>
-		<?php
-								
-								
-		$string = nl2br($pet->getInfoAdd());
-								
-		echo $string;
-								
-								
-
+		<div class="linha">
+		<pre>Sexo: <?php echo $pet->getSexo();?>
+		Peso: <?php echo str_replace(".",",",$pet->getPeso());?> Kilos         Idade: <?php echo $pet->getIdade();?> anos</pre>
+		</div>
+		
+		<div class="titleAlinhamentoCenter">	
+			<h3>Historico clinico do animal</h3>
+		</div>
+		<?php						
+			$string = nl2br($pet->getInfoAdd());						
+			echo '<pre>'.$string.'</pre>';
 		?>
-		<h1>Informações do Proprietario</h1>
-		<h2>Proprietario:</h2><h6><?php echo $proprietario->getNome();?>
-		<h2>cpf:</h2><h6><?php echo $proprietario->getCpf();?>
-		<h2>Pais:</h2><h6><?php echo $proprietario->getPais();?>
-					
-		<h2>Estado:</h2><?php echo $proprietario->getEstado();?>
-					
-		<h2>Cidade:</h2><?php echo $proprietario->getCidade();?></p>
-		<h2>Bairro:</h2><?php echo $proprietario->getBairro();?>
-					
-				
-		<h2>Rua:</h2><h6><?php echo $proprietario->getRua();?>
-		<h2>Numero:</h2><h6><?php echo $proprietario->getNumero();?></p>
-		<h2>Telefone:</h2><h6><?php echo $proprietario->getTel();?></p>
-		<h1>Eventos</h1>
-			
+		<hr>
+		<div class="titleAlinhamentoCenter">
+			<h3>Informações do Proprietario</h3>
+		</div>
+
+		<div class="linha">
+			<pre>Nome: <?php echo  $proprietario->getNome();?>
+	Cpf: <?php echo $proprietario->getCpf();?>          Cidade: <?php echo $proprietario->getCidade();?></pre>
+		</div>
+		<div class="linha">
+			<pre>Bairro: <?php echo  $proprietario->getBairro();?>
+	Rua: <?php echo $proprietario->getRua();?>            Estado: <?php echo$proprietario->getEstado();?></pre>
+		</div>
+		<div class="linha">
+			<pre>Numero: <?php echo  $proprietario->getNumero();?>
+		Telefone: <?php echo $proprietario->getTel();?></pre>
+		</div>		
+		<!--<h1>Eventos</h1>-->
+		<hr>
+		<div class="titleAlinhamentoCenter">
+			<h3>Consultas Marcadas</h3>
+		</div>
 		<?php 
 			include 'php/classes/evento.class.php';
 			$eventos = new Eventos();
 					
-					//$idPet = $pet->getId();
+			$idPet = $pet->getId();
 					//echo $_POST['idPet'];
 			$valores = $eventos->eventosDoPet($_POST['idPet']);
 					//print_r($valores);
 			$eventos->strEventosFicha($valores);
-		?>	
+		?>
 	</body>
 	</html>
 
