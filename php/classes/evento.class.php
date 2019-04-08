@@ -16,8 +16,8 @@
 		//dia/mes/ano hora_termino(Opcional), info_add,status(0 = aberto, 1 = finalizado) ,pet
 
 		private $id_evento;
-		private $titulo; //Vacina, Banho e tosa
-		private $color; // Vacina = Amarelo, Banho e tosa = Azul
+		private $titulo; //Vacina = 1, Banho e tosa = 2, Vernifugo = 3
+		private $color; // Vacina = Amarelo, Banho e tosa = Azul, Vernifugo = Verde
 		private $start_date;
 		private $start_hora;
 		private $fim_date;
@@ -54,6 +54,10 @@
 					}else if($titulo == 2){
 						$evento = "Banho e tosa";
 						$cor = "#0000FF";//Azul
+
+					}else if($titulo == 3){
+						$evento = "Vernifugo";
+						$cor = "#008000";//Verde
 
 					}
 					$sql = "INSERT INTO eventos (title,color,start_date,start_hora,fim_date,fim_hora,info_add,status,id_pet) VALUES (:evento, :cor, :dtI, :hrI,:dtT,:hrT, :info_add,:status,:pet)";
@@ -180,26 +184,20 @@
 					}else{
 						$strStatus = "Encerrado";
 					}
-					echo '<div class="">'. 
-							'<div class="">'.
-								'<p><t class="">Evento:</t> '.$dados['title'].'</p>'.
-							 '</div>'.
-							 '<div class="">'.
-								'<p><t class="">Data de inicio:</t> '.$dataInicial->format('d/m/Y').
-							 '</div>'.
-							 '<div class="">'.
-								'<p><t class="">Hora de Inicio:</t> '.$horaInicial->format('H:m:s').
-							 '</div>'.
-							 '<div class="">'.
-								'<p><t class="">Data de Termino:</t> '.$strDataFinal.
-							 '</div>'.
-							 '<div class="">'.
-								'<p><t class="font-weight-bold">Status:</t> '.$strStatus.
-							 '</div>'.
+					$str = '<div class="linha">'. 
+							'<pre class="">'.
+								'Evento: '.$dados['title'].'        '.
+								'Data e hora de inicio:</t> '.$dataInicial->format('d/m/Y')
+								.'  '.$horaInicial->format('H:m:s').
+							'</pre>'.
+							'<pre>'.
+								'Status: '.$strStatus.' '.
+							 '</pre>'.
 						  '</div>';
+					echo $str;
 				}
 			}else{
-				echo "Erro ao mandar os dados";
+				
 			}
 		}
 

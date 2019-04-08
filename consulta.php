@@ -63,7 +63,8 @@
 							<label for="exampleInputEmail1">Evento:</label>
 							<select name="tipoEvento" class="form-control" id="exampleFormControlSelect1">
 								<option value="1">Vacina</option>
-								<option value="2">Banho e tosa</option> 
+								<option value="2">Banho e tosa</option>
+								<option value="3">Vernifugo</option> 
 							</select>
 						</div>
 						<div class="form-group">	
