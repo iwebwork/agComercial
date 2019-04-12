@@ -73,7 +73,8 @@ Agenda
 - 05/02/2019 - Melhora concluida na exibição das informações adicionais do pet.
 			   Proximo passo conversar com a marli sobre a parte de eventos.
 
-- 08/04/2018 - Base para a ficha finalizada.
+- 08/04/2019 - Base para a ficha finalizada.
+- 12/04/2019 - Listagem de eventos do pet finalizado.
 
 PROXIMOS PASSOS
 - Fazer para a cliente ter total controle do cliente: doses de vacinas e vernifugo:

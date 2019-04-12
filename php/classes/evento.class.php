@@ -28,7 +28,16 @@
 		private $itens;
 
 
-
+		public function strReturnStatus($status)
+		{	
+			if($status == 0){
+				return "Aberto";
+			}else if($status == 1){
+				return "Encerrado";
+			}else{
+				echo "Status esta vindo vazio";
+			}
+		}
 		public function getItens(){
 			$sql = "SELECT * FROM eventos";
 			$sql = $this->pdo->query($sql);
@@ -168,6 +177,7 @@
 
 		public function strEventosFicha($value)
 		{
+			
 			if (!empty($value)) {
 				foreach ($value as $dados) {
 					$dataInicial = new DateTime($dados['start_date']);
@@ -198,6 +208,89 @@
 				}
 			}else{
 				
+			}
+		}
+
+		public function strHoraFinal($var)
+		{
+			if($var == '00:00:00'){
+				return 'Não foi especificado';
+			}else{
+				return $var;			
+			}
+		}
+
+		public function strListaEventosPet($nomePet,$value)
+		{
+			date_default_timezone_set('UTC');
+			date_default_timezone_get('America/Sao_Paulo');
+			if(!empty($value)){
+				$tCabe =
+					'<table id="mytable" class= "table p-3 mb-2 border border-primary table-bordered margin-top">'.
+													
+						'<thead class="text-center table-stripe bg-primary text-white">'.
+							'<th class="text-center">Pet</th>'.
+							'<th class="text-center">Evento</th>'.
+							'<th class="text-center">Status</th>'.
+							'<th class="text-center">Data - Hora Inicio</th>'.
+							'<th class="text-center">Data - Hora Termino</th>'.
+							'<th class="text-center">Consulta</th>'.
+						'</thead>';
+
+				echo $tCabe;
+
+				foreach($value as $itens){
+					//print_r($itens);
+					$strDataInicio = strtotime($itens['start_date']);
+					$strDataFim = strtotime($itens['fim_date']);
+
+					$dataInicio = date("d/m/Y" , $strDataInicio);
+					$dataFim = date("d/m/Y" , $strDataFim);
+					$td =	'<tbody class = "text-center">'.
+								'<tr>'. 
+									'<td>'.
+										'<div class="form-check form-check-inline">'.
+												$nomePet.
+										'</div>'.
+									'</td>'.
+									'<td>'.
+										'<div class="form-check form-check-inline">'.
+												$itens['title'].
+										'</div>'.
+									'</td>'.
+									'<td>'.
+										'<div class="form-check form-check-inline">'.
+												$this->strReturnStatus($itens['status']).
+										'</div>'.
+									'</td>'.
+									'<td>'.
+										'<div class="form-check form-check-inline">'.
+												$dataInicio.' - '.$itens['start_hora'].
+										'</div>'.
+									'</td>'.
+									'<td>'.
+										'<div class="form-check form-check-inline">'.
+											$dataFim.' - '.$this->strHoraFinal($itens['fim_hora']).
+												
+										'</div>'.
+									'</td>'.
+									'<td>'.
+										'<div class="form-check form-check-inline">'.
+											'<form method= "POST" action= "desmarcarConsulta.php" >'.
+												'<input name= "idConsulta" type="hidden" class= "none" value="'.$itens['id_evento'].'" readonly>'.
+												'<input name="idPet" type= "hidden" class= "none" value="'.$itens['id_pet'].'" readonly>'.
+												'<button type="submit" class="btn btn-primary">Desmarcar</button>'.
+											'</form>'.
+										'</div>'.
+									'</td>'.
+									
+								'</tr>'.
+							'</tbody>';
+						echo $td;				
+				}
+				$tRodape = '</table>';
+				
+				echo $tRodape;
 			}
 		}
 
