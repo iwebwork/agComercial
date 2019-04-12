@@ -216,7 +216,9 @@
 			if($var == '00:00:00'){
 				return 'Não foi especificado';
 			}else{
-				return $var;			
+				$valor = strtotime($var);
+				$v = date("H:i",$valor); 
+				return $v;			
 			}
 		}
 
@@ -243,9 +245,12 @@
 					//print_r($itens);
 					$strDataInicio = strtotime($itens['start_date']);
 					$strDataFim = strtotime($itens['fim_date']);
+					$strHoraInicio = strtotime($itens['start_hora']);
+					
 
 					$dataInicio = date("d/m/Y" , $strDataInicio);
 					$dataFim = date("d/m/Y" , $strDataFim);
+					$horaInicio = date("H:m",$strHoraInicio);
 					$td =	'<tbody class = "text-center">'.
 								'<tr>'. 
 									'<td>'.
@@ -265,7 +270,7 @@
 									'</td>'.
 									'<td>'.
 										'<div class="form-check form-check-inline">'.
-												$dataInicio.' - '.$itens['start_hora'].
+												$dataInicio.' - '.$horaInicio.
 										'</div>'.
 									'</td>'.
 									'<td>'.
@@ -276,7 +281,7 @@
 									'</td>'.
 									'<td>'.
 										'<div class="form-check form-check-inline">'.
-											'<form method= "POST" action= "desmarcarConsulta.php" >'.
+											'<form method= "POST" action= "php/desmarcarEvento.php" >'.
 												'<input name= "idConsulta" type="hidden" class= "none" value="'.$itens['id_evento'].'" readonly>'.
 												'<input name="idPet" type= "hidden" class= "none" value="'.$itens['id_pet'].'" readonly>'.
 												'<button type="submit" class="btn btn-primary">Desmarcar</button>'.
@@ -291,6 +296,31 @@
 				$tRodape = '</table>';
 				
 				echo $tRodape;
+			}
+		}
+
+		public function desmarcarEventos($var)
+		{	
+			$desmarcar = 1;
+			$sql = "SELECT status FROM eventos WHERE id_evento = :id_evento";
+			$sql = $this->pdo->prepare($sql);
+			if (!empty($var)) {
+				$sql->bindValue(':id_evento',$var);
+				//echo "Checou aqui primeiro";
+				$sql->execute();
+				if ($sql->rowCount() > 0) {
+					$dados = $sql->fetch();
+					$sql = "UPDATE eventos SET status = $desmarcar WHERE id_evento = :id_evento";
+					$sql = $this->pdo->prepare($sql);
+					$sql->bindValue(':id_evento',$var);
+					if($sql->execute()){
+						return true;
+					}else{
+						return false;
+					}
+				}else{
+
+				}
 			}
 		}
 
