@@ -76,6 +76,7 @@ Agenda
 - 08/04/2019 - Base para a ficha finalizada.
 - 12/04/2019 - Listagem de eventos do pet finalizado.
 - 12/04/2019 - Encerrar o evento finalizado.
+- 14/05/2019 - Filtro de eventos encerrado, lista todos os eventos abertos, fechados e ambos.
 
 PROXIMOS PASSOS
 - Fazer para a cliente ter total controle do cliente: doses de vacinas e vernifugo:

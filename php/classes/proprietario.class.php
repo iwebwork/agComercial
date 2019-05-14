@@ -745,7 +745,7 @@
 																	'</form>'.
 																'</div>'.
 																'<div class="form-check form-check-inline">'.
-																	'<form method= "POST" action ="eventos.php" '.
+																	'<form method= "POST" action ="php/verifEventos.php" '.
 																		'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.
 																		'<input name="idPet" type= "hidden" class= "none" value="'.$pet['id_pet'].'" readonly>'.
 																		'<button type="submit" class="btn btn-primary">Visualizar</button>'.

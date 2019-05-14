@@ -26,6 +26,16 @@
 		private $idProprietario;
 
 		//Sets Pelo id do pet
+		public function setIdSemBusca($value)
+		{
+			if(!empty($value)){
+				$this->id = $value;
+				//$this->setIdProprietario($value);
+					
+			}else{
+				echo "Erro ao salvar o id";
+			}
+		}
 		public function setIDPetPeloId($value)
 		{
 			$sql = "SELECT id FROM pets WHERE id_pet = :id ";

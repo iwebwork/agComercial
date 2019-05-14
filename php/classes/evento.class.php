@@ -159,12 +159,48 @@
 
 		}
 
-		public function eventosDoPet($value)
+		public function todosEventosDoPet($value)
 		{
 			$sql = "SELECT * FROM eventos WHERE id_pet = :id_pet";
 			$sql = $this->pdo->prepare($sql);
 			if (!empty($value)) {
 				$sql->bindValue(':id_pet',$value);
+				//echo "Checou aqui primeiro";
+				$sql->execute();
+				if ($sql->rowCount() > 0) {
+					$dados = $sql->fetchAll();
+					return $dados;
+				}
+			}
+			
+		}
+
+		public function eventosAbertosDoPet($value)
+		{
+			$status = 0;
+			$sql = "SELECT * FROM eventos WHERE id_pet = :id_pet AND  status = :status";
+			$sql = $this->pdo->prepare($sql);
+			if (!empty($value)) {
+				$sql->bindValue(':id_pet',$value);
+				$sql->bindValue(':status',$status);
+				//echo "Checou aqui primeiro";
+				$sql->execute();
+				if ($sql->rowCount() > 0) {
+					$dados = $sql->fetchAll();
+					return $dados;
+				}
+			}
+			
+		}
+
+		public function eventosEncerradoDoPet($value)
+		{
+			$status = 1;
+			$sql = "SELECT * FROM eventos WHERE id_pet = :id_pet AND  status = :status";
+			$sql = $this->pdo->prepare($sql);
+			if (!empty($value)) {
+				$sql->bindValue(':id_pet',$value);
+				$sql->bindValue(':status',$status);
 				//echo "Checou aqui primeiro";
 				$sql->execute();
 				if ($sql->rowCount() > 0) {
