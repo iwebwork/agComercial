@@ -306,6 +306,10 @@
 
 				foreach($value as $itens){
 					//print_r($itens);
+
+					
+					
+
 					$strDataInicio = strtotime($itens['start_date']);
 					$strDataFim = strtotime($itens['fim_date']);
 					$strHoraInicio = strtotime($itens['start_hora']);
@@ -328,7 +332,7 @@
 									'</td>'.
 									'<td>'.
 										'<div class="form-check form-check-inline">'.
-												$this->strReturnStatus($itens['status']).
+											$this->strReturnStatus($itens['status']).
 										'</div>'.
 									'</td>'.
 									'<td>'.
@@ -346,8 +350,9 @@
 										'<div class="form-check form-check-inline">'.
 											'<form method= "POST" action= "php/desmarcarEvento.php" >'.
 												'<input name= "idConsulta" type="hidden" class= "none" value="'.$itens['id_evento'].'" readonly>'.
-												'<input name="idPet" type= "hidden" class= "none" value="'.$itens['id_pet'].'" readonly>'.
-												'<button type="submit" class="btn btn-primary">Desmarcar</button>'.
+												'<input name="idPet" type= "hidden" class= "none" value="'.
+													$itens['id_pet'].'" readonly>'.
+													$this->returnButtonEvento($itens['status']);
 											'</form>'.
 										'</div>'.
 									'</td>'.
@@ -359,6 +364,16 @@
 				$tRodape = '</table>';
 				
 				echo $tRodape;
+			}
+		}
+
+		public function returnButtonEvento($value)
+		{
+			//Evento esta aberto
+			if($value == 0){
+				return '<button type="submit" class="btn btn-primary">Desmarcar</button>';
+			}else if($value == 1){
+				return '<button type="submit" class="btn btn-primary" disabled>Encerrado</button>';
 			}
 		}
 
