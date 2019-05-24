@@ -135,7 +135,7 @@
 		    </div>
 
 		    <div class="row d-flex justify-content-center">
-				<div class="col-sm">
+				<div class="col-sm-9">
 					<?php
 						$proprietario = new Proprietario();
 					    if (!empty($_POST['cpf'])) {
@@ -153,14 +153,17 @@
 							        		
 					?>	
 			</div>
+			<div class="col-sm-3">
+				<?php 
+					
+					$eventos = new Eventos();
+					//print_r();
+					$eventos->strExibirEventosDoDia($eventos->eventosDoDia());
+				 ?>
+			</div>
 
 		</div>
-		<div class="container-fluid">
-			<?php 
-				$eventos = new Eventos();
-				//$eventos->eventosDaHora();
-			 ?>
-		</div>
+		
 
 	<!-- Fim do site -->
 	</div>

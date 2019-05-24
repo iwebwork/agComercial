@@ -1,14 +1,11 @@
 <?php
-	//include 'config.php';
-	//require("config.php");
-	class Eventos{
-
-		private $pdo;
+	include_once 'Banco.class.php';
+	
+	class Eventos extends Banco{
 
 		
 		public function __construct(){
-			$this->pdo = new PDO("mysql:dbname=u270517400_ag;host=sql177.main-hosting.eu","u270517400_iwebw","ag61218work");
-			//$this->pdo = new PDO("mysql:dbname=u270517400_ag;host=127.0.0.1;charset=utf8","root","");
+			parent::__construct();
 		}
 
 		//Dados dos Eventos
@@ -140,7 +137,7 @@
 			echo $hora_atual;
 
 			
-			/*$sql = "SELECT * FROM eventos WHERE start_date = :data ORDER BY start_date";
+			$sql = "SELECT * FROM eventos WHERE start_date = :data ORDER BY start_date";
 			$sql = $this->pdo->prepare($sql);
 			$sql->bindValue(':data',$ano_mes_dia);
 			//echo "Checou aqui primeiro";
@@ -155,7 +152,7 @@
 					echo "A busca falhou";
 				}
 				
-			}*/
+			}
 
 		}
 
@@ -209,6 +206,36 @@
 				}
 			}
 			
+		}
+
+// Funções para escrever na tela
+		public function strExibirEventosDoDia($value)
+		{
+			include 'dataHora.class.php';
+			include 'pet.class.php';
+			//include 'proprietario.class.php';
+			$pet = new Pet();
+			$prop = new proprietario();
+			$data = new dataHora();
+
+			//print_r($value);
+			foreach ($value as $dados) {
+				# code...
+				$pet->setNomeIDPet($dados['id_pet']);
+				$pet->setIDProprietarioPeloIdPet($dados['id_pet']);
+				$prop->setNomePeloId($pet->getIdProp());
+				$prop->setTelPeloId($pet->getIdProp());
+				$str = '<ul class="list-group text-center">
+							<li class="list-group-item">Data: '.$data->foramatoData($dados['start_date']).'</li>
+						  	<li class="list-group-item">Pet: '.$pet->getNome().' / Dono: '.$prop->getNome().'</li>
+						  	<li class="list-group-item">'.$dados['title'].'</li>
+						  	<li class="list-group-item">Hora de Inicio:'.$dados['start_hora'].'</li>
+						  	<li class="list-group-item">Hora Termino: '.$dados['fim_hora'].'</li>
+						  	<li class="list-group-item">Telefone: '.$prop->getTel().'</li>
+						  	<li class="list-group-item">Status: '.$this->strReturnStatus($dados['status']).'</li>
+						</ul>';
+				echo $str;
+			}
 		}
 
 		public function strEventosFicha($value)
