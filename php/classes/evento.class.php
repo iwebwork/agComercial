@@ -98,7 +98,7 @@
 
 		public function eventosDoDia(){
 			date_default_timezone_set('UTC');
-			date_default_timezone_get('America/Sao_Paulo');
+			//date_default_timezone_get('America/Sao_Paulo');
 
 			$ano_mes_dia = date("o-m-d");
 
@@ -124,7 +124,7 @@
 		}
 
 		public function eventosDaHora(){
-
+			date_default_timezone_set('America/Sao_Paulo');
 			//$dia_atual = date("d");
 			//$mes_atual = date("m");
 			//$ano_atual = date("o");
@@ -134,12 +134,14 @@
 
 			$ano_mes_dia = date("o-m-d");
 			$hora_atual = date("H");
-			echo $hora_atual;
+			$minuto_atual = date("m");
+			$segundos_atual = date("s");
+			echo $hora_atual.":".$minuto_atual.":".$segundos_atual;
 
 			
-			$sql = "SELECT * FROM eventos WHERE start_date = :data ORDER BY start_date";
+			$sql = "SELECT * FROM eventos WHERE start_hora = :hora";
 			$sql = $this->pdo->prepare($sql);
-			$sql->bindValue(':data',$ano_mes_dia);
+			$sql->bindValue(':hora',$hora_atual);
 			//echo "Checou aqui primeiro";
 			$sql->execute();
 			if($sql->rowCount() > 0){
@@ -149,7 +151,7 @@
 					return $values;
 					
 				}else{
-					echo "A busca falhou";
+					//echo "Não tem eventos no momento";
 				}
 				
 			}
@@ -209,6 +211,31 @@
 		}
 
 // Funções para escrever na tela
+
+		public function strAlert($value)
+		{
+			//print_r($value);
+			$str = 
+			'<div class="modal" tabindex="-1" role="dialog">
+			  	<div class="modal-dialog" role="document">
+			    	<div class="modal-content">
+			      		<div class="modal-header">
+				        	<h5 class="modal-title">Modal title</h5>
+				        	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          		<span aria-hidden="true">&times;</span>
+				        	</button>
+			      		</div>
+				      	<div class="modal-body">
+				        	<p>Modal body text goes here.</p>
+				      	</div>
+				      	<div class="modal-footer">
+				        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+				      	</div>
+			    	</div>
+			  	</div>
+			</div>';
+		}
+
 		public function strExibirEventosDoDia($value)
 		{
 			include 'dataHora.class.php';
@@ -226,13 +253,19 @@
 				$prop->setNomePeloId($pet->getIdProp());
 				$prop->setTelPeloId($pet->getIdProp());
 				$str = '<ul class="list-group text-center">
-							<li class="list-group-item">Data: '.$data->foramatoData($dados['start_date']).'</li>
-						  	<li class="list-group-item">Pet: '.$pet->getNome().' / Dono: '.$prop->getNome().'</li>
+							<li class="list-group-item">Data: '.
+								$data->foramatoData($dados['start_date']).'
+							</li>
+						  	<li class="list-group-item">Pet: '.$pet->getNome().' / Dono: '.
+						  		$prop->getNome().'
+						  	</li>
 						  	<li class="list-group-item">'.$dados['title'].'</li>
 						  	<li class="list-group-item">Hora de Inicio:'.$dados['start_hora'].'</li>
 						  	<li class="list-group-item">Hora Termino: '.$dados['fim_hora'].'</li>
 						  	<li class="list-group-item">Telefone: '.$prop->getTel().'</li>
-						  	<li class="list-group-item">Status: '.$this->strReturnStatus($dados['status']).'</li>
+						  	<li class="list-group-item">Status: '.
+						  		$this->strReturnStatus($dados['status']).'
+						  	</li>
 						</ul>';
 				echo $str;
 			}
@@ -246,7 +279,8 @@
 					$dataInicial = new DateTime($dados['start_date']);
 					$horaInicial = new DateTime($dados['start_hora']);
 					$dataFinal = new DateTime($dados['fim_date']);
-					$final =$dataFinal->format('d/m/Y'); 
+					$horaFinal = new DateTime($dados['fim_hora']);
+					$final = $dataFinal->format('d/m/Y'); 
 					if ( $final == "30/11/-0001") {
 						$strDataFinal = "Não foi Especificado";
 					}else{
@@ -257,16 +291,30 @@
 					}else{
 						$strStatus = "Encerrado";
 					}
+					if( $horaFinal->format('H:m') == "00:05"){
+						$strHoraFinal = "Não foi Especificado";
+					}else{
+						//echo "foi especificado";
+						$strHoraFinal = $horaFinal->format('H:m');
+					}
 					$str = '<div class="linha">'. 
-							'<pre class="">'.
-								'Evento: '.$dados['title'].'        '.
-								'Data e hora de inicio:</t> '.$dataInicial->format('d/m/Y')
-								.'  '.$horaInicial->format('H:m:s').
-							'</pre>'.
-							'<pre>'.
-								'Status: '.$strStatus.' '.
-							 '</pre>'.
-						  '</div>';
+								'<pre class="">'.
+									'Evento: '.$dados['title'].'                     Status: '.$strStatus.
+								'</pre>'.
+								'<hr>'.
+								'<pre class="">'.
+									'Data de inicio:</t> '.$dataInicial->format('d/m/Y').
+								'</pre>'.
+								'<pre class="">'.
+									'Hora de Inicio:</t> '.$horaInicial->format('H:m').
+								'</pre>'.
+								'<pre class="">'.
+									'Data de termino:</t> '.$strDataFinal.
+								'</pre>'.
+								'<pre class="">'
+									.'Hora de termino:</t>'.$strHoraFinal.
+								'</pre>'.
+							'</div>';
 					echo $str;
 				}
 			}else{
@@ -288,10 +336,10 @@
 		public function strListaEventosPet($nomePet,$value)
 		{
 			date_default_timezone_set('UTC');
-			date_default_timezone_get('America/Sao_Paulo');
+			//date_default_timezone_get('America/Sao_Paulo');
 			if(!empty($value)){
 				$tCabe =
-					'<table id="mytable" class= "table p-3 mb-2 border border-primary table-bordered margin-top">'.
+					'<table id="mytable" class= "table p-3 mb-2 border border-primary table-bordered">'.
 													
 						'<thead class="text-center table-stripe bg-primary text-white">'.
 							'<th class="text-center">Pet</th>'.

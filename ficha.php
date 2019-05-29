@@ -1,5 +1,3 @@
-
-
 	<?php
 		setlocale(LC_ALL,'pt_BR.UTF8');
 		mb_internal_encoding('UTF8'); 
@@ -80,8 +78,8 @@
 			.linha{
 				border:2px solid 000000;
 			}
-			.fontText{
-				
+			.fontTextBold{
+				font-weight: bold;
 			}
 		</style>
 	</head>
@@ -121,7 +119,7 @@
 
 		<div class="linha">
 			<pre>Nome: <?php echo  $proprietario->getNome();?>
-	Cpf: <?php echo $proprietario->getCpf();?>          Cidade: <?php echo $proprietario->getCidade();?></pre>
+		Cpf: <?php echo $proprietario->getCpf();?>         Cidade: <?php echo $proprietario->getCidade();?></pre>
 		</div>
 		<div class="linha">
 			<pre>Bairro: <?php echo  $proprietario->getBairro();?>
@@ -142,7 +140,7 @@
 					
 			$idPet = $pet->getId();
 					//echo $_POST['idPet'];
-			$valores = $eventos->eventosDoPet($_POST['idPet']);
+			$valores = $eventos->todoseventosDoPet($_POST['idPet']);
 					//print_r($valores);
 			$eventos->strEventosFicha($valores);
 		?>
@@ -154,9 +152,9 @@
 	$html = ob_get_contents();
 	ob_end_clean();
 	//echo $html;
-	include 'vendor/autoload.php';
+	require_once __DIR__.'/vendor/autoload.php';
 
-	$mpdf = new mPDF();
+	$mpdf = new \Mpdf\Mpdf();
 	$mpdf->WriteHTML($html);
 	$mpdf->Output();
 ?>
