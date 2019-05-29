@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <?php 
 	
-	date_default_timezone_get('America/Brasilia');
+	//date_default_timezone_get('America/Brasilia');
 
 ?>
 <html>
@@ -110,14 +110,14 @@
 	    ?>
 	    <div id="content">
 		    <div class="container-fluid ">
-		       	<div class="row d-flex justify-content-between">
+		       	<div class="row d-flex">
 			        <div class="col-sm-2">
 			        	<button type="button" id="sidebarCollapse" class="btn btn-primary">
 				            <i class="fas fa-align-left"></i>
 				            <span>Menu</span>
 				        </button>	
 			        </div>
-			        <div class="col-sm">
+			        <div class="col-sm-6">
 						<form class="form-group" method="POST" id="ajax_form" action="php/verifEventos.php">
 							<div class="form-check">
 								<input name="texto" type="text" class="form-control" placeholder="Filtrar pelo horario">
@@ -134,27 +134,39 @@
 							</div>  
 					    </form>
 					</div>
-					<div class="col-sm-4">
-						
-					</div>
+				</div>
+		    </div>
+		    <div class="row">
+				<div class="col-sm-9">
 					<?php
-						
+								
 						//print_r($_POST);
 						$eventos = new Eventos();
-						
+									
 						//$pet->setIdSemBusca($_POST['idPet']);
 						$pet->setNomeIDPet($pet->getId());
 						if(!empty($pet->getId()) ){
 							$dados = $eventos->todosEventosDoPet($pet->getId());
 							$eventos->strListaEventosPet($pet->getNome(),$dados);	
 						}else{
-							//header('Location: index.php');
+								//header('Location: index.php');
 						}
-						
-					?>   
+									
+					?>
 				</div>
-
-		    </div>
+				<div class="col-sm-3">
+					<?php 
+								
+						$eventos = new Eventos();
+						//print_r();
+						if(!empty($eventos->eventosDoDia())){
+							$eventos->strExibirEventosDoDia($eventos->eventosDoDia());
+						}else{
+							echo "Não tem eventos para hoje";
+						}
+					?>
+				</div>
+			</div>
 
 	<!-- Fim do site -->
 	</div>
