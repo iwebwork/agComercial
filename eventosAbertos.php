@@ -120,7 +120,7 @@
 			        <div class="col-sm-6">
 						<form class="form-group" method="POST" id="ajax_form" action="php/verifEventos.php">
 							<div class="form-check">
-								<input name="texto" type="text" class="form-control" placeholder="Filtrar pelo horario">
+								<!--<input name="texto" type="text" class="form-control" placeholder="Filtrar pelo horario">-->
 								<input name="idPet" type="hidden" <?php echo 'value="'.$pet->getId().'"';?>>
 								<button class="btn btn-primary fa fa-search" type="submit" id="enviar">Enviar</button>    
 								<input name="tipo1" value="1" class="" type="checkbox" id="gridCheck1" checked>
