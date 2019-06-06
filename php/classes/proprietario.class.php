@@ -122,6 +122,24 @@
 			}
 		}
 
+		public function setNomePetPeloId($value)
+		{
+			$sql = "SELECT nome_pet FROM proprietario WHERE id_propri = :value";	
+			$sql = $this->pdo->prepare($sql);
+			$sql->bindValue(':value',$value);
+
+			$sql->execute();
+			if ($sql->rowCount() > 0) {
+				$nome = $sql->fetch();
+				if(!empty($nome)){
+					$this->nome = $nome['nome_propri'];
+					
+				}else{
+					
+				}
+			}
+		}
+
 		public function setPais($value)
 		{
 			$sql = "SELECT pais FROM proprietario WHERE cpf = :value";

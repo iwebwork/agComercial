@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <?php 
 	
-	date_default_timezone_get('America/Brasilia');
+	//date_default_timezone_get('America/Brasilia');
 
 ?>
 <html>
@@ -38,6 +38,7 @@
 	  include 'php/classes/usuario.class.php';
 	  include 'php/classes/proprietario.class.php';
 	  include 'php/classes/evento.class.php';
+	  include 'php/classes/pet.class.php';
 	  //include 'php/pet.class.php';
 	  $usuario = new Usuario();
 	  $usuario->verificacaoLogin();
@@ -75,6 +76,9 @@
 	            </li>
 	            <li>
 	                <a href="cadastrar.php">Cadastrar</a>
+	            </li>
+	            <li>
+	                <a href="calendario.php">Calendario</a>
 	            </li>
 	            <!--<li>
 	                <a href="php/notificacaoDiaria.php">E-mail</a>
@@ -158,7 +162,8 @@
 					
 					$eventos = new Eventos();
 					//print_r();
-					$eventos->strExibirEventosDoDia($eventos->eventosDoDia());
+					$dados = $eventos->eventosDoDia();
+					$eventos->strExibirEventosDoDia($dados);
 				 ?>
 			</div>
 
