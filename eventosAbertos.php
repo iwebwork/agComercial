@@ -157,13 +157,14 @@
 					<div class="col-sm-3">
 						<?php 
 									
+							
+					
 							$eventos = new Eventos();
 							//print_r();
-							if(!empty($eventos->eventosDoDia())){
-								$eventos->strExibirEventosDoDia($eventos->eventosDoDia());
-							}else{
-								echo "Não tem eventos para hoje";
-							}
+							$dados = $eventos->eventosDoDia();
+							$eventos->strExibirEventosDoDia($dados);
+				 
+					
 						?>
 					</div>
 				</div>
