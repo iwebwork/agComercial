@@ -349,6 +349,16 @@
 				return $v;			
 			}
 		}
+		public function strDataFinal($var)
+		{
+			if($var == '30/11/-0001'){
+				return 'Não foi especificado';
+			}else{
+				$valor = strtotime($var);
+				$v = date("d/m/Y",$valor); 
+				return $v;			
+			}
+		}
 
 		public function strListaEventosPet($nomePet,$value)
 		{
@@ -407,7 +417,7 @@
 									'</td>'.
 									'<td>'.
 										'<div class="form-check form-check-inline">'.
-											$dataFim.' - '.$this->strHoraFinal($itens['fim_hora']).
+											$this->strDataFinal($dataFim).' - '.$this->strHoraFinal($itens['fim_hora']).
 												
 										'</div>'.
 									'</td>'.
