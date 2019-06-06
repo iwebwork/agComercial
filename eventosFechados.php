@@ -76,6 +76,9 @@
 	            <li>
 	                <a href="cadastrar.php">Cadastrar</a>
 	            </li>
+	            <li>
+	                <a href="calendario.php">Calendario</a>
+	            </li>
 	            <!--<li>
 	                <a href="php/notificacaoDiaria.php">E-mail</a>
 	            </li>-->
