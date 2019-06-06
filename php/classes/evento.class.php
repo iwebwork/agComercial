@@ -112,12 +112,8 @@
 			if($sql->rowCount() > 0){
 				//echo "Chegou aqui";
 				$values = $sql->fetchAll();
-				if (!empty($values)) {
-					return $values;
-					
-				}else{
-					echo "A busca falhou";
-				}
+				
+				return $values;
 				
 			}
 
@@ -160,7 +156,7 @@
 
 		public function todosEventosDoPet($value)
 		{
-			$sql = "SELECT * FROM eventos WHERE id_pet = :id_pet";
+			$sql = "SELECT * FROM eventos WHERE id_pet = :id_pet ORDER BY status";
 			$sql = $this->pdo->prepare($sql);
 			if (!empty($value)) {
 				$sql->bindValue(':id_pet',$value);
@@ -239,37 +235,58 @@
 		public function strExibirEventosDoDia($value)
 		{
 			include 'dataHora.class.php';
-			include 'pet.class.php';
 			//include 'proprietario.class.php';
 			$pet = new Pet();
 			$prop = new proprietario();
 			$data = new dataHora();
 
 			//print_r($value);
-			foreach ($value as $dados) {
-				# code...
-				$pet->setNomeIDPet($dados['id_pet']);
-				$pet->setIDProprietarioPeloIdPet($dados['id_pet']);
-				$prop->setNomePeloId($pet->getIdProp());
-				$prop->setTelPeloId($pet->getIdProp());
-				$str = '<ul class="list-group text-center">
-							<li class="list-group-item">Data: '.
-								$data->foramatoData($dados['start_date']).'
-							</li>
-						  	<li class="list-group-item">Pet: '.$pet->getNome().' / Dono: '.
-						  		$prop->getNome().'
-						  	</li>
-						  	<li class="list-group-item">'.$dados['title'].'</li>
-						  	<li class="list-group-item">Hora de Inicio:'.$dados['start_hora'].'</li>
-						  	<li class="list-group-item">Hora Termino: '.$dados['fim_hora'].'</li>
-						  	<li class="list-group-item">Telefone: '.$prop->getTel().'</li>
-						  	<li class="list-group-item">Status: '.
-						  		$this->strReturnStatus($dados['status']).'
-						  	</li>
-						</ul>';
-				echo $str;
+			if(!empty($value)){
+				foreach ($value as $dados) {
+					# code...
+					$pet->setNomeIDPet($dados['id_pet']);
+					$pet->setIDProprietarioPeloIdPet($dados['id_pet']);
+					$prop->setNomePeloId($pet->getIdProp());
+					$prop->setTelPeloId($pet->getIdProp());
+					$str = '<ul class="list-group text-center">
+								<li class="list-group-item">Data: '.
+									$data->foramatoData($dados['start_date']).'
+								</li>
+							  	<li class="list-group-item">Pet: '.$pet->getNome().' / Dono: '.
+							  		$prop->getNome().'
+							  	</li>
+							  	<li class="list-group-item">'.$dados['title'].'</li>
+							  	<li class="list-group-item">Hora de Inicio:'.$dados['start_hora'].'</li>
+							  	<li class="list-group-item">Hora Termino: '.$dados['fim_hora'].'</li>
+							  	<li class="list-group-item">Telefone: '.$prop->getTel().'</li>
+							  	<li class="list-group-item">Status: '.
+							  		$this->strReturnStatus($dados['status']).'
+							  	</li>
+							  	<li class="list-group-item">'.
+							  		'<form method="POST" action="php/desmarcarEvento.php">'.
+							  			'<input type="hidden" name="idConsulta" value="'.$dados['id_evento'].'">'.
+							  			$this->strButtonEventoVeriIf($dados['status']).
+							  		'</form>'.
+							  	'</li>
+							</ul>';
+					echo $str;
+				}
+			}else{
+				echo  '<div class="alert alert-info">
+						  Não temos eventos marcados para hoje</a>.
+					  </div>';
 			}
 		}
+
+		public function strButtonEventoVeriIf($value)
+		{
+			if ($value == 0) {
+				return '<button type="submit" class="btn btn-primary">Encerrar</button>';
+			}else{
+				return '<button type="submit" class="btn btn-primary" disabled>Encerrado</button>';
+			}
+		}
+
 
 		public function strEventosFicha($value)
 		{
@@ -397,10 +414,8 @@
 									'<td>'.
 										'<div class="form-check form-check-inline">'.
 											'<form method= "POST" action= "php/desmarcarEvento.php" >'.
-												'<input name= "idConsulta" type="hidden" class= "none" value="'.$itens['id_evento'].'" readonly>'.
-												'<input name="idPet" type= "hidden" class= "none" value="'.
-													$itens['id_pet'].'" readonly>'.
-													$this->returnButtonEvento($itens['status']);
+												'<input name= "idConsulta" type="hidden" value="'.$itens['id_evento'].'">'.
+													$this->returnButtonEvento($itens['status']).
 											'</form>'.
 										'</div>'.
 									'</td>'.
@@ -412,6 +427,10 @@
 				$tRodape = '</table>';
 				
 				echo $tRodape;
+			}else{
+				echo  '<div class="alert alert-info">
+						  Não temos eventos marcados para este pet</a>.
+					  </div>';
 			}
 		}
 
@@ -439,6 +458,7 @@
 					$sql = "UPDATE eventos SET status = $desmarcar WHERE id_evento = :id_evento";
 					$sql = $this->pdo->prepare($sql);
 					$sql->bindValue(':id_evento',$var);
+					//echo $var;
 					if($sql->execute()){
 						return true;
 					}else{

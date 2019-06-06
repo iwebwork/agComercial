@@ -1,7 +1,13 @@
 <?php
-  include("php/conexao.php");
-  $result_events = "SELECT id, title, color, start, end FROM events";
-  $resultado_events = mysqli_query($conn, $result_events);
+  include_once 'php/classes/evento.class.php';
+  $servidor = "127.0.0.1";
+  $usuario = "root";
+  $senha = "";
+  $banco = "u270517400_ag";
+  $conn = mysqli_connect($servidor,$usuario,$senha,$banco);
+  $sql = "SELECT * FROM eventos";
+  $resultado_eventos = mysqli_query($conn,$sql);
+
 ?>
 
 <!DOCTYPE html>
@@ -59,24 +65,28 @@
 
       editable: true,
       eventLimit: true, // allow "more" link when too many events
-      events: [
-        //Evento padrão
+      events:[
         <?php
-          while($row_events = mysqli_fetch_array($resultado_events)){
-                ?>
-                {
-                id: '<?php echo $row_events['id_event']; ?>',
-                title: '<?php echo $row_events['title']; ?>',
-                start: '<?php echo $row_events['start']; ?>',
-                end: '<?php echo $row_events['end']; ?>',
-                color: '<?php echo $row_events['color']; ?>',
-
-                },<?php
-              }
+          $event = new Eventos();
+          while ($dados = mysqli_fetch_array($resultado_eventos) ) {
+            $start = $dados['start_date'].'T'.$dados['start_hora'];
+            $end = $dados['fim_date'].'T'.$dados['fim_hora'];
+            $status = $event->strReturnStatus($dados['status']);
+            //echo $start;
+            //echo $end;
+        ?>
+        {
+          id: '<?php echo $dados['id_evento']; ?>',
+          title:'<?php echo $dados['title'].' - '.$status; ?>',
+          start:'<?php echo $start; ?>',
+          end: '<?php echo $end; ?>',
+          color:'<?php echo $dados['color']; ?>',
+        },
+        <?php
+          }
         ?>
       ]
     });
-
   });
 
 </script>
@@ -86,76 +96,42 @@
 
 </head>
 <body>
-
   <div class="container area-menu">
       <div class="row d-flex justify-content-around">
-        <div class="col-xm">
+        <div class="col-xm font-weight-bold">
           
         </div>
         <div class="col-xm font-weight-bold">
-          AgComercial
+          
+        </div>
+        <div class="col-xm font-weight-bold">
+          
+        </div>
+        <div class="col-xm font-weight-bold">
+          Agenda
+        </div>
+        <div class="col-xm font-weight-bold">
+          
         </div>
         <div class="col-xm"> 
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-            Inserir Compromisso
-          </button>
+          <a href="index.php" class="btn btn-primary">
+            Retornar a pagina inicial
+          </a>
+        </div>
+        <div class="col-xm font-weight-bold">
+          
         </div>
 
       </div>
 
-  </div> 
-
-    <!-- The Modal -->
-    <div class="modal" id="myModal">
-      <div class="modal-dialog">
-        <div class="modal-content">
-
-         
-
-          <!-- Modal body -->
-          <div class="modal-body">
-
-          <!-- Inicio do formulario para cadastro de eventos -->
-         
-            <form method="POST" action="php/adicionarEvento.php">
-                <div class="form-group">
-                  <label for="text">Evento</label>
-                  <input type="text" class="form-control" name="evento" id="email" requeired>
-                </div>
-                <div class="form-group">
-                  <label for="date">data Inicio</label>
-                  <input type="date-time" class="form-control" name="data-inicio" requeired>
-                </div>
-
-                <div class="form-group">
-                  <label for="date-time">data Termino</label>
-                  <input type="date" class="form-control" name="data-termino">
-                </div>
-            
-
-                <div class="form-group">
-                  <label for="date">Cor ( Opcional: Caso nao forneca, por padrao virar azul escuro)</label>
-                  <input type="color" class="form-control" name="color" value="#0071c5">
-                </div>
-
-              <!-- Modal footer -->
-              <div class="modal-footer">
-                <div class="row d-flex justify-content-between">
-
-                  <input type="submit" class="btn btn-primary">
-                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                </div>
-              </div>
-            </form>
-
-        </div>
-      </div>
-    </div>
-   </div>
+  </div>
 
   <div class="container">
-    <div class="row"> 
-      <div id='calendar'></div>
+    <div class="row justify-content-center">
+      <div class="col-xm">
+        <div id='calendar'></div>  
+      </div>
+      
     </div>
     
   </div>
