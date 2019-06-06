@@ -1,5 +1,6 @@
 <?php
   include_once 'php/classes/evento.class.php';
+  include_once 'php/classes/pet.class.php';
   $servidor = "127.0.0.1";
   $usuario = "root";
   $senha = "";
@@ -68,16 +69,20 @@
       events:[
         <?php
           $event = new Eventos();
+          $pet = new Pet();
+
           while ($dados = mysqli_fetch_array($resultado_eventos) ) {
             $start = $dados['start_date'].'T'.$dados['start_hora'];
             $end = $dados['fim_date'].'T'.$dados['fim_hora'];
+            $idPet = $dados['id_pet'];
+            $pet->setNomeIDPet($idPet);
             $status = $event->strReturnStatus($dados['status']);
             //echo $start;
             //echo $end;
         ?>
         {
           id: '<?php echo $dados['id_evento']; ?>',
-          title:'<?php echo $dados['title'].' - '.$status; ?>',
+          title:'<?php echo 'Evento: '. $dados['title'].' - Status: '.$status.' - Pet: '.$pet->getNome(); ?>',
           start:'<?php echo $start; ?>',
           end: '<?php echo $end; ?>',
           color:'<?php echo $dados['color']; ?>',
