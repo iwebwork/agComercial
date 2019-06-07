@@ -81,7 +81,6 @@
             //echo $end;
         ?>
         {
-          id: '<?php echo $dados['id_evento']; ?>',
           title:'<?php echo 'Evento: '. $dados['title'].' - Status: '.$status.' - Pet: '.$pet->getNome(); ?>',
           start:'<?php echo $start; ?>',
           end: '<?php echo $end; ?>',
