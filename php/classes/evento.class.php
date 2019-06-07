@@ -262,6 +262,9 @@
 							  	<li class="list-group-item">Status: '.
 							  		$this->strReturnStatus($dados['status']).'
 							  	</li>
+							  	<li class="list-group-item">Informações do evento: '.
+							  		$dados['info_add'].'
+							  	</li>
 							  	<li class="list-group-item">'.
 							  		'<form method="POST" action="php/desmarcarEvento.php">'.
 							  			'<input type="hidden" name="idConsulta" value="'.$dados['id_evento'].'">'.
