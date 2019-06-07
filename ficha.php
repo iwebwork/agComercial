@@ -1,10 +1,11 @@
 	<?php
-		setlocale(LC_ALL,'pt_BR.UTF8');
-		mb_internal_encoding('UTF8'); 
-		mb_regex_encoding('UTF8');
-		include 'php/classes/usuario.class.php';
-		include 'php/classes/proprietario.class.php';
-		include 'php/classes/pet.class.php';
+		//setlocale(LC_ALL,'pt_BR.UTF8');
+		//mb_internal_encoding('UTF8'); 
+		//mb_regex_encoding('UTF8');
+		//header('Content-Type: text/html; charset=utf-8');
+		include_once 'php/classes/usuario.class.php';
+		include_once 'php/classes/proprietario.class.php';
+		include_once 'php/classes/pet.class.php';
 		
 		$usuario = new Usuario();
 		$usuario->verificacaoLogin();
@@ -50,6 +51,7 @@
 	<!DOCTYPE html>
 	<html>
 	<head>
+		<meta http-equiv="Content-Type" content="text/html" charset="utf-8">
 		<title>Ficha</title>
 		<style type="text/css">
 			
@@ -135,7 +137,7 @@
 			<h3>Consultas Marcadas</h3>
 		</div>
 		<?php 
-			include 'php/classes/evento.class.php';
+			include_once 'php/classes/evento.class.php';
 			$eventos = new Eventos();
 					
 			$idPet = $pet->getId();
@@ -150,11 +152,13 @@
 	
 <?php
 	$html = ob_get_contents();
+	//$html1 = mb_convert_encoding($html, 'UTF-8', 'ISO-8859-1');
 	ob_end_clean();
 	//echo $html;
 	require_once __DIR__.'/vendor/autoload.php';
 
 	$mpdf = new \Mpdf\Mpdf();
-	$mpdf->WriteHTML($html);
+	$html1 = mb_convert_encoding($html, 'UTF-8', 'UTF-8');
+	$mpdf->WriteHTML($html1);
 	$mpdf->Output();
 ?>
