@@ -1,6 +1,7 @@
 <?php
   include_once 'php/classes/evento.class.php';
   include_once 'php/classes/pet.class.php';
+  include_once 'php/classes/proprietario.class.php';
   $servidor = "127.0.0.1";
   $usuario = "root";
   $senha = "";
@@ -70,18 +71,24 @@
         <?php
           $event = new Eventos();
           $pet = new Pet();
+          $prop = new proprietario();
 
           while ($dados = mysqli_fetch_array($resultado_eventos) ) {
             $start = $dados['start_date'].'T'.$dados['start_hora'];
             $end = $dados['fim_date'].'T'.$dados['fim_hora'];
             $idPet = $dados['id_pet'];
             $pet->setNomeIDPet($idPet);
+            $pet->setIDProprietarioPeloIdPet($idPet);
+            //echo $pet->getIdProp();
+            $prop->setNomePeloId($pet->getIdProp());
+            $prop->setTelPeloId($pet->getIdProp());
+            //echo $prop->getNome();
             $status = $event->strReturnStatus($dados['status']);
             //echo $start;
             //echo $end;
         ?>
         {
-          title:'<?php echo 'Evento: '. $dados['title'].' - Status: '.$status.' - Pet: '.$pet->getNome(); ?>',
+          title:'<?php echo 'Evento: '. $dados['title'].' - Status: '.$status.' - Pet: '.$pet->getNome().' - Dono: '.$prop->getNome().' - Telefone: '.$prop->getTel(); ?>',
           start:'<?php echo $start; ?>',
           end: '<?php echo $end; ?>',
           color:'<?php echo $dados['color']; ?>',
