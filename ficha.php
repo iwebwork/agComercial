@@ -83,12 +83,21 @@
 			.fontTextBold{
 				font-weight: bold;
 			}
+			.img-body{
+				width: 80px;
+				height: 80px;
+				margin-top: 10px;
+				border-radius: 10px;
+				float: right;
+			}
 		</style>
 	</head>
 	<body>
 		<div>
 			<!--<img src ="img/logo.jpg"/>-->
+			
 			<div class="img">
+				<img class="img-body" src="imagens/logoSaoLazaro.jpg">
 				<pre><h1 class="fontTitulo">              São Lázaro</h1></pre>
 			</div>
 		</div>
@@ -146,6 +155,9 @@
 					//print_r($valores);
 			$eventos->strEventosFicha($valores);
 		?>
+		<!--<div class="img-body">
+			<img src="imagens/logoSaoLazaro.jpg">
+		</div>-->
 	</body>
 	</html>
 
