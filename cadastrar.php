@@ -29,6 +29,11 @@
 	?>
 	<form method="POST" action="php/addPetCli.php">
 		<div class="container-fluid">
+			<div class="row justify-content-center">
+				<a href="index.php" class="btn btn-primary">
+		            Retornar a pagina inicial
+		        </a>
+			</div>
 			<div class="row">
 				<div class="col-sm-2"></div>
 				<div class="col-sm-4">

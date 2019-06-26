@@ -234,7 +234,7 @@
 
 		public function strExibirEventosDoDia($value)
 		{
-			include 'dataHora.class.php';
+			include_once 'dataHora.class.php';
 			//include 'proprietario.class.php';
 			$pet = new Pet();
 			$prop = new proprietario();
@@ -280,6 +280,7 @@
 					  </div>';
 			}
 		}
+
 
 		public function strButtonEventoVeriIf($value)
 		{
@@ -334,6 +335,9 @@
 								'<pre class="">'
 									.'Hora de termino:</t>'.$strHoraFinal.
 								'</pre>'.
+								'<pre class="">'
+									.'Informações adicionais: </t>'.$dados['info_add'].
+								'</pre>'.
 							'</div>';
 					echo $str;
 				}
@@ -364,6 +368,89 @@
 		}
 
 		public function strListaEventosPet($nomePet,$value)
+		{
+			date_default_timezone_set('UTC');
+			include_once 'dataHora.class.php';
+			$data = new dataHora();
+			//date_default_timezone_get('America/Sao_Paulo');
+			if(!empty($value)){
+				$tCabe =
+					'<table id="mytable" class= "table p-3 mb-2 border border-primary table-bordered">'.
+													
+						'<thead class="text-center table-stripe bg-primary text-white">'.
+							'<th class="text-center">Pet</th>'.
+							'<th class="text-center">Evento</th>'.
+							'<th class="text-center">Status</th>'.
+							'<th class="text-center">Data - Hora Inicio</th>'.
+							'<th class="text-center">Data - Hora Termino</th>'.
+							'<th class="text-center">Consulta</th>'.
+						'</thead>';
+
+				echo $tCabe;
+
+				foreach($value as $itens){
+					//print_r($itens);
+
+					$strDataInicio = strtotime($itens['start_date']);
+					$strDataFim = strtotime($itens['fim_date']);
+					$strHoraInicio = strtotime($itens['start_hora']);
+					
+
+					$dataInicio = date("d/m/Y" , $strDataInicio);
+					$dataFim = date("d/m/Y" , $strDataFim);
+					$horaInicio = date("H:m",$strHoraInicio);
+					$td =	'<tbody class = "text-center">'.
+								'<tr>'. 
+									'<td>'.
+										'<div class="form-check form-check-inline">'.
+												$nomePet.
+										'</div>'.
+									'</td>'.
+									'<td>'.
+										'<div class="form-check form-check-inline">'.
+												$itens['title'].
+										'</div>'.
+									'</td>'.
+									'<td>'.
+										'<div class="form-check form-check-inline">'.
+											$this->strReturnStatus($itens['status']).
+										'</div>'.
+									'</td>'.
+									'<td>'.
+										'<div class="form-check form-check-inline">'.
+												$dataInicio.' - '.$horaInicio.
+										'</div>'.
+									'</td>'.
+									'<td>'.
+										'<div class="form-check form-check-inline">'.
+											$dataFim.' - '.$this->strHoraFinal($itens['fim_hora']).
+												
+										'</div>'.
+									'</td>'.
+									'<td>'.
+										'<div class="form-check form-check-inline">'.
+											'<form method= "POST" action= "php/desmarcarEvento.php" >'.
+												'<input name= "idConsulta" type="hidden" value="'.$itens['id_evento'].'">'.
+													$this->returnButtonEvento($itens['status']).
+											'</form>'.
+										'</div>'.
+									'</td>'.
+									
+								'</tr>'.
+							'</tbody>';
+						echo $td;				
+				}
+				$tRodape = '</table>';
+				
+				echo $tRodape;
+			}else{
+				echo  '<div class="alert alert-info">
+						  Não temos eventos marcados para este pet</a>.
+					  </div>';
+			}
+		}
+
+		public function strExibirEventosDesmarcadosDoDia($nomePet,$value)
 		{
 			date_default_timezone_set('UTC');
 			//date_default_timezone_get('America/Sao_Paulo');
@@ -420,7 +507,7 @@
 									'</td>'.
 									'<td>'.
 										'<div class="form-check form-check-inline">'.
-											$this->strDataFinal($dataFim).' - '.$this->strHoraFinal($itens['fim_hora']).
+											$dataFim.' - '.$this->strHoraFinal($itens['fim_hora']).
 												
 										'</div>'.
 									'</td>'.
@@ -482,6 +569,23 @@
 				}
 			}
 		}
+
+		public function deletarTodosOsEventosDoPetPeloSeuId($value)
+	    {
+	      $sql = "DELETE FROM eventos WHERE id_pet = :id";
+	      $sql = $this->pdo->prepare($sql);
+	      if (!empty($value)) {
+	        //echo $id;
+	        $sql->bindValue(':id',$value);
+	        if ($sql->execute()) {
+	          //echo "O evento foi excluido com sucesso";
+	          return true;
+	        }else{
+	          echo "Erro ao excluir o evento pelo seu id";
+	          return false;
+	        } 
+	      }
+	    }
 
 
 	}

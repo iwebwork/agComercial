@@ -33,9 +33,29 @@
 				echo "Erro ao salvar o id";
 			}
 		}
+
+		public function setIdPetPeloIdProprietario($value)
+		{
+			$sql = "SELECT id_pet FROM pets WHERE id_propri = :id ";
+			$sql = $this->pdo->prepare($sql);
+			$sql->bindValue(':id',$value);
+
+			$sql->execute();
+			if ($sql->rowCount() > 0) {
+				$id = $sql->fetch();
+				if(!empty($id)){
+					$this->id = $id['id_pet'];
+					//$this->setIdProprietario($value);
+					
+				}else{
+					echo "Erro ao salvar o nome";
+				}
+			}
+		}
+
 		public function setIDPetPeloId($value)
 		{
-			$sql = "SELECT id FROM pets WHERE id_pet = :id ";
+			$sql = "SELECT id_pet FROM pets WHERE id_pet = :id ";
 			$sql = $this->pdo->prepare($sql);
 			$sql->bindValue(':id',$value);
 
@@ -441,11 +461,12 @@
 				$sql = "DELETE FROM pets WHERE id_propri = :id_propri";
 				$sql = $this->pdo->prepare($sql);
 				$sql->bindValue(':id_propri',$value);
-				$sql->execute();
-
-				$conferir = $this->setIdProprietario($value);
-				if ($conferir == false) {
-					echo "Os pets foram excluidos com sucesso";
+				
+				if ($sql->execute()) {
+					return true;
+					//echo "Os pets foram excluidos com sucesso";
+				}else{
+					return false;
 				}		
 			}else{
 				echo "Os pets foram excluidos do banco";
@@ -455,12 +476,14 @@
 
 		public function deletarPetPeloId($id)
 		{	
-			$sql = "DELETE FROM pets WHERE id = :id";
+			//echo $id;
+			$sql = "DELETE FROM pets WHERE id_pet = :id";
 			$sql = $this->pdo->prepare($sql);
 			if (!empty($id)) {
+				echo $id;
 				$sql->bindValue(':id',$id);
 				if ($sql->execute()) {
-					echo "O pet foi excluido com sucesso";
+					//echo "O pet foi excluido com sucesso";
 					return true;
 				}else{
 					echo "Erro ao excluir o pet pelo seu id";
@@ -474,7 +497,7 @@
 		public function atualizarPet($value)
 		{	
 			//print_r($value);
-			$sql = "UPDATE pets SET id = :id_pet , nome_pet = :nome_pet, especie = :especie, raca = :raca, sexo = :sexo, idade = :idade, peso =:peso, info_add = :infoAdd WHERE id_pet = :valueId";
+			$sql = "UPDATE pets SET nome_pet = :nome_pet, raca = :raca,especie = :especie, sexo = :sexo, idade = :idade, peso =:peso, info_add = :infoAdd WHERE id_pet = :id_pet";
 			$sql = $this->pdo->prepare($sql);
 			$sql->bindValue(':id_pet',$value['petId']);
 			$sql->bindValue(':nome_pet',$value['petNome']);
@@ -485,15 +508,13 @@
 			$sql->bindValue(':idade',$value['petIdade']);
 			$sql->bindValue(':peso',$value['petPeso']);
 			$sql->bindValue(':infoAdd',$value['petInfoAdd']);
-			$sql->bindValue('valueId',$value['petId']);
+			//$sql->bindValue('valueId',$value['petId']);
 			if ($sql->execute()) {
+				//echo "Deu certo";
 				header("Location: ../index.php");
 			}else{
 				echo "Falha ao atualizar";
 			}
 		}
-
-
-
 
 	}

@@ -6,9 +6,9 @@
 </head>
 <body>
 	<?php
-		include 'classes/pet.class.php';
-		include 'classes/proprietario.class.php';
-		include 'classes/usuario.class.php';
+		include_once 'classes/pet.class.php';
+		include_once 'classes/proprietario.class.php';
+		include_once 'classes/usuario.class.php';
 	  	$usuario = new Usuario();
 	  	$usuario->verificacaoLogin();
 		
@@ -41,18 +41,21 @@
 			$dono = $proprietario->inserirProp($dadosPropri);
 			if($dono == false){
 				echo "Falha ao cadastrar o dono";
+			}else{
+				$proprietario->setId($dadosPropri['cpf']);
+				
+				$id = $proprietario->getId();
+				$pet = $animal->inserirPet($dadosPet,$id);
+				
+				if($pet == false){
+					echo "Falha ao cadastrar o pet";
+				}else{
+					echo '<script type="text/javascript">alert("Todos os dados foram deletados com sucesso");</script>';
+					header("Location: ../index.php");
+				}
 			}
 			
-			$proprietario->setId($dadosPropri['cpf']);
-				
-			$id = $proprietario->getId();
-			$pet = $animal->inserirPet($dadosPet,$id);
-			
-			if($pet == false){
-				echo "Falha ao cadastrar o pet";
-			}
-			header("Location: ../index.php");
-				
+							
 			
 		}else{
 			header("Location: ../cadastrar.php");

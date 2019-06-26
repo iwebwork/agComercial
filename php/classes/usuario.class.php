@@ -1,5 +1,5 @@
 <?php
-	include 'Banco.class.php';
+	include_once 'Banco.class.php';
 	class Usuario extends Banco{
 		
 		private $id;

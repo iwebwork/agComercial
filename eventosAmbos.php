@@ -38,10 +38,11 @@
 <body>
 	
 	<?php
-	  include 'php/classes/usuario.class.php';
-	  include 'php/classes/proprietario.class.php';
-	  include 'php/classes/evento.class.php';
-	  include 'php/classes/pet.class.php';
+	  include_once 'php/classes/usuario.class.php';
+	  include_once 'php/classes/proprietario.class.php';
+	  include_once 'php/classes/evento.class.php';
+	  include_once 'php/classes/pet.class.php';
+	  include_once 'php/classes/dataHora.class.php';
 	  $usuario = new Usuario();
 	  $usuario->verificacaoLogin();
 	  //$pet = new Pet();

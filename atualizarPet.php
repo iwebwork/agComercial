@@ -60,7 +60,7 @@
 		
 				<form method="POST" action="php/updatePet.php">
 					
-					    <input <?php echo 'value= "'.$pet->getId().'" '; ?> name="petId" type="hidden" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="CPF" required>
+					    <input <?php echo 'value= "'.$idPet.'" '; ?> name="petId" type="hidden">
 					    
 					<div class="form-group">
 					    <label for="exampleInputEmail1">Nome:</label>

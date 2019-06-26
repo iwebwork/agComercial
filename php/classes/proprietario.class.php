@@ -351,7 +351,7 @@
 
 				$dados = $valores;
 				//print_r($dados);
-				$sql = "SELECT CPF FROM proprietario WHERE cpf = :cpf " ;
+				$sql = "SELECT cpf FROM proprietario WHERE cpf = :cpf " ;
 				$sql = $this->pdo->prepare($sql);
 				
 				if (!empty($dados['cpf'])) {
@@ -359,10 +359,9 @@
 					$sql->execute();
 
 					if ($sql->rowCount() > 0) {
-						$cpf = $sql->fetch();
-						if(!empty($cpf)){
-							return false;
-						}
+						echo "O cpf foi vazio";
+						return false;
+						
 							
 					}else{
 						
@@ -802,12 +801,10 @@
 			$sql = "DELETE FROM proprietario WHERE id_propri = :id_propri";
 			$sql = $this->pdo->prepare($sql);
 			$sql->bindValue(':id_propri',$value);
-			$sql->execute();
-
-			$conferir = $this->setIdPeloId($value);
-
-			if($conferir == false){
-				echo "O delete funcionou";
+			if($sql->execute()){
+				return true;
+			}else{
+				return false;
 			}
 
 		}else{
@@ -818,7 +815,7 @@
 
 	public function atualizarDono($value)
 	{	
-		print_r($value);
+		//print_r($value);
 		$sql = "UPDATE proprietario SET cpf = :cpf, nome_propri = :nome_propri,pais = :pais ,estado = :estado, cidade = :cidade,bairro = :bairro, rua = :rua, numero = :numero, telefone = :telefone WHERE cpf = :valuecpf ";
 		$sql = $this->pdo->prepare($sql);
 		$sql->bindValue(':cpf',$value['dnCpf']);

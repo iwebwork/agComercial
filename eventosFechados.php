@@ -150,7 +150,7 @@
 							$pet->setNomeIDPet($pet->getId());
 							if(!empty($pet->getId()) ){
 								$dados = $eventos->eventosEncerradoDoPet($pet->getId());
-								$eventos->strListaEventosPet($pet->getNome(),$dados);	
+								$eventos->strExibirEventosDesmarcadosDoDia($pet->getNome(),$dados);	
 							}else{
 									//header('Location: index.php');
 							}

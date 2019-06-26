@@ -30,6 +30,7 @@
 <link rel="stylesheet" type="text/css" href="css/menu.css">
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <script type="text/javascript" src="js/menu.js"></script>
+<script type="text/javascript" src="js/modal.js"></script>
 
 </head>
 <body>
@@ -47,6 +48,7 @@
 	  $_POST['todos'] = 1;
 
 	?>
+
 	
 	<div class="wrapper">
 	    <!-- Sidebar -->
@@ -79,6 +81,9 @@
 	            </li>
 	            <li>
 	                <a href="calendario.php">Calendario</a>
+	            </li>
+	            <li >
+	                <a href="manual.html" target="_blank">Manual</a>
 	            </li>
 	            <!--<li>
 	                <a href="php/notificacaoDiaria.php">E-mail</a>
@@ -172,8 +177,7 @@
 
 	<!-- Fim do site -->
 	</div>
-
-
+	
 	
 	
 </body>
