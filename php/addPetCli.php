@@ -25,8 +25,15 @@
 			'texto' => $_POST['ptTexto'],
 			'id_pro' => $proprietario->getId()
 			);
+			//Chave aleatoria
+			$numero_de_bytes = 4;
+			$restultado_bytes = random_bytes($numero_de_bytes);
+			$resultado_final = bin2hex($restultado_bytes);
+
+			//echo $resultado_final;
 			$dadosPropri = array(
 				'cpf' => $_POST['dnCpf'],
+				'key' => $resultado_final,
 				'nome' => $_POST['dnNome'],
 				'pais' => $_POST['dnPais'],
 				'estado' => $_POST['dnEstado'],
@@ -39,20 +46,18 @@
 			);
 
 			$dono = $proprietario->inserirProp($dadosPropri);
-			if($dono == false){
-				echo "Falha ao cadastrar o dono";
-			}else{
-				$proprietario->setId($dadosPropri['cpf']);
-				
-				$id = $proprietario->getId();
-				$pet = $animal->inserirPet($dadosPet,$id);
-				
-				if($pet == false){
-					echo "Falha ao cadastrar o pet";
-				}else{
-					echo '<script type="text/javascript">alert("Todos os dados foram deletados com sucesso");</script>';
+			if($dono == true){
+				echo "proprietario cadastrado com sucesso";
+				$proprietario->setIdPelaKey($dadosPropri['key']);
+				$pet = $animal->inserirPet($dadosPet,$proprietario->getId());
+				if($pet == true){
+					echo "Dados cadastrados com sucesso";
 					header("Location: ../index.php");
+				}else{
+					echo "Erro ao cadastrar o pet";
 				}
+			}else{
+				echo "Erro ao cadastrar o dono";
 			}
 			
 							

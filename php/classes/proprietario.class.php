@@ -10,7 +10,7 @@
 		//Use depois que inserir o proprietario
 		private $id;
 		//Restante do dados
-
+		private $key;
 		private $cpf;
 		private $nome;
 		private $pais;
@@ -22,7 +22,27 @@
 		private $tel;
 
 		//Sets
-		public function setId($valueCpf='')
+
+		public function setIdPelaKey($value)
+		{
+			//echo $value;
+			$sql = "SELECT id_propri FROM proprietario WHERE chave = :value";
+			$sql = $this->pdo->prepare($sql);
+			$sql->bindValue(':value',$value);
+
+			$sql->execute();
+			if ($sql->rowCount() > 0) {
+				$id = $sql->fetch();
+				if(!empty($id)){
+					$this->id = $id['id_propri'];
+					
+				}else{
+					echo "A chave estava vazia";
+				}
+			}
+		}
+
+		public function setId($valueCpf)
 		{
 			//echo $valueCpf;
 			$sql = "SELECT id_propri FROM proprietario WHERE cpf = :valueCpf ";
@@ -333,68 +353,32 @@
 		}
 
 		//Funcoes criadas
-		public function inserirProp($valores)
+		public function inserirProp($dados)
 		{
-			try {
-				/*$dados = array(
-
-					'cpf' =>$this->getCpf(),
-					'nome' =>$this->getNome(),
-					'pais' =>$this->getPais(),
-					'estado' =>$this->getEstado(),
-					'cidade' =>$this->getCidade(),
-					'bairro' =>$this->getBairro(),
-					'rua' =>$this->getRua(),
-					'numero' => $this->getNumero(),
-					'telefone' => $this->getTel()
-				);*/
-
-				$dados = $valores;
-				//print_r($dados);
-				$sql = "SELECT cpf FROM proprietario WHERE cpf = :cpf " ;
-				$sql = $this->pdo->prepare($sql);
-				
-				if (!empty($dados['cpf'])) {
-					$sql->bindValue(':cpf',$dados['cpf']);
-					$sql->execute();
-
-					if ($sql->rowCount() > 0) {
-						echo "O cpf foi vazio";
-						return false;
-						
-							
-					}else{
-						
-						$sql = "INSERT INTO proprietario (cpf,nome_propri,pais,estado,cidade,bairro,rua,numero,telefone) VALUES (:cpf,:nome_propri,:pais,:estado,:cidade,:bairro,:rua,:numero,:telefone)";
-						//$sql = $this->pdo->prepare('INSERT INTO proprietario (cpf,nome_propri,pais,estado,cidade,bairro,rua,numero,telefone)
-						//VALUES (:cpf,:nome_propri,:pais,:estado,:cidade,:bairro,:rua,:numero,:telefone)');
+					if (!empty($dados)) {
+						//echo "O cpf foi vazio";
+						//print_r($dados);
+						$sql = "INSERT INTO proprietario (chave,cpf,nome_propri,pais,estado,cidade,bairro,rua,numero,telefone) VALUES (:chave,:cpf,:nome_propri,:pais,:estado,:cidade,:bairro,:rua,:numero,:telefone)";
 						$sql = $this->pdo->prepare($sql);
-						$sql->bindValue(':cpf' ,$dados['cpf']);
-						$sql->bindValue(':nome_propri' ,$dados['nome']);
-						$sql->bindValue(':pais' ,$dados['pais']);
-						$sql->bindValue(':estado' ,$dados['estado']);
-						$sql->bindValue(':cidade' ,$dados['cidade']);
-						$sql->bindValue(':bairro' ,$dados['bairro']);
-						$sql->bindValue(':rua' ,$dados['rua']);
-						$sql->bindValue(':numero', $dados['numero']);
-						$sql->bindValue(':telefone' , $dados['telefone']);
-						if ($sql->execute()) {
-							echo "Dono cadaastrado com sucesso";
-							return true;
-						} 
-						
-					}
-				}
 
-				
-				
-				
-				//echo $this->pdo->rowCount();
-				
-			} catch (Exception $e) {
-				echo 'Error: ' . $e->getMessage();
-			}
-			
+						$sql->bindValue(':chave',$dados['key']);
+						$sql->bindValue(':cpf',$dados['cpf']);
+						$sql->bindValue(':nome_propri',$dados['nome']);
+						$sql->bindValue(':pais',$dados['pais']);
+						$sql->bindValue(':estado',$dados['estado']);
+						$sql->bindValue(':cidade',$dados['cidade']);
+						$sql->bindValue(':bairro',$dados['bairro']);
+						$sql->bindValue(':rua',$dados['rua']);
+						$sql->bindValue(':numero',$dados['numero']);
+						$sql->bindValue(':telefone',$dados['telefone']);
+						//echo "Setou todos os dados";
+						$return = $sql->execute();
+						echo $return;
+						return $return;
+						
+					}else{
+						echo "Dados foram vazios";
+					}
 		}
 
 		public function strListaDePetsCPF($value)

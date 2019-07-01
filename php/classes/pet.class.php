@@ -441,14 +441,10 @@
 					$sql->bindValue(':peso',$dados['peso']);
 					$sql->bindValue('info_add',$dados['texto']);
 					$sql->bindValue(':idPro',$id_pro);
-					if ($sql->execute()) {
-						//$this->strRetornoPositivo();
-						return true;
-					}
-					
+					$resultado = $sql->execute();
+					return $resultado;
 				}else{
-					
-					echo "Erro ao cadastrar, o id não foi salvo";
+					echo "Os dados do pet não foram enviados";
 					return false;
 				}
 			}
