@@ -39,12 +39,12 @@
 				<div class="col-sm-4">
 					<h2 class="text-center">Informações do Pet</h2>
 					<div class="form-group">
-					    <label for="exampleInputEmail1" required>Nome:</label>
-					    <input name="ptNome" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nome" required>
+					    <label for="exampleInputEmail1">Nome:</label>
+					    <input name="ptNome" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nome">
 					</div>
 					<div class="form-group">
 						
-					    <label for="exampleInputEmail1" required>Especie:</label>
+					    <label for="exampleInputEmail1">Especie:</label>
 					    <select name="ptEspecie" class="form-control" id="exampleFormControlSelect1">
 						    <option>Canino</option>
 						    <option>Felino</option>  
@@ -53,26 +53,26 @@
 					</div>
 					<div class="form-group">
 						
-					    <label for="exampleFormControlSelect1" required>Sexo</label>
+					    <label for="exampleFormControlSelect1">Sexo</label>
     					<select name="ptSexo" class="form-control" id="exampleFormControlSelect1">
 						    <option>Macho</option>
-						    <option>Femia</option>  
+						    <option>Fêmia</option>  
 					    </select>
 					</div>
 					<div class="form-group">
 						
 					    <label for="exampleInputEmail1" required>Idade:</label>
-					    <input name="ptIdade" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Idade" required>
+					    <input name="ptIdade" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Idade">
 					</div>
 					<div class="form-group">
 						
 					    <label for="exampleInputEmail1" required>Raça:</label>
-					    <input name="ptRaca" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Raça" required>
+					    <input name="ptRaca" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Raça">
 					</div>
 					<div class="form-group">
 						
 					    <label for="exampleInputEmail1" required>Peso:</label>
-					    <input name="ptPeso" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Peso EX: 8.90" required>
+					    <input name="ptPeso" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Peso EX: 8.90">
 					</div>
 					<div class="form-group">
 						
@@ -85,39 +85,39 @@
 					<h2 class="text-center">Informações do Dono</h2>
 					<div class="form-group">
 					    <label for="exampleInputEmail1">CPF:</label>
-					    <input name="dnCpf" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="CPF" required>
+					    <input name="dnCpf" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="CPF">
 					</div>
 					<div class="form-group">
 					    <label for="exampleInputEmail1">Nome:</label>
-					    <input name="dnNome" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nome" required>
+					    <input name="dnNome" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nome">
 					</div>
 					<div class="form-group">
 					    <label for="exampleInputEmail1">Pais:</label>
-					    <input name="dnPais" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Pais" required>
+					    <input name="dnPais" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Pais">
 					</div>
 					<div class="form-group">
 					    <label for="exampleInputEmail1">Estado:</label>
-					    <input name="dnEstado" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Estado" required>
+					    <input name="dnEstado" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Estado">
 					</div>
 					<div class="form-group">
 					    <label for="exampleInputEmail1">Cidade:</label>
-					    <input name="dnCidade" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Cidade" required>
+					    <input name="dnCidade" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Cidade">
 					</div>
 					<div class="form-group">
 					    <label for="exampleInputEmail1">Bairro:</label>
-					    <input name="dnBairro" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Bairro" required>
+					    <input name="dnBairro" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Bairro">
 					</div>
 					<div class="form-group">
 					    <label for="exampleInputEmail1">Rua:</label>
-					    <input name="dnRua" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Rua" required>
+					    <input name="dnRua" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Rua">
 					</div>
 					<div class="form-group">
 					    <label for="exampleInputEmail1">Numero:</label>
-					    <input name="dnNumero" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Numero" required>
+					    <input name="dnNumero" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Numero">
 					</div>
 					<div class="form-group">
 					    <label for="exampleInputEmail1">Telefone:</label>
-					    <input name="dnTel" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Telefone" required>
+					    <input name="dnTel" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Telefone">
 					</div>
 				</div>
 				<div class="col-sm-2">
