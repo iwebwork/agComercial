@@ -79,6 +79,9 @@
 	            <li>
 	                <a href="calendario.php">Calendario</a>
 	            </li>
+	            <li >
+	                <a href="manual.html" target="_blank">Manual</a>
+	            </li>
 	            <!--<li>
 	                <a href="php/notificacaoDiaria.php">E-mail</a>
 	            </li>-->
