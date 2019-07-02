@@ -529,7 +529,7 @@
 				echo $tRodape;
 			}else{
 				echo  '<div class="alert alert-info">
-						  Não temos eventos marcados para este pet</a>.
+						  Não temos eventos encerrados para este pet</a>.
 					  </div>';
 			}
 		}
