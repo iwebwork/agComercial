@@ -42,9 +42,9 @@
 		}else{
 			//print_r($_POST);
 			$idPet = $_POST['id'];
-
+			//echo $idPet;
 			//Informações do pet
-			$pet->setIDPetPeloId($idPet);
+			//$pet->setIDPetPeloId($idPet);
 			$pet->setNomeIDPet($idPet);
 			$pet->setEspecieIDPet($idPet);
 			$pet->setSexoIDPet($idPet);
@@ -60,31 +60,54 @@
 		
 				<form method="POST" action="php/updatePet.php">
 					
-					    <input <?php echo 'value= "'.$idPet.'" '; ?> name="petId" type="hidden">
+					<input <?php echo 'value= "'.$idPet.'" '; ?> name="petId" type="hidden">
 					    
 					<div class="form-group">
 					    <label for="exampleInputEmail1">Nome:</label>
-					    <input <?php echo 'value= "'.$pet->getNome().'" '; ?> name="petNome" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nome" required>
+					    <input <?php echo 'value= "'.$pet->getNome().'" '; ?> name="petNome" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nome">
 					</div>
-					<div class="form-group">
+
+					<div class="form-group">	
 					    <label for="exampleInputEmail1">Especie:</label>
-					    <input <?php echo 'value= "'.$pet->getEspecie().'" '; ?> name="petEspecie" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Pais" required>
+					    <select name="petEspecie" class="form-control" id="exampleFormControlSelect1">
+						    <option><?php echo $pet->getEspecie(); ?></option>
+						    <?php
+					    		if($pet->getEspecie() == "Canino"){
+					    			echo "<option>Felino</option>";
+					    		}else{
+					    			echo "<option>Canino</option>"; 
+					    		}	
+					    	?>
+						      
+					    </select>
+					    
 					</div>
-					<div class="form-group">
+					<div class="form-group">	
 					    <label for="exampleInputEmail1">Sexo:</label>
-					    <input <?php echo 'value= "'.$pet->getSexo().'" '; ?> name="petSexo" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Pais" required>
+					    <select name="petSexo" class="form-control" id="exampleFormControlSelect1">
+						    <option><?php echo $pet->getSexo(); ?></option>
+						    <?php
+					    		if($pet->getEspecie() == "Fêmea"){
+					    			echo "<option>Macho</option>";
+					    		}else{
+					    			echo "<option>Fêmea</option>";
+					    		}
+					    	?>
+						      
+					    </select>
+					    
 					</div>
 					<div class="form-group">
 					    <label for="exampleInputEmail1">Idade:</label>
-					    <input <?php echo 'value= "'.$pet->getIdade().'" '; ?> name="petIdade" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Estado" required>
+					    <input <?php echo 'value= "'.$pet->getIdade().'" '; ?> name="petIdade" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Idade">
 					</div>
 					<div class="form-group">
 					    <label for="exampleInputEmail1">Peso:</label>
-					    <input <?php echo 'value= "'.$pet->getPeso().'" '; ?> name="petPeso" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Cidade" required>
+					    <input <?php echo 'value= "'.$pet->getPeso().'" '; ?> name="petPeso" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Peso">
 					</div>
 					<div class="form-group">
 					    <label for="exampleInputEmail1">Raça:</label>
-					    <input <?php echo 'value= "'.$pet->getRaca().'" '; ?> name="petRaca" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Bairro" required>
+					    <input <?php echo 'value= "'.$pet->getRaca().'" '; ?> name="petRaca" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Raça">
 					</div>
 					<div class="form-group">
 					    <label for="exampleInputEmail1">Informações Adicionais:</label>
