@@ -16,7 +16,7 @@
 			header("Location: index.php");
 		}else{
 			//print_r($_POST);
-			$cpf = $_POST['cpf'];
+			$id_propri = $_POST['id_propri'];
 			$idPet = $_POST['idPet'];
 			//echo $idPet;
 			//echo $cpf;
@@ -33,16 +33,16 @@
 
 
 			//Informações do dono
-			$proprietario->setId($cpf);
-			$proprietario->setCpf($cpf);
-			$proprietario->setNome($cpf);
-			$proprietario->setPais($cpf);
-			$proprietario->setEstado($cpf);
-			$proprietario->setCidade($cpf);
-			$proprietario->setBairro($cpf);
-			$proprietario->setRua($cpf);
-			$proprietario->setNumero($cpf);
-			$proprietario->setTel($cpf);
+			$proprietario->setId($id_propri);
+			$proprietario->setCpf($id_propri);
+			$proprietario->setNome($id_propri);
+			$proprietario->setPais($id_propri);
+			$proprietario->setEstado($id_propri);
+			$proprietario->setCidade($id_propri);
+			$proprietario->setBairro($id_propri);
+			$proprietario->setRua($id_propri);
+			$proprietario->setNumero($id_propri);
+			$proprietario->setTel($id_propri);
 
 		}
 
@@ -107,21 +107,25 @@
 		</div>
 		
 		<div class="linha">	
-		<pre>Nome: <?php echo $pet->getNome();?>
-		Especie: <?php echo $pet->getEspecie();?>          Raça: <?php echo $pet->getRaca();?></pre>
+		<pre>Nome: <?php if(!empty($pet->getNome()))echo $pet->getNome();else echo "Não foi Informado"?>
+		Especie: <?php if(!empty($pet->getEspecie())) echo $pet->getEspecie();else echo "Não foi Informado";;?>          Raça: <?php if(!empty($pet->getRaca()))echo $pet->getRaca();else echo "Não foi Informado";?></pre>
 		</div>
 
 		<div class="linha">
-		<pre>Sexo: <?php echo $pet->getSexo();?>
-		Peso: <?php echo str_replace(".",",",$pet->getPeso());?> Kilos         Idade: <?php echo $pet->getIdade();?> anos</pre>
+		<pre>Sexo: <?php if(!empty($pet->getSexo())) echo $pet->getSexo();else echo "Não foi Informado"?>
+		Peso: <?php if(!empty($pet->getPeso())) echo str_replace(".",",",$pet->getPeso()." Kilos"); else echo "Não foi Informado"?>         Idade: <?php echo $pet->getIdade();?> anos</pre>
 		</div>
 		
 		<div class="titleAlinhamentoCenter">	
 			<h3>Historico clinico do animal</h3>
 		</div>
-		<?php						
+		<?php
+		if(!empty($pet->getInfoAdd())){						
 			$string = nl2br($pet->getInfoAdd());						
 			echo '<pre>'.$string.'</pre>';
+		}else{
+			echo "Não foi Informado";
+		}
 		?>
 		<hr>
 		<div class="titleAlinhamentoCenter">
@@ -129,16 +133,16 @@
 		</div>
 
 		<div class="linha">
-			<pre>Nome: <?php echo  $proprietario->getNome();?>
-		Cpf: <?php echo $proprietario->getCpf();?>         Cidade: <?php echo $proprietario->getCidade();?></pre>
+			<pre>Nome: <?php if(!empty($proprietario->getNome())) echo $proprietario->getNome(); else echo "Não foi Informado" ;?>
+		Cpf: <?php if(!empty($proprietario->getCpf())) echo $proprietario->getCpf(); else echo "Não foi Informado" ;?>         Cidade: <?php if(!empty($proprietario->getCidade())) echo $proprietario->getCidade();else echo "Não foi Informado";?></pre>
 		</div>
 		<div class="linha">
-			<pre>Bairro: <?php echo  $proprietario->getBairro();?>
-	Rua: <?php echo $proprietario->getRua();?>            Estado: <?php echo$proprietario->getEstado();?></pre>
+			<pre>Bairro: <?php if(!empty($proprietario->getBairro())) echo  $proprietario->getBairro();else echo "Não foi Informado";?>
+	        Rua: <?php if(!empty($proprietario->getRua())) echo $proprietario->getRua();else echo "Não foi Informado"?>                      Estado: <?php if(!empty($proprietario->getEstado())) echo $proprietario->getEstado();else echo "Não foi Informado";?></pre>
 		</div>
 		<div class="linha">
-			<pre>Numero: <?php echo  $proprietario->getNumero();?>
-		Telefone: <?php echo $proprietario->getTel();?></pre>
+			<pre>Numero: <?php if(!empty($proprietario->getNumero())) echo  $proprietario->getNumero();else echo "Não foi Informado"?>
+		Telefone: <?php if(!empty($proprietario->getTel())) echo $proprietario->getTel();else echo "Não foi Informado";?></pre>
 		</div>		
 		<!--<h1>Eventos</h1>-->
 		<hr>
@@ -153,7 +157,9 @@
 					//echo $_POST['idPet'];
 			$valores = $eventos->todoseventosDoPet($_POST['idPet']);
 					//print_r($valores);
-			$eventos->strEventosFicha($valores);
+			if(!empty($eventos->strEventosFicha($valores)))
+				$eventos->strEventosFicha($valores);
+			else echo "Não tem consultas marcadas";
 		?>
 		<!--<div class="img-body">
 			<img src="imagens/logoSaoLazaro.jpg">
