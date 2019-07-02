@@ -29,7 +29,7 @@
 	  $usuario->verificacaoLogin();
 	  $proprietario = new Proprietario();
 	  if(!empty($_POST)){
-	  	$proprietario->setId($_POST['cpf']);
+	  	$proprietario->setId($_POST['id_propri']);
 	  	//echo $proprietario->getId(); 
 	  }
 
@@ -37,7 +37,7 @@
 	<form method="POST" action="php/addPet.php">
 		
 
-		<input class="none" <?php echo 'value= "'.$proprietario->getId().'" ' ?> name="proId" type="hidden" required>
+		<input class="none" <?php echo 'value= "'.$proprietario->getId().'" ' ?> name="id_propri" type="hidden" required>
 		
 		<div class="container-fluid">
 			<div class="row">
@@ -46,11 +46,11 @@
 					<h2 class="text-center">Informações do Pet</h2>
 					<div class="form-group">
 					    <label for="exampleInputEmail1" required>Nome:</label>
-					    <input name="ptNome" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nome" required>
+					    <input name="ptNome" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nome">
 					</div>
 					<div class="form-group">
 						
-					    <label for="exampleInputEmail1" required>Especie:</label>
+					    <label for="exampleInputEmail1">Especie:</label>
 					    <select name="ptEspecie" class="form-control" id="exampleFormControlSelect1">
 						    <option>Canino</option>
 						    <option>Felino</option>  
@@ -68,17 +68,17 @@
 					<div class="form-group">
 						
 					    <label for="exampleInputEmail1" required>Idade:</label>
-					    <input name="ptIdade" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Idade" required>
+					    <input name="ptIdade" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Idade">
 					</div>
 					<div class="form-group">
 						
 					    <label for="exampleInputEmail1" required>Raça:</label>
-					    <input name="ptRaca" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Raça" required>
+					    <input name="ptRaca" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Raça">
 					</div>
 					<div class="form-group">
 						
 					    <label for="exampleInputEmail1" required>Peso:</label>
-					    <input name="ptPeso" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Peso EX: 8.90" required>
+					    <input name="ptPeso" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Peso EX: 8.90">
 					</div>
 					<div class="form-group">
 						
