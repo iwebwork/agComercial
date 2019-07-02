@@ -16,7 +16,7 @@
 			'texto' => $_POST['ptTexto']
 			);
 
-			$id = $_POST['proId'];
+			$id = $_POST['id_propri'];
 			
 
 			$pet = $animal->inserirPet($dadosPet,$id);
