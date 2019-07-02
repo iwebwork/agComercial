@@ -13,10 +13,10 @@
 	if (!empty($_POST)) {
 		//print_r($_POST);
 		
-		$cpf = $_POST['cpf'];
+		$id_propri = $_POST['id_propri'];
 
 		//Informações do dono
-		$proprietario->setId($cpf);
+		$proprietario->setId($id_propri);
 		$idPropri = $proprietario->getId();
 		$pet->setIdPetPeloIdProprietario($idPropri);
 		$idPet = $pet->getId();
