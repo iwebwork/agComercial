@@ -123,7 +123,7 @@
 			            
 			        <div class="col-sm-6">
 						<form class="form-group" method="POST">
-							<input name="cpf" type="text" class="form-control" placeholder="Busca pelo CPF ou pelo nome do Proprietario">
+							<input name="cpf" type="text" class="form-control" placeholder="Busca pelo nome do Proprietario ou pelo seu CPF">
 							<span>
 							   	<button class="btn btn-primary fa fa-search" type="submit">Enviar</button>
 							</span>
@@ -151,6 +151,9 @@
 					        $cpf = $proprietario->strListaDePetsCPF($_POST['cpf']);
 					        if ($cpf == false) {
 					        	$nome = $proprietario->strListaDePetsNome($_POST['cpf']);
+					        	if($nome == false){
+					        		"Não tem nenhum proprietario com estes dados";
+					        	}	
 						    }
 							        	
 						}
@@ -160,7 +163,8 @@
 							      		
 						}			    
 							        		
-					?>	
+					?>
+					
 			</div>
 			<div class="col-sm-3">
 				<?php 
