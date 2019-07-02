@@ -45,7 +45,7 @@
 		public function setId($valueCpf)
 		{
 			//echo $valueCpf;
-			$sql = "SELECT id_propri FROM proprietario WHERE cpf = :valueCpf ";
+			$sql = "SELECT id_propri FROM proprietario WHERE id_propri = :valueCpf ";
 			$sql = $this->pdo->prepare($sql);
 			$sql->bindValue(':valueCpf',$valueCpf);
 
@@ -90,7 +90,7 @@
 
 		public function setCpf($value)
 		{
-			$sql = "SELECT cpf FROM proprietario WHERE cpf = :valueCpf ";
+			$sql = "SELECT cpf FROM proprietario WHERE id_propri = :valueCpf ";
 			$sql = $this->pdo->prepare($sql);
 			$sql->bindValue(':valueCpf',$value);
 
@@ -100,15 +100,13 @@
 				if(!empty($cpf)){
 					$this->cpf = $cpf['cpf'];
 					
-				}else{
-					echo "O cpf não foi digitado";
 				}
 			}
 		}
 
 		public function setNome($value)
 		{
-			$sql = "SELECT nome_propri FROM proprietario WHERE cpf = :value";
+			$sql = "SELECT nome_propri FROM proprietario WHERE id_propri = :value";
 			$sql = $this->pdo->prepare($sql);
 			$sql->bindValue(':value',$value);
 
@@ -119,7 +117,7 @@
 					$this->nome = $nome['nome_propri'];
 					
 				}else{
-					
+					$this->nome = "Não foi informado";
 				}
 			}
 		}
@@ -162,7 +160,7 @@
 
 		public function setPais($value)
 		{
-			$sql = "SELECT pais FROM proprietario WHERE cpf = :value";
+			$sql = "SELECT pais FROM proprietario WHERE id_propri = :value";
 			$sql = $this->pdo->prepare($sql);
 			$sql->bindValue(':value',$value);
 
@@ -172,15 +170,13 @@
 				if(!empty($pais)){
 					$this->pais = $pais['pais'];
 					
-				}else{
-					
 				}
 			}
 		}
 
 		public function setEstado($value)
 		{
-			$sql = "SELECT estado FROM proprietario WHERE cpf = :value";
+			$sql = "SELECT estado FROM proprietario WHERE id_propri = :value";
 			$sql = $this->pdo->prepare($sql);
 			$sql->bindValue(':value',$value);
 
@@ -190,15 +186,13 @@
 				if(!empty($estado)){
 					$this->estado = $estado['estado'];
 					
-				}else{
-					
 				}
 			}
 		}
 
 		public function setCidade($value)
 		{
-			$sql = "SELECT cidade FROM proprietario WHERE cpf = :value";
+			$sql = "SELECT cidade FROM proprietario WHERE id_propri = :value";
 			$sql = $this->pdo->prepare($sql);
 			$sql->bindValue(':value',$value);
 
@@ -208,15 +202,13 @@
 				if(!empty($cidade)){
 					$this->cidade = $cidade['cidade'];
 					
-				}else{
-					
 				}
 			}
 		}
 
 		public function setBairro($value)
 		{
-			$sql = "SELECT bairro FROM proprietario WHERE cpf = :value";
+			$sql = "SELECT bairro FROM proprietario WHERE id_propri = :value";
 			$sql = $this->pdo->prepare($sql);
 			$sql->bindValue(':value',$value);
 
@@ -226,15 +218,13 @@
 				if(!empty($bairro)){
 					$this->bairro = $bairro['bairro'];
 					
-				}else{
-					
 				}
 			}
 		}
 
 		public function setRua($value)
 		{
-			$sql = "SELECT rua FROM proprietario WHERE cpf = :value";
+			$sql = "SELECT rua FROM proprietario WHERE id_propri = :value";
 			$sql = $this->pdo->prepare($sql);
 			$sql->bindValue(':value',$value);
 
@@ -244,15 +234,13 @@
 				if(!empty($rua)){
 					$this->rua = $rua['rua'];
 					
-				}else{
-					
 				}
 			}
 		}
 
 		public function setNumero($value)
 		{
-			$sql = "SELECT numero FROM proprietario WHERE cpf = :value";
+			$sql = "SELECT numero FROM proprietario WHERE id_propri = :value";
 			$sql = $this->pdo->prepare($sql);
 			$sql->bindValue(':value',$value);
 
@@ -262,14 +250,13 @@
 				if(!empty($numero)){
 					$this->numero = $numero['numero'];
 					
-				}else{
 				}
 			}
 		}
 
 		public function setTel($value)
 		{
-			$sql = "SELECT telefone FROM proprietario WHERE cpf = :value";
+			$sql = "SELECT telefone FROM proprietario WHERE id_propri = :value";
 			$sql = $this->pdo->prepare($sql);
 			$sql->bindValue(':value',$value);
 
@@ -278,8 +265,6 @@
 				$telefone = $sql->fetch();
 				if(!empty($telefone)){
 					$this->tel = $telefone['telefone'];
-				}else{
-					echo "Telefone não encontrado";
 				}
 			}
 		}
@@ -431,19 +416,19 @@
 																'</div>'.
 																'<div class="form-check form-check-inline">'.
 																	'<form method= "POST" action="php/deletarProprietario.php" >'.
-																		'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.	
+																		'<input name= "id_propri" type="hidden" class= "none" value="'.$prop['id_propri'].'" readonly>'.	
 																		'<p data-placement="top" data-toggle="tooltip" title="Apagar o Dono OBS: Todos os seus pets tambem serão apagados permanentemente"><button class="btn btn-danger btn-xs" data-title="Delete" type="submit"><span class="glyphicon glyphicon-trash"></span></button></p>'.
 																	'</form>'.
 																'</div>'.
 																'<div class="form-check form-check-inline">'.
 																	'<form method= "POST" action="atualizarDono.php" >'.
-																		'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.	
+																		'<input name= "id_propri" type="hidden" class= "none" value="'.$prop['id_propri'].'" readonly>'.	
 																		'<p data-placement="top" data-toggle="tooltip" title="Atualizar o Dono"><button class="btn btn-primary btn-xs" data-title="Update" type="submit"><span class="glyphicon glyphicon-wrench"></span></button></p>'.
 																	'</form>'.
 																'</div>'.
 																'<div class="form-check form-check-inline">'.
 																	'<form method= "POST" action="cadastrarPet.php" >'.
-																		'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.	
+																		'<input name= "id_propri" type="hidden" class= "none" value="'.$prop['id_propri'].'" readonly>'.	
 																		'<p data-placement="top" data-toggle="tooltip" title="Cadastrar um novo pet no nome desse dono"><button class="btn btn-success btn-xs" data-title="Update" type="submit"><span class="glyphicon glyphicon-plus"></span></button></p>'.
 																	'</form>'.
 																'</div>'.																	
@@ -468,7 +453,7 @@
 															
 															'<td>'.
 																'<form target="_blank" method= "POST" action= "ficha.php" >'.
-																	'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.
+																	'<input name= "id_propri" type="hidden" class= "none" value="'.$prop['id_propri'].'" readonly>'.
 																	'<input name="idPet" type= "hidden" class= "none" value="'.$pet['id_pet'].'" readonly>'.
 																	'<button type="submit" class="btn btn-primary">Gerar Ficha</button>'.
 																'</form>'.
@@ -476,14 +461,14 @@
 															'<td>'.
 																'<div class="form-check form-check-inline">'.
 																		'<form method= "POST" action= "consulta.php" >'.
-																			'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.
+																			'<input name= "id_propri" type="hidden" class= "none" value="'.$prop['id_propri'].'" readonly>'.
 																			'<input name="idPet" type= "hidden" class= "none" value="'.$pet['id_pet'].'" readonly>'.
 																			'<button type="submit" class="btn btn-primary">Marca</button>'.
 																		'</form>'.
 																	'</div>'.
 																	'<div class="form-check form-check-inline">'.
 																		'<form method= "POST" action ="eventos.php" '.
-																			'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.
+																			'<input name= "id_propri" type="hidden" class= "none" value="'.$prop['id_propri'].'" readonly>'.
 																			'<input name="idPet" type= "hidden" class= "none" value="'.$pet['id_pet'].'" readonly>'.
 																			'<button type="submit" class="btn btn-primary">Visualizar</button>'.
 																		'</form>'.
@@ -560,13 +545,13 @@
 																	'</div>'.
 																	'<div class="form-check form-check-inline">'.
 																		'<form method= "POST" action="php/deletarProprietario.php" >'.
-																			'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.	
+																			'<input name= "id_propri" type="hidden" class= "none" value="'.$prop['id_propri'].'" readonly>'.	
 																			'<p data-placement="top" data-toggle="tooltip" title="Apagar o Dono OBS: Todos os seus pets tambem serão apagados permanentemente"><button class="btn btn-danger btn-xs" data-title="Delete" type="submit"><span class="glyphicon glyphicon-trash"></span></button></p>'.
 																		'</form>'.
 																	'</div>'.
 																	'<div class="form-check form-check-inline">'.
 																		'<form method= "POST" action="atualizarDono.php" >'.
-																			'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.	
+																			'<input name= "id_propri" type="hidden" class= "none" value="'.$prop['id_propri'].'" readonly>'.	
 																			'<p data-placement="top" data-toggle="tooltip" title="Atualizar o Dono"><button class="btn btn-primary btn-xs" data-title="Update" type="submit"><span class="glyphicon glyphicon-wrench"></span></button></p>'.
 																		'</form>'.
 																	'</div>'.
@@ -597,7 +582,7 @@
 																
 																'<td>'.
 																	'<form target="_blank" method= "POST" action= "ficha.php" >'.
-																		'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.
+																		'<input name= "id_propri" type="hidden" class= "none" value="'.$prop['id_propri'].'" readonly>'.
 																		'<input name="idPet" type= "hidden" class= "none" value="'.$pet['id_pet'].'" readonly>'.
 																		'<button type="submit" class="btn btn-primary">Gerar Ficha</button>'.
 																	'</form>'.
@@ -692,13 +677,13 @@
 																'</div>'.
 																'<div class="form-check form-check-inline">'.
 																	'<form method= "POST" action="php/deletarProprietario.php" >'.
-																		'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.	
+																		'<input name= "id_propri" type="hidden" class= "none" value="'.$prop['id_propri'].'" readonly>'.	
 																		'<p data-placement="top" data-toggle="tooltip" title="Apagar o Dono OBS: Todos os seus pets tambem serão apagados permanentemente"><button class="btn btn-danger btn-xs" data-title="Delete" type="submit"><span class="glyphicon glyphicon-trash"></span></button></p>'.
 																	'</form>'.
 																'</div>'.
 																'<div class="form-check form-check-inline">'.
 																	'<form method= "POST" action="atualizarDono.php" >'.
-																		'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.	
+																		'<input name= "id_propri" type="hidden" class= "none" value="'.$prop['id_propri'].'" readonly>'.	
 																		'<p data-placement="top" data-toggle="tooltip" title="Atualizar o Dono"><button class="btn btn-primary btn-xs" data-title="Update" type="submit"><span class="glyphicon glyphicon-wrench"></span></button></p>'.
 																	'</form>'.
 																'</div>'.
@@ -729,7 +714,7 @@
 															
 															'<td>'.
 																'<form target="_blank" method= "POST" action= "ficha.php" >'.
-																	'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.
+																	'<input name= "id_propri" type="hidden" class= "none" value="'.$prop['id_propri'].'" readonly>'.
 																	'<input name="idPet" type= "hidden" class= "none" value="'.$pet['id_pet'].'" readonly>'.
 																	'<button type="submit" class="btn btn-primary">Gerar Ficha</button>'.
 																'</form>'.
@@ -800,7 +785,7 @@
 	public function atualizarDono($value)
 	{	
 		//print_r($value);
-		$sql = "UPDATE proprietario SET cpf = :cpf, nome_propri = :nome_propri,pais = :pais ,estado = :estado, cidade = :cidade,bairro = :bairro, rua = :rua, numero = :numero, telefone = :telefone WHERE cpf = :valuecpf ";
+		$sql = "UPDATE proprietario SET cpf = :cpf, nome_propri = :nome_propri,pais = :pais ,estado = :estado, cidade = :cidade,bairro = :bairro, rua = :rua, numero = :numero, telefone = :telefone WHERE id_propri = :valuecpf ";
 		$sql = $this->pdo->prepare($sql);
 		$sql->bindValue(':cpf',$value['dnCpf']);
 		$sql->bindValue(':nome_propri',$value['dnNome']);
@@ -811,7 +796,7 @@
 		$sql->bindValue(':numero',$value['dnNumero']);
 		$sql->bindValue(':bairro',$value['dnBairro']);
 		$sql->bindValue(':telefone',$value['dnTel']);
-		$sql->bindValue('valuecpf',$value['dnCpf']);
+		$sql->bindValue('valuecpf',$value['id_propri']);
 		if ($sql->execute()) {
 			header("Location: ../index.php");
 		}else{
