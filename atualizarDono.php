@@ -41,19 +41,19 @@
 			header("Location: index.php");
 		}else{
 			//print_r($_POST);
-			$cpf = $_POST['cpf'];
+			$id_propri = $_POST['id_propri'];
 
 			//Informações do dono
-			$proprietario->setId($cpf);
-			$proprietario->setCpf($cpf);
-			$proprietario->setNome($cpf);
-			$proprietario->setPais($cpf);
-			$proprietario->setEstado($cpf);
-			$proprietario->setCidade($cpf);
-			$proprietario->setBairro($cpf);
-			$proprietario->setRua($cpf);
-			$proprietario->setNumero($cpf);
-			$proprietario->setTel($cpf);
+			$proprietario->setId($id_propri);
+			$proprietario->setCpf($id_propri);
+			$proprietario->setNome($id_propri);
+			$proprietario->setPais($id_propri);
+			$proprietario->setEstado($id_propri);
+			$proprietario->setCidade($id_propri);
+			$proprietario->setBairro($id_propri);
+			$proprietario->setRua($id_propri);
+			$proprietario->setNumero($id_propri);
+			$proprietario->setTel($id_propri);
 		}
 	?>
 	<div class="container">
@@ -62,41 +62,42 @@
 		
 				<form method="POST" action="php/updateDono.php">
 					<div class="form-group">
+						<input type="hidden" name="id_propri" value="<?php echo $proprietario->getId();?>">
 					    <label for="exampleInputEmail1">CPF:</label>
-					    <input <?php echo 'value= "'.$proprietario->getCpf().'" '; ?> name="dnCpf" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="CPF" required>
+					    <input <?php echo 'value= "'.$proprietario->getCpf().'" '; ?> name="dnCpf" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="CPF">
 					    
 					</div>
 					<div class="form-group">
 					    <label for="exampleInputEmail1">Nome:</label>
-					    <input <?php echo 'value= "'.$proprietario->getNome().'" '; ?> name="dnNome" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nome" required>
+					    <input <?php echo 'value= "'.$proprietario->getNome().'" '; ?> name="dnNome" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nome">
 					</div>
 					<div class="form-group">
 					    <label for="exampleInputEmail1">Pais:</label>
-					    <input <?php echo 'value= "'.$proprietario->getPais().'" '; ?> name="dnPais" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Pais" required>
+					    <input <?php echo 'value= "'.$proprietario->getPais().'" '; ?> name="dnPais" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Pais">
 					</div>
 					<div class="form-group">
 					    <label for="exampleInputEmail1">Estado:</label>
-					    <input <?php echo 'value= "'.$proprietario->getEstado().'" '; ?> name="dnEstado" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Estado" required>
+					    <input <?php echo 'value= "'.$proprietario->getEstado().'" '; ?> name="dnEstado" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Estado">
 					</div>
 					<div class="form-group">
 					    <label for="exampleInputEmail1">Cidade:</label>
-					    <input <?php echo 'value= "'.$proprietario->getCidade().'" '; ?> name="dnCidade" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Cidade" required>
+					    <input <?php echo 'value= "'.$proprietario->getCidade().'" '; ?> name="dnCidade" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Cidade">
 					</div>
 					<div class="form-group">
 					    <label for="exampleInputEmail1">Bairro:</label>
-					    <input <?php echo 'value= "'.$proprietario->getBairro().'" '; ?> name="dnBairro" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Bairro" required>
+					    <input <?php echo 'value= "'.$proprietario->getBairro().'" '; ?> name="dnBairro" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Bairro">
 					</div>
 					<div class="form-group">
 					    <label for="exampleInputEmail1">Rua:</label>
-					    <input <?php echo 'value= "'.$proprietario->getRua().'" '; ?> name="dnRua" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Rua" required>
+					    <input <?php echo 'value= "'.$proprietario->getRua().'" '; ?> name="dnRua" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Rua">
 					</div>
 					<div class="form-group">
 					    <label for="exampleInputEmail1">Numero:</label>
-					    <input <?php echo 'value= "'.$proprietario->getNumero().'" '; ?> name="dnNumero" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Numero" required>
+					    <input <?php echo 'value= "'.$proprietario->getNumero().'" '; ?> name="dnNumero" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Numero">
 					</div>
 					<div class="form-group">
 					    <label for="exampleInputEmail1">Telefone:</label>
-					    <input <?php echo 'value= "'.$proprietario->getTel().'" '; ?> name="dnTel" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Telefone" required>
+					    <input <?php echo 'value= "'.$proprietario->getTel().'" '; ?> name="dnTel" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Telefone">
 					</div>
 					<div class="form-group">
 					    <button type="submit" class="btn btn-primary">Enviar</button>
