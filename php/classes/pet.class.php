@@ -104,7 +104,7 @@
 					//$this->setIdProprietario($value);
 					
 				}else{
-					echo "Erro ao salvar o nome";
+					$this->nome = "Não foi informado";
 				}
 			}
 		}
@@ -121,8 +121,6 @@
 				if(!empty($especie)){
 					$this->especie = $especie['especie'];
 					
-				}else{
-					echo "Erro ao salvar a especie";
 				}
 			}
 		}
@@ -139,8 +137,6 @@
 				if(!empty($raca)){
 					$this->raca = $raca['raca'];
 					
-				}else{
-					echo "Erro ao salvar a raca";
 				}
 			}
 		}
@@ -157,8 +153,6 @@
 				if(!empty($sexo)){
 					$this->sexo = $sexo['sexo'];
 					
-				}else{
-					echo "Erro ao salvar o sexo";
 				}
 			}
 		}
@@ -175,8 +169,6 @@
 				if(!empty($idade)){
 					$this->idade = $idade['idade'];
 					
-				}else{
-					echo "Erro ao salvar a idade";
 				}
 			}
 		}
@@ -193,8 +185,6 @@
 				if(!empty($peso)){
 					$this->peso = $peso['peso'];
 					
-				}else{
-					echo "Erro ao salvar o peso";
 				}
 			}
 		}
@@ -211,8 +201,6 @@
 				if(!empty($info)){
 					$this->infoAdd = $info['info_add'];
 					
-				}else{
-					echo "Erro ao salvar as infoAdd";
 				}
 			}
 		}
@@ -249,9 +237,6 @@
 				$nome = $sql->fetch();
 				if(!empty($id)){
 					$this->nome = $nome['nome'];
-					return true;
-				}else{
-					return false;
 				}
 			}
 		}
