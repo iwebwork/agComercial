@@ -2,6 +2,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<head lang="pt-br">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset='utf-8'/>
 	<title></title>
 </head>
 <body>
@@ -52,6 +55,7 @@
 				$pet = $animal->inserirPet($dadosPet,$proprietario->getId());
 				if($pet == true){
 					echo "Dados cadastrados com sucesso";
+					//header("location:javascript:alert(Dados Cadastrados com Sucesso!);location.href=../index.php;");
 					header("Location: ../index.php");
 				}else{
 					echo "Erro ao cadastrar o pet";
