@@ -56,7 +56,7 @@
 					$this->id = $id['id_propri'];
 					
 				}else{
-					echo "O cpf estava vazio";
+					echo "O id estava vazio";
 				}
 			}
 			
@@ -557,7 +557,7 @@
 																	'</div>'.
 																	'<div class="form-check form-check-inline">'.
 																		'<form method= "POST" action="cadastrarPet.php" >'.
-																			'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.	
+																			'<input name= "id_propri" type="hidden" class= "none" value="'.$prop['id_propri'].'" readonly>'.	
 																			'<p data-placement="top" data-toggle="tooltip" title="Cadastrar um novo pet no nome desse dono"><button class="btn btn-success btn-xs" data-title="Update" type="submit"><span class="glyphicon glyphicon-plus"></span></button></p>'.
 																		'</form>'.
 																	'</div>'.																	
@@ -689,7 +689,7 @@
 																'</div>'.
 																'<div class="form-check form-check-inline">'.
 																	'<form method= "POST" action="cadastrarPet.php" >'.
-																		'<input name= "cpf" type="hidden" class= "none" value="'.$prop['cpf'].'" readonly>'.	
+																		'<input name= "id_propri" type="hidden" class= "none" value="'.$prop['id_propri'].'" readonly>'.	
 																		'<p data-placement="top" data-toggle="tooltip" title="Cadastrar um novo pet no nome desse dono"><button class="btn btn-success btn-xs" data-title="Update" type="submit"><span class="glyphicon glyphicon-plus"></span></button></p>'.
 																	'</form>'.
 																'</div>'.																	
