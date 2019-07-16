@@ -97,8 +97,8 @@
 		}
 
 		public function eventosDoDia(){
-			date_default_timezone_set('UTC');
-			//date_default_timezone_get('America/Sao_Paulo');
+			date_default_timezone_set("America/Sao_Paulo");
+			setlocale(LC_ALL, 'pt_BR');
 
 			$ano_mes_dia = date("o-m-d");
 
