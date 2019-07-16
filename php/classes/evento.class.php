@@ -232,6 +232,25 @@
 			</div>';
 		}
 
+		public function deletarEvento($value)
+		{	
+			
+			if (!empty($value)) {
+				$sql = "DELETE FROM eventos WHERE id_evento = :id_evento";
+				$sql = $this->pdo->prepare($sql);
+				$sql->bindValue(':id_evento',$value);
+				if($sql->execute()){
+					return true;
+				}else{
+					return false;
+				}
+
+			}else{
+				echo "Esse evento ja foi deletado";
+			}
+
+		}
+
 		public function strExibirEventosDoDia($value)
 		{
 			include_once 'dataHora.class.php';
@@ -384,6 +403,7 @@
 							'<th class="text-center">Data - Hora Inicio</th>'.
 							'<th class="text-center">Data - Hora Termino</th>'.
 							'<th class="text-center">Consulta</th>'.
+							'<th class="text-center">Excluir</th>'.
 						'</thead>';
 
 				echo $tCabe;
@@ -432,6 +452,14 @@
 											'<form method= "POST" action= "php/desmarcarEvento.php" >'.
 												'<input name= "idConsulta" type="hidden" value="'.$itens['id_evento'].'">'.
 													$this->returnButtonEvento($itens['status']).
+											'</form>'.
+										'</div>'.
+									'</td>'.
+									'<td>'.
+										'<div class="form-check form-check-inline">'.
+											'<form method= "POST" action= "php/deletarEvento.php" >'.
+												'<input name= "idConsulta" type="hidden" value="'.$itens['id_evento'].'">'.
+													'<button class="btn btn-danger" type="submit">Excluir</button>'.
 											'</form>'.
 										'</div>'.
 									'</td>'.
